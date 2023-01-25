@@ -6,7 +6,7 @@ FauxPinterestClone, a Pintrest clone, is a website for users to share content, e
 
 * Users can sign up, log in, and log out.
 * Users can use a demo log in to try the site.
-* Users can't use certain features without logging in (like fauxtweeting and fauxliking posts).
+* Users can't use certain features without logging in (like pinning).
 * Logged in users are directed to their profile page which displays their boards.
 * Logged out users are directed to a page displaying several recent boards.
 
@@ -14,27 +14,26 @@ FauxPinterestClone, a Pintrest clone, is a website for users to share content, e
 
 * Logged in users can post pins.
 * Logged in users can edit and delete their own pins.
-* All users can view a sampling of the most recent pins.
+* Logged in users can post boards.
+* Logged in users can edit and delete their own boards.
 
-## 3. Follows
+
+## 3. Follows/Followers
 * Logged in users can follow other users.
 * Logged in users can unfollow other users.
 * All users can view a users following list
 * All users can view a users followers list
 
 ## 4. Discover feed on home page
-* All users can view pins
+* Logged in users can view a sampling of the most recent pins.
 
 ## 6. Bonus Features
 
-* Display a list of recent commonly used fauxtags.
-* Users can search for other users to view all of their fauxtweets.
-
-## 4. Likes
+##  Likes
 
 * Logged in users can like pins and comments.
 * Logged in users can remove their own like from pins and comments.
-* All users can see how many users have fauxliked a fauxtweet or fauxcomment.
+* All users can see how many users have liked a pin or comment.
 
-## Bonus: private boards
+## private boards
 
