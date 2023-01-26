@@ -2,17 +2,34 @@
 
 This web app uses the following API routes to dynamically update the page to create a single-page-app-like feel for the user for specific features.
 
-## FauxComments
 
-* A logged in user may delete one of their own FauxComments, removing it from the list of visible FauxComments without causing a refresh/redirect.
+## Pins
 
-  * `DELETE /api/fauxcomments/:id`
+* A logged in user can get, create, edit or delete a pin with visible confirmation without causing a refresh/redirect.
 
-## FauxLikes
+  * `POST /api/pins`
+  * `GET /api/pins`
+  * `PUT /api/pins/:pinId`
+  * `DELETE /api/pins/:pinId`
 
-* A logged in user can FauxLike or FauxUnlike a FauxTweet or FauxComment with visible confirmation without causing a refresh/redirect.
+  ## Boards
 
-  * `POST /api/fauxtweets/:id/likes`
-  * `POST /api/fauxcomments/:id/likes`
-  * `DELETE /api/fauxtweets/:id/likes`
-  * `DELETE /api/fauxcomments/:id/likes`
+  * A logged in user can get, create, edit or delete a board with visible confirmation without causing a refresh/redirect.
+
+  * `POST /api/boards`
+  * `GET /api/boards`
+  * `PUT /api/boards/:boardId`
+  * `DELETE /api/boards/:boardId`
+
+## Following/Followers
+  * `GET /api/followers` current user viewing their followers
+  * `GET /api/following` current user viewing their following
+  * `GET /api/users/:userId/followers` view anothers user's followers list
+  * `GET /api/users/:userId/following` view another user's following list
+   
+  * `POST /api/followers/:userId` add a follower
+  * `DELETE /api/followers/:userId` delete a follower
+
+
+##  Discover feed on home page
+ * `GET /api/home` 
