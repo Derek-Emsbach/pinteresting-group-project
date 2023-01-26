@@ -2,6 +2,8 @@
 
 ## Users
 
+
+
 ### Sign Up
 
 * As an unregistered and unauthorized user, I want to be able to sign up for the website via a sign-up form.
@@ -19,7 +21,6 @@
   * When I'm on the `/login` page:
     * I would like to be able to enter my email and password on a clearly laid out form.
     * I would like the website to log me in upon successful completion of the lob-up form.
-      * So that I can seamlessly access the site's functionality
   * When I enter invalid data on the log-up form:
     * I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
       * So that I can try again without needing to refill forms I entered valid data into.
@@ -35,22 +36,21 @@
 
 * As a logged in user, I want to log out via an easy to find log out button on the navigation bar.
   * While on any page of the site:
-    * I can log out of my account and be redirected to a page displaying recent FauxTweets.
-      * So that I can easily log out to keep my information secure.
+    * I can log out of my account and be redirected to a page displaying recent pins. So that I can easily log out to keep my information secure.
 
-## FauxTweets
+## Pins
 
-### Create FauxTweets
+### Create Pins
 
-* As a logged in user, I want to be able to post new FauxTweets.
-  * When I'm on the `/new-fauxtweet` page:
+* As a logged in user, I want to be able to post new Pins.
+  * When I'm on the `***/new-Pins***` page:
     * I can write and submit a new FauxTweet.
       * So that I can share my thoughts and memes with my friends.
 
-### Viewing FauxTweets
+### Viewing Pins
 
 * As a logged in _or_ logged out user, I want to be able to view a selection of the most recent FauxTweets.
-  * When I'm on the `/fauxtweets` page:
+  * When I'm on the `/fauxtweets***` page:
     * I can view the ten most recently posted FauxTweets.
       * So that I can read and interact with the thoughts and memes of my friends.
 
@@ -59,14 +59,14 @@
     * I can view the content of the FauxTweet, as well as the associated FauxComments and FauxLikes.
       * So that I can read and interact with the thoughts and memes of my friends, and add my own thoughts and memes in the FauxComments.
 
-### Updating FauxTweets
+### Updating Pins
 
 * As a logged in user, I want to be able to edit my FauxTweets by clicking an Edit button associated with the FauxTweet anywhere that FauxTweet appears.
   * When I'm on the `/fauxtweets`, `/fauxtweets/:id`, or `/users/:id/fauxtweets` pages:
     * I can click "Edit" to make permanent changes to FauxTweets I have posted.
       * So that I can fix any errors I make in my FauxTweets.
 
-### Deleting FauxTweets
+### Deleting Pins
 
 * As a logged in user, I want to be able to delete my FauxTweets by clicking a Delete button associated with the FauxTweet anywhere that FauxTweet appears.
   * When I'm on the `/fauxtweets`, `/fauxtweets/:id`, or `/users/:id/fauxtweets` pages:
