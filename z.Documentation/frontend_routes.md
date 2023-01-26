@@ -83,6 +83,6 @@ This page displays a users followers, add and delete followers buttons as well a
 
 ## `/following`
 
-This page displays a users following
+This page displays a users following.
 
 * `GET /following` current user viewing their following
