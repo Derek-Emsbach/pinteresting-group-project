@@ -1,2 +1,2 @@
 # **Database Schema**
-[image](image.png)
+![image](image.png)
