@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request ,redirect
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -51,6 +51,7 @@ def logout():
     Logs a user out
     """
     logout_user()
+    redirect('/login')
     return {'message': 'User logged out'}
 
 

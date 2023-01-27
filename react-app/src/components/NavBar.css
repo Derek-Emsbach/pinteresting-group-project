@@ -1,0 +1,159 @@
+ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+     align-items: center;
+     height: 56px;
+     padding: 12px 4px 4px 16px;
+
+}
+
+.left_side {
+    display: flex;
+    height: 48px;
+    min-width: 123px;
+    width: 10%;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 24px;
+  
+}
+
+.search_middle {
+    width: 75%;
+    height: 49px;
+    display: inline-flex;
+    position: fixed;
+    border-radius: 50px;
+    overflow: hidden;
+    align-items: center;
+    border: 1px solid grey;
+    background-color: #efefef;
+    color: black;
+    padding-left: 10px;
+    margin-left: 250px;
+
+ 
+}
+.search_middle form {
+    display: flex;
+    flex: 1;
+}
+.search_middle input{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    margin-left: 5px;
+    font-size: 16px;
+
+}
+.search_middle input:focus{
+    outline: none;
+}
+.search_middle button{
+    background-color: transparent;
+    border: none;
+}
+
+
+
+
+.search_middle:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  }
+
+.left_side button{
+    background-color: transparent;
+    border: none;
+}
+.left_side button:hover{
+    background-color: lightgray;
+    border-radius: 20px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.pinterest_icon img{
+    width: 30px;
+    height: 30px;
+}
+
+.dropdown-menu {
+    top: 50px;
+    right:10px;
+    position: fixed;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: 300px;
+    margin-top: 50px;
+    z-index: 10;
+  }
+  
+  .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    height: 20px;
+    width: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+  }
+
+  
+  .dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: 500ms ease;
+  }
+  
+  .dropdown-menu.inactive {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 500ms ease;
+  }
+  
+  .dropdown-menu.active span {
+    width: 24px;
+    height: 1px;
+    background: gray;
+  }
+
+.button_dropdown{
+
+}
+
+
+.right_side{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.right_side button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.right_side img{
+    width: 25px;
+}
+
+
+
+
+.menu_dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+.right_side button:hover{
+    background-color: lightgray;
+    border-radius: 20px;
+    height: 40px;
+
+}
+
