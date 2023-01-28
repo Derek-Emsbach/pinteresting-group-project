@@ -15,7 +15,7 @@ function User() {
       setUser(user);
     })();
   }, [userId]);
-   console.log(user.username)
+
   if (!user) {
     return null;
   }

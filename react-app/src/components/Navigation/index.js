@@ -1,14 +1,14 @@
 
 import React,{ useEffect,useState, useRef} from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
 import './Navigation.css'
-import pinterestIcon from '../icons/pinterest_icon.png'
+import pinterestIcon from '../../icons/pinterest_icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown} from '@fortawesome/free-solid-svg-icons'
-import bell from '../icons/bell.png'
-import message from '../icons/chat.png'
-import profile from '../icons/profile.png'
+import bell from '../../icons/bell.png'
+import message from '../../icons/chat.png'
+import profile from '../../icons/profile.png'
 import { useSelector } from 'react-redux';
 
 const Navigation = () => {
@@ -16,21 +16,7 @@ const Navigation = () => {
   let menuRef = useRef()
 
   const sessionUser = useSelector(state=> state.session.user)
-  console.log(sessionUser)
-  // useEffect(()=>{
-  //   let handleSubmit = (e)=>{
-  //     if(!menuRef.current.contains(e.target)){
-  //     setOpen(false)
-  //     }
-  //   }
-  //   document.addEventListener('mousedown',handleSubmit)
-  
-  // },[])
-  useEffect(()=>{
 
-
-
-  },[])
 
 
 

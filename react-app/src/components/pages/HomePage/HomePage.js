@@ -1,8 +1,7 @@
 import React from "react";
 import './HomePage.css'
-import icon from '../../icons/Pinterest-Logo-PNG9.png'
+import icon from '../../../icons/Pinterest-Logo-PNG9.png'
 import { NavLink } from "react-router-dom";
-import body from '../../icons/Screen Shot 2023-01-26 at 10.44.04 PM.png'
 
 function HomePage(){
 
@@ -31,7 +30,7 @@ function HomePage(){
         </div>
 
         <div className="body">
-        <img src={body}></img>
+    
         
         </div>
 

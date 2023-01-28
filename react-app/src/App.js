@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/Navigation';
+import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -28,9 +28,11 @@ function App() {
 
 	return (
 		<>
-				<NavBar isLoaded={isLoaded} />
+				<Navigation isLoaded={isLoaded} />
 				{isLoaded && (
 					<Switch>
+
+
 						<Route exact path='/'>
 							<h1>Discover Page</h1>
               <PinterestLayout/>
@@ -41,6 +43,10 @@ function App() {
 						<Route exact path='/signup'>
 							<SignUpForm />
 						</Route>
+
+            <Route exact path='/homepage'>
+            <HomePage />
+              </Route>
 
             {/*
             <Route path='/pins'>
@@ -76,6 +82,7 @@ function App() {
 					</Switch>
 
 				)}
+    
 		</>
 	);
 }
