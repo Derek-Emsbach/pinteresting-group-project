@@ -23,7 +23,7 @@ ul {
     width: 75%;
     height: 49px;
     display: inline-flex;
-    position: fixed;
+    position: absolute;
     border-radius: 50px;
     overflow: hidden;
     align-items: center;
@@ -93,11 +93,10 @@ ul {
   
   .dropdown-menu::before {
     content: '';
-    position: absolute;
     top: -5px;
     height: 20px;
     width: 20px;
-    background: #fff;
+    background: rgb(53, 49, 49);
     transform: rotate(45deg);
   }
 
@@ -122,10 +121,34 @@ ul {
     background: gray;
   }
 
-.button_dropdown{
-
+.menu_dropdown h5{
+    margin-bottom: 10px;
 }
 
+.profile img{
+    width: 60px;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+}
+.profile:hover{
+    cursor: pointer;
+    background-color: lightgrey;
+    border-radius: 10px;
+}
+.profile h5{
+    font-style:italic;
+    margin: 0;
+}
+
+.user_info{
+    display: flex;
+    margin-left: 20px;
+    justify-content: center;
+    flex-direction: column;
+}
 
 .right_side{
     display: flex;

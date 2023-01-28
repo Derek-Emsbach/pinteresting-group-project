@@ -9,19 +9,27 @@ import { faChevronDown, faBell, faCommentDots, faUser} from '@fortawesome/free-s
 import bell from '../icons/bell.png'
 import message from '../icons/chat.png'
 import profile from '../icons/profile.png'
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const [open, setOpen] = useState(false)
   let menuRef = useRef()
 
-  useEffect(()=>{
-    let handleSubmit = (e)=>{
-      if(!menuRef.current.contains(e.target)){
-      setOpen(false)
-      }
-    }
-    document.addEventListener('mousedown',handleSubmit)
+  const sessionUser = useSelector(state=> state.session.user)
+  console.log(sessionUser)
+  // useEffect(()=>{
+  //   let handleSubmit = (e)=>{
+  //     if(!menuRef.current.contains(e.target)){
+  //     setOpen(false)
+  //     }
+  //   }
+  //   document.addEventListener('mousedown',handleSubmit)
   
+  // },[])
+  useEffect(()=>{
+
+
+
   },[])
 
 
@@ -44,7 +52,7 @@ const NavBar = () => {
 
         <div className='search_middle'>
             <form>
-              <input type = 'Text'></input>
+              <input type = 'Text' placeholder='Search'></input>
               <button type ='Submit'></button>
             </form>
     
@@ -73,18 +81,31 @@ const NavBar = () => {
         </div>
 
         <div className={`dropdown-menu ${open ? 'active' :'inactive'} `} ref={menuRef} >
-      
+            {sessionUser&&
             <div className='menu_dropdown'>
-                <li>
-                  <NavLink to='/login' exact={true} activeClassName='active'>
-                   Login
-                  </NavLink>
-                </li>
+                  <h5>Currently in</h5>
+                  <div className='profile'>
+                       <div className='prof_icon'>
+                       <img src={profile} alt =''/>
+                       </div>
+                       <div className='user_info'>
+                       {sessionUser.username}
+                        <h5>Personal</h5>
+                       {sessionUser.email}
+                       </div>
+                        
+                  </div>
+            
+            
+
                 <li>
                    <NavLink to='/sign-up' exact={true} activeClassName='active'>
                   Sign Up
                   </NavLink>
                 </li>
+
+
+
                  <li>
                   <NavLink to='/users' exact={true} activeClassName='active'>
                    Users
@@ -95,8 +116,10 @@ const NavBar = () => {
                   <LogoutButton />
                  </li>
              </div>
-           
+            }
         </div>
+            
+        
 
       </ul>
     </nav>

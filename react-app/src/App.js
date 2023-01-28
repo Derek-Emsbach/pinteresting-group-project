@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,8 +27,9 @@ function App() {
   }
 
   return (
+    
     <BrowserRouter>
-      <NavBar />
+   
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -41,10 +44,18 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
+          <NavBar />
           <h1>My Home Page</h1>
+          <PinterestLayout/>
+        </Route>
+
+        <Route path='/homepage' exact ={true}>
+          <HomePage/>
         </Route>
       </Switch>
+    
     </BrowserRouter>
+   
   );
 }
 
