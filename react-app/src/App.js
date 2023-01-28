@@ -12,43 +12,42 @@ import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
 
 function App() {
-	const [isLoaded, setisLoaded] = useState(false);
-	const dispatch = useDispatch();
+  const [isLoaded, setisLoaded] = useState(false);
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		(async () => {
-			await dispatch(authenticate());
-			setisLoaded(true);
-		})();
-	}, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setisLoaded(true);
+    })();
+  }, [dispatch]);
 
-	if (!isLoaded) {
-		return null;
-	}
+  if (!isLoaded) {
+    return null;
+  }
 
-	return (
-		<>
-				<Navigation isLoaded={isLoaded} />
-				{isLoaded && (
-					<Switch>
+  return (
+    <div>
+      <Route exact path="/homepage">
+        <HomePage />
+      </Route>
 
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+          <Route exact path="/">
+            <h1>Discover Page</h1>
+            <PinterestLayout />
+          </Route>
 
-						<Route exact path='/'>
-							<h1>Discover Page</h1>
-              <PinterestLayout/>
-						</Route>
-						<Route exact path='/login'>
-							<LoginForm />
-						</Route>
-						<Route exact path='/signup'>
-							<SignUpForm />
-						</Route>
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
+          <Route exact path="/signup">
+            <SignUpForm />
+          </Route>
 
-            <Route exact path='/homepage'>
-            <HomePage />
-              </Route>
-
-            {/*
+          {/*
             <Route path='/pins'>
               <PinsPage />
             </Route>
@@ -63,7 +62,7 @@ function App() {
         
             </Route>
             */}
-            {/* 
+          {/* 
             <Route path='/following`'> 
               <FollowingPage/>
             </Route>
@@ -71,20 +70,18 @@ function App() {
               <FollowersPage/>
             </Route>
           */}
-        
- {/* 
+
+          {/* 
 					 <ProtectedRoute exact path='/users'>
 							<UsersList />
 						</ProtectedRoute>
 						<ProtectedRoute exact path='/users/:userId'>
 							<User />
 						</ProtectedRoute> */}
-					</Switch>
-
-				)}
-    
-		</>
-	);
+        </Switch>
+      )}
+    </div>
+  );
 }
 
 export default App;
