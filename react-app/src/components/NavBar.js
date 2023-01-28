@@ -5,7 +5,7 @@ import LogoutButton from './auth/LogoutButton';
 import './NavBar.css'
 import pinterestIcon from '../icons/pinterest_icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faBell, faCommentDots, faUser} from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import bell from '../icons/bell.png'
 import message from '../icons/chat.png'
 import profile from '../icons/profile.png'
