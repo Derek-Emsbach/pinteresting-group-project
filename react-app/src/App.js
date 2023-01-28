@@ -3,60 +3,81 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
-import HomePage from './components/HomePage/HomePage';
+import HomePage from './components/pages/HomePage/HomePage';
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
+	const [isLoaded, setisLoaded] = useState(false);
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+	useEffect(() => {
+		(async () => {
+			await dispatch(authenticate());
+			setisLoaded(true);
+		})();
+	}, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+	if (!isLoaded) {
+		return null;
+	}
 
-  return (
-    
-    <BrowserRouter>
-   
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <Route path='/' exact={true} >
-          <NavBar />
-          <h1>My Home Page</h1>
-          <PinterestLayout/>
-        </Route>
+	return (
+		<>
+				<NavBar isLoaded={isLoaded} />
+				{isLoaded && (
+					<Switch>
+						<Route exact path='/'>
+							<h1>Discover Page</h1>
+              <PinterestLayout/>
+						</Route>
+						<Route exact path='/login'>
+							<LoginForm />
+						</Route>
+						<Route exact path='/signup'>
+							<SignUpForm />
+						</Route>
 
-        <Route path='/homepage' exact ={true}>
-          <HomePage/>
-        </Route>
-      </Switch>
-    
-    </BrowserRouter>
-   
-  );
+            {/*
+            <Route path='/pins'>
+              <PinsPage />
+            </Route>
+            <Route path='/pins/:pinId'>
+              <PinsDetailPage />
+            </Route>
+            <Route path='/boards'>
+              <BoardsPage/>
+            </Route>
+            <Route path='/boards/:boardId'>
+              <BoardsDetailPage/>
+        
+            </Route>
+            */}
+            {/* 
+            <Route path='/following`'> 
+              <FollowingPage/>
+            </Route>
+            <Route path='/followers/:userId`'>  
+              <FollowersPage/>
+            </Route>
+          */}
+        
+ {/* 
+					 <ProtectedRoute exact path='/users'>
+							<UsersList />
+						</ProtectedRoute>
+						<ProtectedRoute exact path='/users/:userId'>
+							<User />
+						</ProtectedRoute> */}
+					</Switch>
+
+				)}
+		</>
+	);
 }
 
 export default App;

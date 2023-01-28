@@ -2,7 +2,7 @@
 import React,{ useEffect,useState, useRef} from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import './NavBar.css'
+import './Navigation.css'
 import pinterestIcon from '../icons/pinterest_icon.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown} from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +11,7 @@ import message from '../icons/chat.png'
 import profile from '../icons/profile.png'
 import { useSelector } from 'react-redux';
 
-const NavBar = () => {
+const Navigation = () => {
   const [open, setOpen] = useState(false)
   let menuRef = useRef()
 
@@ -35,7 +35,8 @@ const NavBar = () => {
 
 
   return (
-    <nav>
+    <div className='Nav-container'>
+    <nav id='navigation-bar'>
       <ul>
         <div className='left_side'>
              <button className='pinterest_icon'>
@@ -123,7 +124,8 @@ const NavBar = () => {
 
       </ul>
     </nav>
+    </div>
   );
 }
 
-export default NavBar;
+export default Navigation;
