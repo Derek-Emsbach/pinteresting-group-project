@@ -3,41 +3,51 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/Navigation';
+import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
+import HomePage from './components/pages/HomePage/HomePage';
 
 function App() {
-	const [isLoaded, setisLoaded] = useState(false);
-	const dispatch = useDispatch();
+  const [isLoaded, setisLoaded] = useState(false);
+  const dispatch = useDispatch();
 
-	useEffect(() => {
-		(async () => {
-			await dispatch(authenticate());
-			setisLoaded(true);
-		})();
-	}, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setisLoaded(true);
+    })();
+  }, [dispatch]);
 
-	if (!isLoaded) {
-		return null;
-	}
+  if (!isLoaded) {
+    return null;
+  }
 
-	return (
-		<>
-				<NavBar isLoaded={isLoaded} />
-				{isLoaded && (
-					<Switch>
-						<Route exact path='/'>
-							<h1>Discover Page</h1>
-						</Route>
-						<Route exact path='/login'>
-							<LoginForm />
-						</Route>
-						<Route exact path='/signup'>
-							<SignUpForm />
-						</Route>
+  return (
+    <div>
+      <Route exact path="/homepage">
+        <HomePage />
+      </Route>
+
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+          <Route exact path="/">
+            <h1>Discover Page</h1>
+            <PinterestLayout />
+          </Route>
+
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
+          <Route exact path="/signup">
+            <SignUpForm />
+          </Route>
+
+          {/*
             <Route path='/pins'>
               <PinsPage />
             </Route>
@@ -49,24 +59,29 @@ function App() {
             </Route>
             <Route path='/boards/:boardId'>
               <BoardsDetailPage/>
+        
             </Route>
-            <Route path='/following`'> {/* who you following */}
+            */}
+          {/* 
+            <Route path='/following`'> 
               <FollowingPage/>
             </Route>
-            <Route path='/followers/:userId`'>  {/* your followers */}
+            <Route path='/followers/:userId`'>  
               <FollowersPage/>
             </Route>
+          */}
 
-						{/* <ProtectedRoute exact path='/users'>
+          {/* 
+					 <ProtectedRoute exact path='/users'>
 							<UsersList />
 						</ProtectedRoute>
 						<ProtectedRoute exact path='/users/:userId'>
 							<User />
 						</ProtectedRoute> */}
-					</Switch>
-				)}
-		</>
-	);
+        </Switch>
+      )}
+    </div>
+  );
 }
 
 export default App;

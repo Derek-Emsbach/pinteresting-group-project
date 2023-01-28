@@ -1,0 +1,24 @@
+*{
+    text-decoration: none;
+    color: black;
+}
+.icon img{
+    width: 130px;
+}
+.nav_bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+
+
+}
+
+.right_menu{
+    width: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.body img{
+    width: auto;
+}

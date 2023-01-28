@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session'
 
 const rootReducer = combineReducers({
-  sessionReducer,
+  session: sessionReducer
 });
 
 
 let enhancer;
+
+// pre-fixed code
 
 if (process.env.NODE_ENV === 'production') {
   enhancer = applyMiddleware(thunk);
