@@ -1,6 +1,11 @@
 # User Stories
 
-## Users
+## Profile
+* As a logged in user, I can create, view, or edit thier profile.
+  * `POST /api/users`
+  * `GET /api/users`
+  * `PUT /api/users/:userId`
+  * `DELETE /api/users/:userId`
 
 ### Sign Up
 
@@ -19,7 +24,6 @@
   * When I'm on the `/login` page:
     * I would like to be able to enter my email and password on a clearly laid out form.
     * I would like the website to log me in upon successful completion of the lob-up form.
-      * So that I can seamlessly access the site's functionality
   * When I enter invalid data on the log-up form:
     * I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
       * So that I can try again without needing to refill forms I entered valid data into.
@@ -35,40 +39,82 @@
 
 * As a logged in user, I want to log out via an easy to find log out button on the navigation bar.
   * While on any page of the site:
-    * I can log out of my account and be redirected to a page displaying recent FauxTweets.
-      * So that I can easily log out to keep my information secure.
+    * I can log out of my account and be redirected to a page displaying recent pins. So that I can easily log out to keep my information secure.
 
-## FauxTweets
+## Discover Feed on Home Page
+* As a logged in user, I want to be able to view the discover feed on the homepage that consists
+  * of random pins `/home`
 
-### Create FauxTweets
+## Pins
 
-* As a logged in user, I want to be able to post new FauxTweets.
-  * When I'm on the `/new-fauxtweet` page:
-    * I can write and submit a new FauxTweet.
+### Create Pins
+
+* As a logged in user, I want to be able to post new Pins.
+  * When I'm on the `/pins` page:
+    * I can write and submit a new pins.
       * So that I can share my thoughts and memes with my friends.
 
-### Viewing FauxTweets
+### Viewing Pins
 
-* As a logged in _or_ logged out user, I want to be able to view a selection of the most recent FauxTweets.
-  * When I'm on the `/fauxtweets` page:
-    * I can view the ten most recently posted FauxTweets.
+* As a logged in _or_ logged out user, I want to be able to view a selection of the most recent pins.
+  * When I'm on the `/pins` page:
+    * I can view the ten most recently posted pins.
       * So that I can read and interact with the thoughts and memes of my friends.
 
-* As a logged in _or_ logged out user, I want to be able to view a specific FauxTweet and its associated FauxComments and FauxLikes.
-  * When I'm on the `/fauxtweets/:id` page:
-    * I can view the content of the FauxTweet, as well as the associated FauxComments and FauxLikes.
-      * So that I can read and interact with the thoughts and memes of my friends, and add my own thoughts and memes in the FauxComments.
+* As a logged in _or_ logged out user, I want to be able to view a specific pin, creator, and followers.
+  * When I'm on the `/pins/:pinId` page:
+    * I can view the content of the pins with a title / caption
+    * I can follow the creator
+    * I can see the profile picture of the creator
 
-### Updating FauxTweets
+### Updating Pins
 
-* As a logged in user, I want to be able to edit my FauxTweets by clicking an Edit button associated with the FauxTweet anywhere that FauxTweet appears.
-  * When I'm on the `/fauxtweets`, `/fauxtweets/:id`, or `/users/:id/fauxtweets` pages:
-    * I can click "Edit" to make permanent changes to FauxTweets I have posted.
-      * So that I can fix any errors I make in my FauxTweets.
+* As a logged in user, I want to be able to edit my pins by clicking an Edit button associated with the pins.
+  * When I'm on the `/pins/:pinId` page:
+    * I can click "Edit" to make permanent changes to pins I have posted.
+      * So that I can fix any errors I make in my pins.
 
-### Deleting FauxTweets
+### Deleting Pins
 
-* As a logged in user, I want to be able to delete my FauxTweets by clicking a Delete button associated with the FauxTweet anywhere that FauxTweet appears.
-  * When I'm on the `/fauxtweets`, `/fauxtweets/:id`, or `/users/:id/fauxtweets` pages:
-    * I can click "Delete" to permanently delete a FauxTweet I have posted.
+* As a logged in user, I want to be able to delete my pins by clicking a Delete button associated with the pins anywhere that pins appears.
+  * When I'm on the `/pins/:pinId` page:
+    * I can click "Delete" to permanently delete a pin I have posted.
       * So that when I realize I shouldn't have publicly said something, I can easily remove it.
+
+### Create Boards
+
+* As a logged in user, I want to be able to post new Boards.
+  * When I'm on the `/Boards` page:
+    * I can create a new board
+      * So my followers can see my boards and pins
+
+### Viewing Boards
+
+* As a logged in user, I want to be able to view all boards.
+  * When I'm on the `/boards` page:
+    * I can view the recently posted boards.
+
+* As a logged in user, I want to be able to view a specific board, creator, and followers.
+  * When I'm on the `/boards/:boardId` page:
+    * I can view the content of the boards with a title / caption
+    * I can follow the creator
+
+### Updating Boards
+
+* As a logged in user, I want to be able to edit my boards by clicking an Edit button associated with the boards.
+  * When I'm on the `/boards/:boardId` page:
+    * I can click "Edit" to make permanent changes to boards I have posted.
+      * So that I can fix any errors I make in my boards.
+
+### Deleting Boards
+
+* As a logged in user, I want to be able to delete my boards by clicking a Delete button associated with the boards anywhere that boards appears.
+  * When I'm on the `/boards/:boardId` page:
+    * I can click "Delete" to permanently delete a board I have posted.
+      * So that when I realize I shouldn't have publicly said something, I can easily remove it.
+
+### Followers and following
+
+* As a logged in user, I want to be able to view my followers `/followers` and who I am following `/following`.
+* As a logged in user, I want to be able to view other users' followers `/users/:userId/followers`and who they are following `/users/:userId/following`.
+* As a logged in user, I want to be able to follow and unfollow a user `/followers/:userId`.
