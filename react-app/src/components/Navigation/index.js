@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import { useSelector } from 'react-redux';
+import LogoutButton from '../auth/LogoutButton';
 
-const NavBar = () => {
+const Navigation = () => {
   return (
-    <nav>
+    <div className='Nav-container'>
+    <nav id='navigation-bar'>
       <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
@@ -22,17 +24,18 @@ const NavBar = () => {
             Sign Up
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to='/users' exact={true} activeClassName='active'>
             Users
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <LogoutButton />
         </li>
       </ul>
     </nav>
+    </div>
   );
 }
 
-export default NavBar;
+export default Navigation;
