@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
+import Profile from './components/pages/Profile/Profile';
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
@@ -40,7 +41,12 @@ function App() {
       )}
       {isLoaded &&(
         <Switch>
-      
+        {sessionUser &&(
+        <Route exact path= {`/${sessionUser.username}`}>
+           <Profile/>
+         </Route>
+         )}
+     
           <Route exact path="/">
             <PinterestLayout />
           </Route>
