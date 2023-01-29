@@ -2,12 +2,15 @@ import React from "react";
 import './HomePage.css'
 import icon from '../../../icons/Pinterest-Logo-PNG9.png'
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function HomePage(){
 
+    const sessionUser = useSelector(state =>state.session.user)
+
     return (
         <>
-
+        {!sessionUser&&(
         <div className="nav_bar">
             <div className="icon">
                 <img src={icon} alt=''></img>
@@ -21,13 +24,14 @@ function HomePage(){
                 <NavLink to='/login' exact={true} activeClassName='active'>
                 Login
                </NavLink>
-               <NavLink to='/sign-up' exact={true} activeClassName='active'>
+               <NavLink to='/signup' exact={true} activeClassName='active'>
                Sign Up
                </NavLink>
 
             </div>
          
         </div>
+    )}
 
         <div className="body">
     

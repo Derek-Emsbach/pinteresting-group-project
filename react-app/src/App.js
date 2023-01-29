@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
@@ -14,6 +13,7 @@ import HomePage from './components/pages/HomePage/HomePage';
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state =>state.session.user)
 
   useEffect(() => {
     (async () => {
@@ -28,15 +28,20 @@ function App() {
 
   return (
     <div>
-      <Route exact path="/homepage">
+
+
+      <Route exact path="/">
         <HomePage />
       </Route>
+   
 
+    {sessionUser&&(
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+      )}
+      {isLoaded &&(
         <Switch>
+      
           <Route exact path="/">
-            <h1>Discover Page</h1>
             <PinterestLayout />
           </Route>
 
@@ -46,6 +51,7 @@ function App() {
           <Route exact path="/signup">
             <SignUpForm />
           </Route>
+      
 
           {/*
             <Route path='/pins'>
@@ -78,8 +84,12 @@ function App() {
 						<ProtectedRoute exact path='/users/:userId'>
 							<User />
 						</ProtectedRoute> */}
+           
         </Switch>
-      )}
+        )}
+
+       
+      
     </div>
   );
 }
