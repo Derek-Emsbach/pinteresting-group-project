@@ -3,7 +3,7 @@ from flask_login import login_required
 from app.models import Pin
 # from app import dbfuncs
 
-pin_routes = Blueprint('pin', __name__)
+pin_routes = Blueprint('pins', __name__)
 
 @pin_routes.route('/pins')
 @login_required

@@ -5,9 +5,11 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User, Board, Pin
+from .api.following_follower_routes import following_follower_routes
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.pin_routes import pin_routes
+from .api.board_routes import board_routes
 from .seeds import seed_commands
 from .config import Config
 # from .routes.pinterest import bp
@@ -32,7 +34,9 @@ app.config.from_object(Config)
 # app.register_blueprint(bp)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(pin_routes, url_prefix='/api/pin')
+app.register_blueprint(pin_routes, url_prefix='/api/pins')
+app.register_blueprint(board_routes, url_prefix='/api/boards')
+app.register_blueprint(following_follower_routes, url_prefix='/api/followings_followers')
 
 
 db.init_app(app)

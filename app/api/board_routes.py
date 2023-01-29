@@ -3,7 +3,7 @@ from flask_login import login_required
 from app.models import Board
 from app import dbfuncs
 
-board_routes = Blueprint('board', __name__)
+board_routes = Blueprint('boards', __name__)
 
 @board_routes.route('/boards')
 @login_required
