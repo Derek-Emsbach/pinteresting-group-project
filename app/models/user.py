@@ -25,6 +25,8 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def __repr__(self):
+        return f'<Userid: {self.id}, username: {self.username}, password: {self.password}'
     def to_dict(self):
         return {
             'id': self.id,

@@ -1,15 +1,17 @@
 from flask import Blueprint, jsonify,render_template,redirect
 from flask_login import login_required
 from app.models import Pin
-from app import dbfuncs
+# from app import dbfuncs
 
 pin_routes = Blueprint('pin', __name__)
 
-@pin_routes.route('/')
+@pin_routes.route('/pins')
 @login_required
 def get_all_pins():
-    pins = dbfuncs.get_all_pins()
-    return pins ##usally this is render_template("page.html",forms=forms)
+
+    pins = Pin.query.all()
+    print('********GET ALL PINS********')
+    return {'pins':[pin.to_dict() for pin in pins]} ##usally this is render_template("page.html",forms=forms)
 
 @pin_routes.route('/pins/<int:id>', methods=['POST'])
 @login_required

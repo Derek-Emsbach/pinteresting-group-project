@@ -6,9 +6,9 @@ class Pin(db.Model):
     __tablename__ = 'pins'
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(255))
-    save = db.Column(db.String(255))
+    save = db.Column(db.Boolean)
     url = db.Column(db.String(255))
     imageUrl = db.Column(db.String(255))
 
@@ -18,6 +18,7 @@ def to_dict(self):
         'id': self.id,
         'userId': self.userId,
         'title': self.title,
+        'save': self.save,
         'url': self.url,
         'imageUrl': self.imageUrl,
     }

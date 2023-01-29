@@ -5,11 +5,12 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import UsersList from './components/pages/UsersList';
+import User from './components/pages/User';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
+import PinsPage from './components/pages/PinsPage/PinsPage';
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
@@ -46,11 +47,10 @@ function App() {
           <Route exact path="/signup">
             <SignUpForm />
           </Route>
-
-          {/*
             <Route path='/pins'>
               <PinsPage />
             </Route>
+            {/*
             <Route path='/pins/:pinId'>
               <PinsDetailPage />
             </Route>
@@ -59,25 +59,23 @@ function App() {
             </Route>
             <Route path='/boards/:boardId'>
               <BoardsDetailPage/>
-        
+
             </Route>
             */}
-          {/* 
-            <Route path='/following`'> 
+          {/*
+            <Route path='/following`'>
               <FollowingPage/>
             </Route>
-            <Route path='/followers/:userId`'>  
+            <Route path='/followers/:userId`'>
               <FollowersPage/>
             </Route>
           */}
-
-          {/* 
 					 <ProtectedRoute exact path='/users'>
 							<UsersList />
 						</ProtectedRoute>
 						<ProtectedRoute exact path='/users/:userId'>
 							<User />
-						</ProtectedRoute> */}
+						</ProtectedRoute>
         </Switch>
       )}
     </div>
