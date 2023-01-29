@@ -1,6 +1,8 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .pins import seed_pins, undo_pins
+from .boards import seed_boards, undo_boards
+from .pinnings import seed_pinnings, undo_pinnings
 
 from app.models.db import db, environment, SCHEMA
 
@@ -19,8 +21,12 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
         undo_pins()
+        undo_boards()
+        undo_pinnings()
     seed_users()
     seed_pins()
+    seed_boards()
+    seed_pinnings()
     # Add other seed functions here
 
 
@@ -29,4 +35,6 @@ def seed():
 def undo():
     undo_users()
     undo_pins()
+    undo_boards()
+    undo_pinnings()
     # Add other undo functions here

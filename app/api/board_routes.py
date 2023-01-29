@@ -8,7 +8,7 @@ board_routes = Blueprint('board', __name__)
 @board_routes.route('/boards')
 @login_required
 def get_all_boards():
-    boards = dbfuncs.get_all_boards()
+    boards = Board.query.all()
     return boards
 
 @board_routes.route('/boards', methods=['POST'])
