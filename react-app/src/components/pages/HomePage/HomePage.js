@@ -10,6 +10,7 @@ function HomePage(){
 
     return (
         <>
+    
         {!sessionUser&&(
         <div className="nav_bar">
             <div className="icon">
@@ -33,10 +34,6 @@ function HomePage(){
         </div>
     )}
 
-        <div className="body">
-    
-        
-        </div>
 
         </>
         
