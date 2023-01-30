@@ -6,37 +6,36 @@ from app.models import Pin
 pin_routes = Blueprint('pins', __name__)
 
 
-@pin_routes.route('/pins')
+@pin_routes.route('/')
 @login_required
 def get_all_pins():
 
     pins = Pin.query.all()
     print('********GET ALL PINS********')
-    # usally this is render_template("page.html",forms=forms)
+
     return {'pins': [pin.to_dict() for pin in pins]}
 
 
-@pin_routes.route('/pins/<int:id>', methods=['POST'])
+@pin_routes.route('/<int:id>')
+@login_required
+def get_pin(id):
+    print('************GET 1 PIN********************')
+    pin = Pin.query.get()
+    return pin.to_dict()
+
+@pin_routes.route('/', methods=['POST'])
 @login_required
 def create_pin(id):
     pass
 
 
-@pin_routes.route('/pins/<int:id>', methods=['GET'])
-@login_required
-def get_pin(id):
-    print('************GET 1 PIN********************')
-    pin = Pin.id[id]
-    return pin
-
-
-@pin_routes.route('/pins/<int:id>', methods=['PUT'])
+@pin_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_pin(id):
     pass
 
 
-@pin_routes.route('/pins/<int:id>', methods=['DELETE'])
+@pin_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_pin(id):
     pass
