@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 
 function BoardDetailPage() {
-  const [boards, setBoards] = useState([]);
+	const [board, setBoard] = useState([]);
+  const {boardId} = useParams();
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/api/boards/');
-      const responseData = await response.json();
-      console.log("***********JS BOARDS*********************")
-      console.log(responseData)
-      setBoards(responseData.boards);
-    }
-    fetchData();
-  }, []);
+		if (!boardId) {
+			return;
+		}
+		(async () => {
+			const response = await fetch(`/api/boards/${boardId}`);
+			const board = await response.json();
+			setBoard(board);
+		})();
+	}, [boardId]);
 
-  const boardComponents = boards.map((boards) => {
-    return (
-      <li key={boards.id}>
+	if (!board) {
+		return null;
+	}
 
-        <NavLink to={`/boards/${boards.id}`}>{boards.title}</NavLink>
-      </li>
-    );
-  });
-
-  return (
-    <>
-      <h1>Board List: </h1>
-      <div>{boardComponents}</div>
-    </>
-  );
+	return (
+		<ul>
+			<div>
+				<h1>BOARD DETAIL PAGE</h1>
+				<li><strong>User Id: </strong> {boardId}</li>
+				<li><strong>Title: </strong> {board.title}</li>
+				<li><strong>Image Url: </strong> {board.imageUrl}</li>
+			</div>
+		</ul>
+	);
 }
 
 export default BoardDetailPage;

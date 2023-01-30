@@ -14,12 +14,12 @@ def boards():
     print(boards)
     return {'boards': [board.to_dict() for board in boards]}
 
-# @board_routes.route('/<int:id>')
-# @login_required
-# def board(id):
-#     print("************GET 1 BOARD********************")
-#     board = Board.query.get(id)
-#     return board.to_dict()
+@board_routes.route('/<int:id>')
+@login_required
+def board(id):
+    print("************GET 1 BOARD********************")
+    board = Board.query.get(id)
+    return board.to_dict()
 
 # @board_routes.route('/boards', methods=['POST'])
 # @login_required
