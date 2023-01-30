@@ -10,6 +10,7 @@ import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
 import Profile from './components/pages/Profile/Profile';
+import User from './components/User';
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
@@ -83,13 +84,13 @@ function App() {
             </Route>
           */}
 
-          {/* 
+         
 					 <ProtectedRoute exact path='/users'>
 							<UsersList />
 						</ProtectedRoute>
 						<ProtectedRoute exact path='/users/:userId'>
-							<User />
-						</ProtectedRoute> */}
+							<User/>
+						</ProtectedRoute> 
            
         </Switch>
         )}
