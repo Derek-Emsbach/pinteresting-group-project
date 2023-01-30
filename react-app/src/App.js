@@ -5,16 +5,25 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
+import UsersList from './components/User/UsersList';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
-import HomePage from './components/pages/HomePage/HomePage';
-import Profile from './components/pages/Profile/Profile';
+import HomePage from './components/Pages/HomePage/HomePage';
+import Profile from './components/Pages/ProfilePage/Profile';
+import CreatePinForm from './components/Forms/CreatePinForm'
+import PinPage from './components/Pages/PinPage';
+import BoardDetailPage from './components/Pages/BoardDetailPage';
+import CreateBoardForm from './components/Forms/CreateBoardForm';
+import EditProfileForm from './components/Forms/EditProfileForm';
+import { useParams } from 'react-router-dom';
+import User from './components/User/User'
+
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector(state =>state.session.user)
+ 
 
   useEffect(() => {
     (async () => {
@@ -57,6 +66,34 @@ function App() {
           <Route exact path="/signup">
             <SignUpForm />
           </Route>
+
+          <Route exact path="/pins">
+            <PinPage />
+          </Route>
+
+          <Route exact path="/pinform">
+            <CreatePinForm />
+          </Route>
+
+          <Route exact path="/boards">
+          <BoardDetailPage />
+        </Route>
+
+        <Route exact path="/boardform">
+        <CreateBoardForm />
+      </Route>
+
+      <Route exact path="/profileform">
+      <EditProfileForm />
+    </Route>
+
+    <Route exact path="/users">
+    <UsersList />
+  </Route>
+
+<Route exact path="/users/:userId">
+<User />
+</Route>
       
 
           {/*
