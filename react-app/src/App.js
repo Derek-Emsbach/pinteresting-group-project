@@ -10,7 +10,8 @@ import User from './components/pages/User';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
-import PinsPage from './components/pages/PinsPage/PinsPage';
+import PinDetailPage from './components/pages/PinDetailPage/PinDetailPage';
+import BoardDetailPage from './components/pages/BoardDetailPage/BoardDetailPage';
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
