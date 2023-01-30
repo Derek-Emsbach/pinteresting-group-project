@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class Board(db.Model):
@@ -14,14 +13,14 @@ class Board(db.Model):
     imageUrl = db.Column(db.String(255))
 
 
-def __repr__(self):
-    return f'<boardId: {self.id}, userId: {self.userId}, title: {self.title},image:{self.imageUrl}'
+    def __repr__(self):
+        return f'<BoardId: {self.id}, userId: {self.userId}, title: {self.title},image:{self.imageUrl}>'
 
 
-def to_dict(self):
-    return {
-        'id': self.id,
-        'userId': self.userId,
-        'title': self.title,
-        'imageUrl': self.imageUrl,
-    }
+    def to_dict(self):
+            return {
+                'id': self.id,
+                'userId': self.userId,
+                'title': self.title,
+                'imageUrl': self.imageUrl,
+            }

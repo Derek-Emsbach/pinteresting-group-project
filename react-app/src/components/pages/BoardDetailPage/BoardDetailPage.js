@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+
 
 function BoardDetailPage() {
   const [boards, setBoards] = useState([]);
@@ -10,16 +10,17 @@ function BoardDetailPage() {
       const response = await fetch('/api/boards/');
       const responseData = await response.json();
       console.log("***********JS BOARDS*********************")
+      console.log(responseData)
       setBoards(responseData.boards);
     }
     fetchData();
   }, []);
 
-  const boardComponents = boards.map((board) => {
+  const boardComponents = boards.map((boards) => {
     return (
-      <li key={board.id}>
+      <li key={boards.id}>
 
-        <NavLink to={`/boards/${board.id}`}>{board.title}</NavLink>
+        <NavLink to={`/boards/${boards.id}`}>{boards.title}</NavLink>
       </li>
     );
   });
