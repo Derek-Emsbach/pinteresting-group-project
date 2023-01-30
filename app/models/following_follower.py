@@ -5,6 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Following_Follower(db.Model):
     __tablename__ = 'followings_followers'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     followedUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     followerUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

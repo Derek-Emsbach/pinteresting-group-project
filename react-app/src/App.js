@@ -10,7 +10,8 @@ import User from './components/pages/User';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
 import HomePage from './components/pages/HomePage/HomePage';
-import PinsPage from './components/pages/PinsPage/PinsPage';
+import PinDetailPage from './components/pages/PinDetailPage/PinDetailPage';
+import BoardDetailPage from './components/pages/BoardDetailPage/BoardDetailPage';
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
@@ -47,21 +48,21 @@ function App() {
           <Route exact path="/signup">
             <SignUpForm />
           </Route>
-            <Route path='/pins'>
-              <PinsPage />
-            </Route>
-            {/*
-            <Route path='/pins/:pinId'>
-              <PinsDetailPage />
-            </Route>
-            <Route path='/boards'>
-              <BoardsPage/>
-            </Route>
-            <Route path='/boards/:boardId'>
-              <BoardsDetailPage/>
+            {/* <Route path='/pins'>
+              <PinDetailPage />
+            </Route> */}
+            <ProtectedRoute exact path='/pins/:pinId'>
+              <PinDetailPage />
+            </ProtectedRoute>
 
-            </Route>
-            */}
+            <ProtectedRoute exact path='/boards'>
+              <BoardDetailPage/>
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path='/boards/:boardId'>
+              <BoardDetailPage/>
+            </ProtectedRoute>
+
           {/*
             <Route path='/following`'>
               <FollowingPage/>
