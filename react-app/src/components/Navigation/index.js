@@ -40,7 +40,11 @@ const Navigation = () => {
               </NavLink>
              </li>
             <li> Today</li>
-            <li>Create</li>
+            <li>
+            <NavLink to='/pinform' exact={true} activeClassName='active'>
+            Create
+         </NavLink>
+         </li>
         </div>
 
         <div className='search_middle'>
