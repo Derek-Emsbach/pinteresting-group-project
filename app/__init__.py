@@ -14,7 +14,6 @@ from .seeds import seed_commands
 from .config import Config
 # from .routes.pinterest import bp
 
-
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
