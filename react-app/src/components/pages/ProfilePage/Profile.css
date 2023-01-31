@@ -1,0 +1,16 @@
+.user_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.user_info img {
+    width: 100px;
+}
+
+ .profile_container .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

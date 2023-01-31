@@ -18,24 +18,24 @@ This page displays a signup form.
 * `GET /signup`
 * `POST /signup`
 
-##  Discover feed
-## `/home`
+##  Discover feed/ Splash/Home Page
+## `/`
 
-This page displays discover feed, as well as a navigation bar with login/signup or logout buttons.
+This page displays discover feed if user is logged in, as well as a navigation bar with login/signup or logout buttons. If the user is not logged in, they will be taken to a splash/home page.
 
-* `GET /home`
+* `GET /`
 
 ## Profile
 
-## `/users`
+## `/:username`
 
 This page displays a users profile as well as their follwers and following list. If the logged in user owns the profile, this page also displays an update and delete button.
 
 
- * `GET /users/:userId/followers`
- * `GET /users/:userId/following`
- * `PUT /users/:userId`
- * `DELETE /users/:userId`
+ * `GET /:username/followers`
+ * `GET /:username/following`
+ * `PUT /:username`
+ * `DELETE /:username`
 
 ## Pins
 ## `/pins`
@@ -49,9 +49,9 @@ This page displays a form with which a logged in user can create a pin, as well 
 
 This page displays an individual pin as well as a navigation bar with login/signup or logout buttons. If the logged in user owns the pin, this page also displays an update and delete button.
 
-* `GET /pin/:pinId`
-* `PUT /pin/:pinId`
-* `DELETE /pin/:pinId`
+* `GET /pins/:pinId`
+* `PUT /pins/:pinId`
+* `DELETE /pins/:pinId`
 
 ## boards
 ## `/boards`
@@ -76,8 +76,8 @@ This page displays an individual board as well as a navigation bar with login/si
 This page displays a users followers, add and delete followers buttons as well as a navigation bar with login/signup or logout buttons.
 
   * `GET /followers` current user viewing their followers
-  * `POST /followers/:userId` add a follower
-  * `DELETE /followers/:userId` delete a follower
+  * `POST /followers/:username` add a follower
+  * `DELETE /followers/:username` delete a follower
 
 ## Following
 
