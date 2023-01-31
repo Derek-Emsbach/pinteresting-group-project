@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Navigation from './components/Navigation';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import UsersList from './components/User/UsersList';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
-import HomePage from './components/pages/HomePage/HomePage';
+import HomePage from './components/Pages/HomePage/HomePage';
+import Profile from './components/Pages/ProfilePage/Profile';
+import CreatePinForm from './components/Forms/CreatePinForm'
+import PinPage from './components/Pages/PinPage';
+import BoardDetailPage from './components/Pages/BoardDetailPage';
+import CreateBoardForm from './components/Forms/CreateBoardForm';
+import EditProfileForm from './components/Forms/EditProfileForm';
+import { useParams } from 'react-router-dom';
+import User from './components/User/User'
+
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state =>state.session.user)
+ 
 
   useEffect(() => {
     (async () => {
@@ -28,15 +38,25 @@ function App() {
 
   return (
     <div>
-      <Route exact path="/homepage">
+
+
+      <Route exact path="/">
         <HomePage />
       </Route>
+   
 
+    {sessionUser&&(
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+      )}
+      {isLoaded &&(
         <Switch>
+        {sessionUser &&(
+        <Route exact path= {`/${sessionUser.username}`}>
+           <Profile/>
+         </Route>
+         )}
+     
           <Route exact path="/">
-            <h1>Discover Page</h1>
             <PinterestLayout />
           </Route>
 
@@ -46,6 +66,35 @@ function App() {
           <Route exact path="/signup">
             <SignUpForm />
           </Route>
+
+          <Route exact path="/pins">
+            <PinPage />
+          </Route>
+
+          <Route exact path="/pinform">
+            <CreatePinForm />
+          </Route>
+
+          <Route exact path="/boards">
+          <BoardDetailPage />
+        </Route>
+
+        <Route exact path="/boardform">
+        <CreateBoardForm />
+      </Route>
+
+      <Route exact path="/profileform">
+      <EditProfileForm />
+    </Route>
+
+    <Route exact path="/users">
+    <UsersList />
+  </Route>
+
+<Route exact path="/users/:userId">
+<User />
+</Route>
+      
 
           {/*
             <Route path='/pins'>
@@ -78,8 +127,12 @@ function App() {
 						<ProtectedRoute exact path='/users/:userId'>
 							<User />
 						</ProtectedRoute> */}
+           
         </Switch>
-      )}
+        )}
+
+       
+      
     </div>
   );
 }

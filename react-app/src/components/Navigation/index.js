@@ -1,6 +1,6 @@
 
 import React,{ useEffect,useState, useRef} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory} from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './Navigation.css'
 import pinterestIcon from '../../icons/pinterest_icon.png'
@@ -14,8 +14,14 @@ import { useSelector } from 'react-redux';
 const Navigation = () => {
   const [open, setOpen] = useState(false)
   let menuRef = useRef()
+  const history =useHistory()
 
   const sessionUser = useSelector(state=> state.session.user)
+
+  const routerChange = () =>{
+    let path = sessionUser.username
+    history.push(path)
+  }
 
 
 
@@ -34,7 +40,11 @@ const Navigation = () => {
               </NavLink>
              </li>
             <li> Today</li>
-            <li>Create</li>
+            <li>
+            <NavLink to='/pinform' exact={true} activeClassName='active'>
+            Create
+         </NavLink>
+         </li>
         </div>
 
         <div className='search_middle'>
@@ -56,7 +66,7 @@ const Navigation = () => {
             </div>
 
             <div className='profile'>
-            <button><img src={profile} alt=''></img></button>
+            <button  onClick={routerChange}><img src={profile} alt=''></img></button>
             </div>
 
             <div className='dropdown_buttton'>
@@ -73,7 +83,7 @@ const Navigation = () => {
                   <h5>Currently in</h5>
                   <div className='profile'>
                        <div className='prof_icon'>
-                       <img src={profile} alt =''/>
+                      <button onClick={routerChange}><img src={profile} alt =''/></button>
                        </div>
                        <div className='user_info'>
                        {sessionUser.username}
@@ -86,7 +96,7 @@ const Navigation = () => {
             
 
                 <li>
-                   <NavLink to='/sign-up' exact={true} activeClassName='active'>
+                   <NavLink to='/signup' exact={true} activeClassName='active'>
                   Sign Up
                   </NavLink>
                 </li>

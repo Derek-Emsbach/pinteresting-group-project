@@ -1,10 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import Pin from './Pin.js'
 
 function PinterestLayout() {
-    return (
 
+    const sessionUser = useSelector(state=>state.session.user)
+    return (
+        <>
+        {sessionUser&&(
         <div style = {styles.pin_container}>
             <Pin size = 'small'/>
             <Pin size='medium'/>
@@ -26,6 +30,8 @@ function PinterestLayout() {
             <Pin size ='large'/>
         
         </div>
+        )}
+        </>
     )
 }
 
