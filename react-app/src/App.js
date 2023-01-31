@@ -8,11 +8,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/User/UsersList';
 import { authenticate } from './store/session';
 import PinterestLayout from './components/Pinterest_layout/PinterestLayout';
-<<<<<<< HEAD
-import HomePage from './components/pages/HomePage/HomePage';
-import Profile from './components/pages/Profile/Profile';
-import User from './components/User';
-=======
 import HomePage from './components/Pages/HomePage/HomePage';
 import Profile from './components/Pages/ProfilePage/Profile';
 import CreatePinForm from './components/Forms/CreatePinForm'
@@ -23,7 +18,6 @@ import EditProfileForm from './components/Forms/EditProfileForm';
 import { useParams } from 'react-router-dom';
 import User from './components/User/User'
 
->>>>>>> cherry
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
