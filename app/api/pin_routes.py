@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, render_template, redirect,request
+from flask import Blueprint, jsonify, render_template, redirect, request
 from flask_login import login_required, current_user
 from app.models import Pin, db
-from app.forms import CreatePinForm
+from app.forms import PinForm
 
 # from app import dbfuncs
 
@@ -28,8 +28,8 @@ def get_pin(id):
 @login_required
 def create_pin():
     print("************CREATE NEW PIN********************")
-    form = CreatePinForm()
-    #!POSTMAN Testing 
+    form = PinForm()
+    #!POSTMAN Testing
     # data = request.json
     # print(data)
     # new_pin = Pin(userId=current_user.get_id(),title=data['title'], url=data['url'], imageUrl=data['imageUrl'])
@@ -37,7 +37,7 @@ def create_pin():
     if form.validate_on_submit():
         data = form.data
         new_pin = Pin(userId=current_user.get_id(),
-         title=data['title'], url=data['url'], imageUrl=data['imageurl'])
+                      title=data['title'], url=data['url'], imageUrl=data['imageurl'])
         form.populate_obj(new_pin)
     print('*********************CREATED*******************************')
     print(new_pin)
@@ -47,12 +47,33 @@ def create_pin():
 
 
 @pin_routes.route('/<int:id>', methods=['PUT'])
-@login_required
+# @login_required
 def edit_pin(id):
-    pass
+    # data = request.json
+    print('*********************EDIT PIN*******************************')
+    # print(data)
 
+    # pin = Pin.query.get(id)
+    # print(pin)
+    # for key, value in data.items():
+    #     setattr(pin, key, value)
+    # db.session.commit()
+    # print('*********************UPDATED PIN*******************************')
+    form = PinForm()
+    if form.validate_on_submit():
+        data = form.data
+        pin = Pin.query.get(id)
+        print(pin)
+        for key, value in data.items():
+            setattr(pin, key, value)
+        print('*********************UPDATED PIN*******************************')
+        db.session.commit()
+        return pin.to_dict()
 
 @pin_routes.route('/<int:id>', methods=['DELETE'])
-@login_required
+# @login_required
 def delete_pin(id):
-    pass
+    pin = Pin.query.get(id)
+    db.session.delete(pin)
+    db.session.commit()
+    return "Successfully Deleted Pin"

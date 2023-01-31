@@ -5,7 +5,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
 from flask_login import login_required,current_user
 from app.models import Board,db
-from app.forms import CreateBoardForm
+from app.forms import BoardForm
 # from app import dbfuncs
 
 board_routes = Blueprint('boards', __name__)
@@ -35,7 +35,7 @@ def create_board():
 #     print(data)
 #     new_board = Board(userId=1,title=data['title'],imageUrl=data['imageUrl'])
 
-    form = CreateBoardForm()
+    form = BoardForm()
     if form.validate_on_submit():
         data = form.data
         new_board = Board(userId=current_user.get_id(),
