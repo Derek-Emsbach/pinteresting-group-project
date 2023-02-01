@@ -20,7 +20,7 @@ def get_all_pins():
 # @login_required
 def get_pin(id):
     print('************GET 1 PIN********************')
-    pin = Pin.query.get()
+    pin = Pin.query.get(id)
     return pin.to_dict()
 
 
