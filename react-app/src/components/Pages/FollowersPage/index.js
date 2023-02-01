@@ -20,7 +20,7 @@ function FollowersPage () {
     return (
         <>
             <h1>followers...</h1>
-            <h2>{followers}</h2>
+            <h2>{}</h2>
         </>
     )
 }

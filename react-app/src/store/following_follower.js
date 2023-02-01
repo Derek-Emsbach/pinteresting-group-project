@@ -18,7 +18,7 @@ const unFollow = (payload) => {
 };
 
 export const getAllFollowingThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/followings_followers`);
+    const res = await fetch(`/api/followings_followers/`);
 
     if (res.ok) {
         const data = await res.json();
@@ -27,7 +27,7 @@ export const getAllFollowingThunk = () => async (dispatch) => {
 };
 
 export const getAllFollowerThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/followings_followers`);
+    const res = await fetch(`/api/followings_followers/`);
 
     if (res.ok) {
         const data = await res.json();
@@ -38,7 +38,7 @@ export const getAllFollowerThunk = () => async (dispatch) => {
 export const unFollowThunk = (data) => async (dispatch) => {
     const body = JSON.stringify(data);
 
-    const res = await fetch(`/api/followings_followers`, {
+    const res = await fetch(`/api/followings_followers/`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
