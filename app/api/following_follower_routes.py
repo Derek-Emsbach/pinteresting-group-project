@@ -5,7 +5,7 @@ from app.models import Following_Follower,db
 
 following_follower_routes = Blueprint('followings_followers', __name__)
 
-@following_follower_routes.route('/followings_followers')
+@following_follower_routes.route('/')
 @login_required
 def get_all_followings_followers():
 
@@ -13,7 +13,7 @@ def get_all_followings_followers():
     print('********GET ALL FOLLOWINGS_FOLLOWERS********')
     return {'followings_followers':[following_follower.to_dict() for following_follower in followings_followers]}
 
-@following_follower_routes.route('/followings_followers/', methods=['POST'])
+@following_follower_routes.route('/', methods=['POST'])
 @login_required
 def create_following_follower(id):
     pass
