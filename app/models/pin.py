@@ -15,13 +15,15 @@ class Pin(db.Model):
     url = db.Column(db.String(255))
     imageUrl = db.Column(db.String(255))
 
+    def __repr__(self):
+        return f'<Pin Id: {self.id}, userId: {self.userId}, title: {self.title}, save: {self.save}, url: {self.url}, imageUrl: {self.imageUrl}>'
 
-def to_dict(self):
-    return {
-        'id': self.id,
-        'userId': self.userId,
-        'title': self.title,
-        'save': self.save,
-        'url': self.url,
-        'imageUrl': self.imageUrl,
-    }
+    def to_dict(self):
+            return {
+                'id': self.id,
+                'userId': self.userId,
+                'title': self.title,
+                'save': self.save,
+                'url': self.url,
+                'imageUrl': self.imageUrl,
+            }
