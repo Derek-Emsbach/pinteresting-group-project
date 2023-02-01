@@ -8,6 +8,7 @@ import configureStore from './store';
 
 import './index.css';
 import * as sessionActions from './store/session';
+import ModalProvider from './components/Modal/Modal';
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ function Root() {
 					<App />
 				</BrowserRouter>
 		</Provider>
+
 	);
 }
 
