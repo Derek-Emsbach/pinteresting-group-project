@@ -15,6 +15,8 @@ import PinPage from './components/Pages/PinPage';
 import BoardDetailPage from './components/Pages/BoardDetailPage';
 import CreateBoardForm from './components/Forms/CreateBoardForm';
 import EditProfileForm from './components/Forms/EditProfileForm';
+import FollowersPage from './components/Pages/FollowersPage';
+import FollowingPage from './components/Pages/FollowingPage';
 import { useParams } from 'react-router-dom';
 import User from './components/User/User';
 
@@ -78,6 +80,12 @@ function App() {
 					</Route>
 					<Route exact path='/profileform'>
 						<EditProfileForm />
+					</Route>
+					<Route exact path ='/followers'>
+						<FollowersPage />
+					</Route>
+					<Route exact path ='/following'>
+						<FollowingPage />
 					</Route>
 					{/*
             <Route path='/following`'>
