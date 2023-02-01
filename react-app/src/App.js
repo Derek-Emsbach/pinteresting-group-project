@@ -13,6 +13,7 @@ import Profile from './components/Pages/ProfilePage/Profile';
 import CreatePinForm from './components/Forms/CreatePinForm';
 import PinPage from './components/Pages/PinPage';
 import BoardDetailPage from './components/Pages/BoardDetailPage';
+import BoardsPage from './components/Pages/BoardsPage';
 import CreateBoardForm from './components/Forms/CreateBoardForm';
 import EditProfileForm from './components/Forms/EditProfileForm';
 import FollowersPage from './components/Pages/FollowersPage';
@@ -64,7 +65,7 @@ function App() {
             </Route> */}
 					={' '}
 					<ProtectedRoute exact path='/boards'>
-						<BoardDetailPage />
+						<BoardsPage />
 					</ProtectedRoute>
 					<ProtectedRoute exact path='/boards/:boardId'>
 						<BoardDetailPage />

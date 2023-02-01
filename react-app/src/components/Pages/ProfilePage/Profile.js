@@ -30,12 +30,12 @@ function Profile(){
             <nav id="follow-nav">
                 <ul>
                     <li>
-                        <NavLink to='/followers' exact={true} activeClassName='active'>
+                        <NavLink to='/followings_followers' exact={true} activeClassName='active'>
                             followers
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/following' exact={true} activeClassName='active'>
+                        <NavLink to='/followings_followers' exact={true} activeClassName='active'>
                             following
                         </NavLink>
                     </li>

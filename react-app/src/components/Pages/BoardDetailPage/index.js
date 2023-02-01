@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAllBoardsThunk } from '../../../store/board';
+import { getOneBoardThunk } from '../../../store/board';
 
 function BoardDetailPage() {
 	const [board, setBoard] = useState([]);
@@ -9,7 +9,7 @@ function BoardDetailPage() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getAllBoardsThunk());
+		dispatch(getOneBoardThunk());
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -17,10 +17,10 @@ function BoardDetailPage() {
 			return;
 		}
 		(async () => {
-			// const response = await fetch(`/api/boards/${boardId}`);
-			const response = await fetch(`/api/boards`);
-			const board = await response.json();
-			setBoard(board);
+			const response = await fetch(`/api/boards/${boardId}`);
+			// const response = await fetch(`/api/boards`);
+			const boardDetail = await response.json();
+			setBoard(boardDetail);
 		})();
 	}, [boardId]);
 

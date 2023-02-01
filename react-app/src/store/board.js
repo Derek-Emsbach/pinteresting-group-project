@@ -26,6 +26,15 @@ export const getAllBoardsThunk = () => async (dispatch) => {
     }
 };
 
+export const getOneBoardThunk = (boardId) => async (dispatch) => {
+    const res = await fetch(`/api/boards/${boardId}`);
+
+    if (res.ok) {
+        const board = await res.json();
+        dispatch(loadBoards(board));
+    }
+};
+
 export const createBoardThunk = (data) => async (dispatch) => {
     const newBoard = JSON.stringify(data);
 
