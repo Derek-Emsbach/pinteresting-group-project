@@ -50,20 +50,25 @@ def create_board():
 
 
 
-
-
-
-    # return {'errors': 'Form did not validate'}
-    # return Board.to_dict()
-
-
-
-# @board_routes.route('/<int:id>', methods=['PUT'])
-# @login_required
-# def edit_board(id):
-#     pass
-
-# @board_routes.route('/<int:id>', methods=['DELETE'])
-# @login_required
-# def delete_board(id):
-#     pass
+@board_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit_board(id):
+    print('*********************EDIT PIN*******************************')
+    form = BoardForm
+    if form.validate_on_submit():
+        data = form.data
+        board = Board.query.get(id)
+        print(board)
+        for key, value in data.items():
+            setattr(board, key, value)
+        print('*********************UPDATED PIN*******************************')
+        db.session.commit()
+        return board.to_dict()
+    
+@board_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_board(id):
+    board = Board.query.get(id)
+    db.session.delete(board)
+    db.session.commit()
+    return "sucessfully deleted Board"
