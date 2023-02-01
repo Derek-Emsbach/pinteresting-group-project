@@ -81,12 +81,12 @@ function App() {
 					<Route exact path='/profileform'>
 						<EditProfileForm />
 					</Route>
-					<Route exact path ='/followers'>
+					<Route exact path ='/followings_followers'>
 						<FollowersPage />
 					</Route>
-					<Route exact path ='/following'>
+					{/* <Route exact path ='/following'>
 						<FollowingPage />
-					</Route>
+					</Route> */}
 					{/*
             <Route path='/following`'>
               <FollowingPage/>

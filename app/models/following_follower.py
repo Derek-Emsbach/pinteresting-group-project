@@ -13,9 +13,9 @@ class Following_Follower(db.Model):
     followerUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 
-def to_dict(self):
-    return {
-        'id': self.id,
-        'followedUserId': self.followedUserId,
-        'followerUserId': self.followerUserId,
-    }
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'followedUserId': self.followedUserId,
+            'followerUserId': self.followerUserId,
+        }

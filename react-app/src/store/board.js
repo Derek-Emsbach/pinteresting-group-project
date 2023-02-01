@@ -18,7 +18,7 @@ const deleteBoard = (payload) => {
 };
 
 export const getAllBoardsThunk = () => async (dispatch) => {
-    const res = await fetch('/api/boards');
+    const res = await fetch('/api/boards/');
 
     if (res.ok) {
         const data = await res.json();
