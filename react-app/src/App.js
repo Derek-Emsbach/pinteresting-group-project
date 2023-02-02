@@ -20,6 +20,7 @@ import FollowersPage from './components/Pages/FollowersPage';
 import FollowingPage from './components/Pages/FollowingPage';
 import { useParams } from 'react-router-dom';
 import User from './components/User/User';
+import PinDetailPage from './components/Pages/PinDetailPage';
 
 function App() {
 	const [isLoaded, setisLoaded] = useState(false);
@@ -73,6 +74,10 @@ function App() {
 					<Route exact path='/pins'>
 						<PinPage />
 					</Route>
+					
+					<Route exact path='/pins/:pinId'>
+					<PinDetailPage />
+				</Route>
 					<Route exact path='/pinform'>
 						<CreatePinForm />
 					</Route>
