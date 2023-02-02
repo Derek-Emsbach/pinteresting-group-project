@@ -1,19 +1,27 @@
-const defaultState = {};
+
 
 const LOAD_BOARDS = 'boards/LOAD_BOARDS';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
+const ADD_BOARD = 'boards/ADD_BOARD';
 
-const loadBoards = (payload) => {
+const loadBoards = (boards) => {
     return {
         type: LOAD_BOARDS,
-        payload,
+        boards,
     };
 };
 
-const deleteBoard = (payload) => {
+const addBoard = (boards) => {
+    return {
+      type: ADD_BOARD,
+      boards,
+    };
+  };
+
+const deleteBoard = (boards) => {
     return {
         type: DELETE_BOARD,
-        payload,
+        boards,
     };
 };
 
@@ -23,6 +31,7 @@ export const getAllBoardsThunk = () => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(loadBoards(data));
+        return data
     }
 };
 
@@ -38,7 +47,7 @@ export const getOneBoardThunk = (boardId) => async (dispatch) => {
 export const createBoardThunk = (data) => async (dispatch) => {
     const newBoard = JSON.stringify(data);
 
-    const res = await fetch('/api/boards', {
+    const res = await fetch('/api/boards/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -52,22 +61,22 @@ export const createBoardThunk = (data) => async (dispatch) => {
     }
 };
 
-export const editBoardThunk = (data) => async (dispatch) => {
-    const editBoard = JSON.stringify(data);
+// export const editBoardThunk = (boardId) => async (dispatch) => {
+//     const editBoard = JSON.stringify(boardId);
 
-    const res = await fetch('/api/boards', {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: editBoard,
-    });
+//     const res = await fetch(`/api/boards/${boardId}`, {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: editBoard,
+//     });
 
-    if (res.ok) {
-        const newData = await res.json();
-        dispatch(loadBoards(newData));
-    }
-};
+//     if (res.ok) {
+//         const newData = await res.json();
+//         dispatch(loadBoards(newData));
+//     }
+// };
 
 export const deleteBoardThunk = (data) => async (dispatch) => {
     const body = JSON.stringify(data);
@@ -85,15 +94,28 @@ export const deleteBoardThunk = (data) => async (dispatch) => {
     }
 };
 
+const defaultState = {};
+
 const boardReducer = (state = defaultState, action) => {
-    const newState = { ...state };
+    let newState = { ...state };
 
     switch (action.type) {
         case LOAD_BOARDS:
-            return { ...newState, ...action.payload };
+            action.boards.boards.forEach((board) => {
+                console.log(board)
+                newState[board.id] = board;
+              });
+              return {
+                ...state,
+                ...newState
+              }
+
+        case ADD_BOARD:
+            newState[action.boards.id] = action.boards;
+            return newState
 
         case DELETE_BOARD:
-            delete newState[action.payload];
+            delete newState[action.boards];
             return newState;
 
         default:

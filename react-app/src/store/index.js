@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session'
 import boardReducer from './board'
 import followReducer from './following_follower';
+import pinsReducer from './pin';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   board: boardReducer,
   follow: followReducer,
+  pin: pinsReducer,
 });
 
 
