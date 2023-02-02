@@ -57,7 +57,8 @@ export const addAPin = (pins) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(addingPin(data));
-   return data
+    return data
+
   }
 };
 
