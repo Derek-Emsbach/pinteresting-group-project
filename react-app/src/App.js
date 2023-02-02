@@ -23,6 +23,7 @@ function App() {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector((state) => state.session.user);
 
+
 	useEffect(() => {
 		(async () => {
 			await dispatch(authenticate());
@@ -62,7 +63,7 @@ function App() {
             </Route> */}
 					={' '}
 					<ProtectedRoute exact path='/boards'>
-						<BoardDetailPage />
+						<BoardDetailPage/>
 					</ProtectedRoute>
 					<ProtectedRoute exact path='/boards/:boardId'>
 						<BoardDetailPage />

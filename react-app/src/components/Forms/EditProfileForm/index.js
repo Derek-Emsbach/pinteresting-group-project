@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { update_profile } from '../../../store/session';
+import './EditProfile.css'
 
 function EditProfileForm(){
     const dispatch = useDispatch()
@@ -47,25 +48,47 @@ function EditProfileForm(){
             <h1> Public profile</h1>
             <h4> People visiting your profile will see the following info</h4>
         <form onSubmit={handleSubmit}>
+            <div className='pro_photo'>
             <label>Photo</label>
+            <input type="file"
+            title ="Upload a picture of your place"
+            name="previewImage"
+            placeholder="Image URL">
+            </input>
+            </div>
+
+            <div className='first_last_name'>
+            <label>First name</label>
             <input type='text'
             required
             value={firstName}
             onChange={(e) =>setFirstName(e.target.value)}>
       
             </input>
-
-            <label>First name</label>
-            <input type='text'>
-            </input>
             
             <label>Last name</label>
-            <input></input>
+            <input type='text'
+            required
+            value={lastName}
+            onChange={(e) =>setLastName(e.target.value)}>
+
+            </input>
+            </div>
+            
             <label>About</label>
-            <input></input>
+            <input type='text'
+            value={about}
+            onChange={(e) =>setAbout(e.target.value)}>
+      
+            </input>
 
             <label>Username</label>
-            <input></input>
+            <input type='text'
+            required
+            value={username}
+            onChange={(e) =>setAbout(e.target.value)}>
+      
+            </input>
            
             <button type='submit'>Continue</button>
             </form>
