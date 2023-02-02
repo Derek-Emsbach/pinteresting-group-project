@@ -1,44 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import {useSelector, useDispatch} from 'react-redux'
-import { getAllPins } from "../../../store/pin";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPins } from '../../../store/pin';
 
+function PinPage() {
+	const history = useHistory();
+	const dispatch = useDispatch();
 
-function PinPage(){
+	const pins = useSelector((theEntireReduxStore) => {
+		return Object.values(theEntireReduxStore.pins);
+	});
 
-    const history = useHistory()
-    const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(getAllPins());
+	}, [dispatch]);
 
-    const pins = useSelector((theEntireReduxStore)=>{
-        return Object.values(theEntireReduxStore.pins)
-    })
+	const CreatePinForm = async (e) => {
+		history.push('/pinform');
+	};
 
-    useEffect(()=>{
-        dispatch(getAllPins())
-    },[dispatch])
+	return (
+		<ul>
+			<div>
+				<h1>ALL PINS</h1>
+				{pins.map((pin) => (
+					<div key={pin.id}>
+						<h4>{pin.title}</h4>
+					</div>
+				))}
+			</div>
 
-
-    const CreatePinForm = async(e)=>{
-        history.push('/pinform')
-
-    }
-
-    return(
-
-        <ul>
-        <div>
-            <h1>ALL PINS</h1>
-          {pins.map((pin)=>(
-            <div key={pin.id}>
-            <h4>{pin.title}</h4>
-            </div>
-          ))}
-        </div>
-        <button onClick={CreatePinForm}>Create Pins</button>
-    </ul>
-
-
-    )
+			<button onClick={CreatePinForm}>Create Pins</button>
+		</ul>
+	);
 }
 
-export default PinPage
+export default PinPage;
