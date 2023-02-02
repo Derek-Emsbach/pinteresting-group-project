@@ -7,7 +7,7 @@ const REMOVE_PIN='/spots/REMOVE_PIN'
 const loadPins = (pins) => {
   return {
     type: GET_ALL_PINS,
-    payload: pins,
+    pins
   };
 };
 
@@ -26,12 +26,12 @@ const removePin =(pinId)=>{
 }
 
 export const getAllPins = () => async (dispatch) => {
-  const response = await fetch("/api/pins");
+  const response = await fetch("/api/pins/");
 
   if (response.ok) {
     const list = await response.json();
     dispatch(loadPins(list));
- 
+
   }
 };
 
@@ -46,7 +46,7 @@ export const getSingleSpot = (pinId) => async (dispatch) => {
 };
 
 export const addAPin = (pins) => async (dispatch) => {
-  const response = await fetch("/api/pins",{
+  const response = await fetch("/api/pins/",{
     method: 'POST',
     headers: {
         'Content-Type':'application/json'
@@ -98,8 +98,10 @@ const pinsReducer = (state = initialPins, action) => {
   let copy = { ...state };
   switch (action.type) {
     case GET_ALL_PINS: 
-    
-      return {...copy, ...action.payload};
+    action.pins.pins.forEach((pin) => {
+        copy[pin.id] = pin;
+      });
+      return copy;
 
     case ADD_PIN: 
       copy[action.pins.id] = action.pins;

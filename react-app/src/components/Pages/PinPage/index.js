@@ -15,24 +15,36 @@ function PinPage() {
 		dispatch(getAllPins());
 	}, [dispatch]);
 
-	const CreatePinForm = async (e) => {
-		history.push('/pinform');
-	};
+    const pins = useSelector((state)=> Object.values(state.pins))
+console.log(pins)
+    useEffect(()=>{
+        dispatch(getAllPins())
+    },[dispatch])
 
-	return (
-		<ul>
-			<div>
-				<h1>ALL PINS</h1>
-				{pins.map((pin) => (
-					<div key={pin.id}>
-						<h4>{pin.title}</h4>
-					</div>
-				))}
-			</div>
 
-			<button onClick={CreatePinForm}>Create Pins</button>
-		</ul>
-	);
+    const CreatePinForm = async(e)=>{
+        history.push('/pinform')
+
+    }
+
+    return(
+
+        <div>
+        <div>
+            <h1>ALL PINS</h1>
+          {pins.map((pin)=>(
+            <div key={pin.id}>
+            <h4>{pin.title}</h4>
+            <li>{pin.url}</li>
+            <li>{pin.imageUrl}</li>
+            </div>
+          ))}
+        </div>
+        <button onClick={CreatePinForm}>Create Pins</button>
+    </div>
+
+
+    )
 }
 
 export default PinPage;
