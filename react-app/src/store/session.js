@@ -70,6 +70,22 @@ export const logout = () => async (dispatch) => {
   }
 };
 
+export const update_profile = (id, data) => async (dispatch) =>{
+  const response = await fetch(`/api/users/${id}`,{
+    method:"PUT",
+    headers:{
+        "Content-Type": "application/json",
+    },
+       body: JSON.stringify(data)
+  })
+  
+  
+    const profile= await response.json()
+    dispatch(setUser(profile))
+    return profile
+  }
+
+
 
 export const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {

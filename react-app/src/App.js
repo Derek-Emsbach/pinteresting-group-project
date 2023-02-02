@@ -76,9 +76,11 @@ function App() {
 					<Route exact path='/boardform'>
 						<CreateBoardForm />
 					</Route>
-					<Route exact path='/profileform'>
+					{sessionUser &&(
+					<Route exact path={`/users/${sessionUser.id}`}>
 						<EditProfileForm />
 					</Route>
+					)}
 					{/*
             <Route path='/following`'>
               <FollowingPage/>
