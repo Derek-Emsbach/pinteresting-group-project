@@ -39,12 +39,11 @@ def create_pin():
         new_pin = Pin(userId=current_user.get_id(),
                       title=data['title'], url=data['url'], imageUrl=data['imageurl'])
         form.populate_obj(new_pin)
-    print('*********************CREATED*******************************')
-    print(new_pin)
-    db.session.add(new_pin)
-    db.session.commit()
-    return redirect('/')
-
+        print('*********************CREATED*******************************')
+        print(new_pin)
+        db.session.add(new_pin)
+        db.session.commit()
+        return new_pin.to_dict()
 
 @pin_routes.route('/<int:id>', methods=['PUT'])
 # @login_required
