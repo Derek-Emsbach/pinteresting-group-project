@@ -53,7 +53,7 @@ def create_board():
 @board_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_board(id):
-    print('*********************EDIT PIN*******************************')
+    print('*********************EDIT BOARD*******************************')
     form = BoardForm
     if form.validate_on_submit():
         data = form.data
@@ -61,10 +61,10 @@ def edit_board(id):
         print(board)
         for key, value in data.items():
             setattr(board, key, value)
-        print('*********************UPDATED PIN*******************************')
+        print('*********************UPDATED BOARD*******************************')
         db.session.commit()
         return board.to_dict()
-    
+
 @board_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_board(id):
