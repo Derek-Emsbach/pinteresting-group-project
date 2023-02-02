@@ -35,7 +35,7 @@ export const getAllPins = () => async (dispatch) => {
   }
 };
 
-export const getSingleSpot = (pinId) => async (dispatch) => {
+export const getSinglePin = (pinId) => async (dispatch) => {
   const response = await fetch(`/api/pins/${pinId}`);
 
   if (response.ok) {

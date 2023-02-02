@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import { getAllPins } from "../../../store/pin";
 
@@ -28,7 +28,11 @@ console.log(pins)
             <h1>ALL PINS</h1>
           {pins.map((pin)=>(
             <div key={pin.id}>
-            <h4>{pin.title}</h4>
+            <h4>
+            <NavLink to={`/pins/${pin.id}`} activeClassName='active'>
+            {pin.title}
+            </NavLink>
+            </h4>
             <li>{pin.url}</li>
             <li>{pin.imageUrl}</li>
             </div>
