@@ -62,22 +62,22 @@ export const createBoardThunk = (data) => async (dispatch) => {
     }
 };
 
-// export const editBoardThunk = (boardId) => async (dispatch) => {
-//     const editBoard = JSON.stringify(boardId);
+export const editBoardThunk = (boardId) => async (dispatch) => {
+    const editBoard = JSON.stringify(boardId);
 
-//     const res = await fetch(`/api/boards/${boardId}`, {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: editBoard,
-//     });
+    const res = await fetch(`/api/boards/${boardId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: editBoard,
+    });
 
-//     if (res.ok) {
-//         const newData = await res.json();
-//         dispatch(loadBoards(newData));
-//     }
-// };
+    if (res.ok) {
+        const newData = await res.json();
+        dispatch(loadBoards(newData));
+    }
+};
 
 
 export const deleteBoardThunk = (data) => async (dispatch) => {
