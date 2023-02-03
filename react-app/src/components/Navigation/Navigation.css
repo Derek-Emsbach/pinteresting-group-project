@@ -1,4 +1,4 @@
-ul {
+#navigation-bar ul {
     display: flex;
     list-style: none;
     justify-content: space-between;
@@ -16,7 +16,7 @@ ul {
     align-items: center;
     justify-content: space-evenly;
     border-radius: 24px;
-  
+
 }
 
 .search_middle {
@@ -33,7 +33,7 @@ ul {
     padding-left: 10px;
     margin-left: 250px;
 
- 
+
 }
 .search_middle form {
     display: flex;
@@ -90,7 +90,7 @@ ul {
     margin-top: 50px;
     z-index: 10;
   }
-  
+
   .dropdown-menu::before {
     content: '';
     top: -5px;
@@ -100,21 +100,21 @@ ul {
     transform: rotate(45deg);
   }
 
-  
+
   .dropdown-menu.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
     transition: 500ms ease;
   }
-  
+
   .dropdown-menu.inactive {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-20px);
     transition: 500ms ease;
   }
-  
+
   .dropdown-menu.active span {
     width: 24px;
     height: 1px;
@@ -179,4 +179,3 @@ ul {
     height: 40px;
 
 }
-
