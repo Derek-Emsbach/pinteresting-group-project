@@ -15,8 +15,9 @@ function Profile(){
     }
 
     const profileForm = async(e)=>{
-        history.push('/profileform')
+        history.push(`/users/${sessionUser.id}`)
     }
+  
     const followingsFollowers = async(e)=>{
         history.push('/followings_followers')
     }
@@ -24,7 +25,7 @@ function Profile(){
         <div className="profile_container">
          <div className="user_info">
          <img src={profile} alt=''></img>
-        <h1>{sessionUser.username}</h1>
+        <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
          <h4>{sessionUser.email}</h4>
          <div className="follow-container">
             <nav id="follow-nav">

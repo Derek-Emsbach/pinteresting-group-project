@@ -19,8 +19,8 @@ const Navigation = () => {
   const sessionUser = useSelector(state=> state.session.user)
 
   const routerChange = () =>{
-    let path = sessionUser.username
-    history.push(path)
+    
+    history.push(`/${sessionUser.username}`)
   }
 
 
