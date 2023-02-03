@@ -13,6 +13,7 @@ function EditProfileForm(){
     const [lastName, setLastName] = useState(sessionUser.lastName)
     const [about, setAbout] = useState(sessionUser.about)
     const [username, setUserName] = useState(sessionUser.username)
+    const [image, setImage] = useState()
 
 
     const handleSubmit= async (e)=>{
@@ -24,6 +25,7 @@ function EditProfileForm(){
                 id,
                firstName,
                lastName,
+               image,
                about,
                username
 
@@ -40,19 +42,24 @@ function EditProfileForm(){
             history.push(`/${sessionUser.username}`);
         
         }
-   
+        const updateFile = (e) => {
+            const file = e.target.files[0];
+            console.log(file)
+            if (file) setImage(file);
+          };
+   console.log(image,'hello')
 
     return(
       <div className="profile_container">
         <div className="profile_header">
             <h1> Public profile</h1>
             <h4> People visiting your profile will see the following info</h4>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className='pro_photo'>
             <label>Photo</label>
             <input type="file"
-            title ="Upload a picture of your place"
-            name="previewImage"
+            name='file'
+            onChange={updateFile}
             placeholder="Image URL">
             </input>
             </div>

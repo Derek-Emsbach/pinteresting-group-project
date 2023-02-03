@@ -21,6 +21,7 @@ function Profile(){
         <div className="profile_container">
          <div className="user_info">
             <img src={profile} alt=''></img>
+            {sessionUser.image_file}
             <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
             <h4>{sessionUser.email}</h4>
 
