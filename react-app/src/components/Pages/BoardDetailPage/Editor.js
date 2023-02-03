@@ -7,7 +7,7 @@ import "./Editor.css";
 
 function BoardDetailEditor({ setOpen }) {
   const { boardId } = useParams();
-  const board = useSelector((state) => state.board.boards[boardId]);
+  const board = useSelector((state) => state.board[boardId]);
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");

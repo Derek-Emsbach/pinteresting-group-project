@@ -8,7 +8,7 @@ function PinPage() {
 	const dispatch = useDispatch();
 
 
-    const pins = useSelector((state)=> Object.values(state.pins))
+    const pins = useSelector((state)=> Object.values(state.pin))
 console.log(pins)
     useEffect(()=>{
         dispatch(getAllPins())
