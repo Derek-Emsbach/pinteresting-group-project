@@ -1,0 +1,23 @@
+.PopOver--Container {
+  position: relative;
+}
+
+.PopOver--Container .PopOver--Card {
+  position: absolute;
+  background: white;
+  border: 1px solid #aaa;
+  box-shadow: rgba(0,0,0,0.1) 2.5px 2.5px 2.5px;
+  padding: 10px;
+  top: 0;
+  left: 35px;
+}
+
+.PopOver--Container .PopOver--Backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

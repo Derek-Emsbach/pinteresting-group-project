@@ -1,35 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Heading from "./Heading";
+import PinsGrid from "./PinsGrid";
+import Footing from "./Footing";
+import { getAllBoardsThunk } from "../../../store/board";
 
 function BoardDetailPage() {
-	const [board, setBoard] = useState([]);
-  const {boardId} = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-		if (!boardId) {
-			return;
-		}
-		(async () => {
-			const response = await fetch(`/api/boards/${boardId}`);
-			const board = await response.json();
-			setBoard(board);
-		})();
-	}, [boardId]);
+    dispatch(getAllBoardsThunk());
+  }, []);
 
-	if (!board) {
-		return null;
-	}
+  return (
+    <div className="BoardDetail--Page">
+      <Heading />
+      <PinsGrid />
+      <Footing />
+    </div>
+  );
 
-	return (
-		<ul>
-			<div>
-				<h1>BOARD DETAIL PAGE</h1>
-				<li><strong>User Id: </strong> {boardId}</li>
-				<li><strong>Title: </strong> {board.title}</li>
-				<li><strong>Image Url: </strong> {board.imageUrl}</li>
-			</div>
-		</ul>
-	);
 }
 
 export default BoardDetailPage;

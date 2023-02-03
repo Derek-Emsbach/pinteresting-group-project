@@ -8,7 +8,6 @@ function PinPage() {
 	const dispatch = useDispatch();
 
 
-
     const pins = useSelector((state)=> Object.values(state.pins))
 console.log(pins)
     useEffect(()=>{
@@ -28,7 +27,7 @@ console.log(pins)
             <h1>ALL PINS</h1>
           {pins.map((pin)=>(
             <div key={pin.id}>
-            <h4> 
+            <h4>
             <NavLink to={`/pins/${pin.id}`} activeClassName='active'>
             {pin.title}
             </NavLink>
