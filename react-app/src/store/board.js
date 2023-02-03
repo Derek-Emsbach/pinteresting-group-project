@@ -1,5 +1,6 @@
 
 
+
 const LOAD_BOARDS = 'boards/LOAD_BOARDS';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 const ADD_BOARD = 'boards/ADD_BOARD';
@@ -78,25 +79,27 @@ export const createBoardThunk = (data) => async (dispatch) => {
 //     }
 // };
 
+
 export const deleteBoardThunk = (data) => async (dispatch) => {
-    const body = JSON.stringify(data);
+  const body = JSON.stringify(data);
 
-    const res = await fetch(`/api/boards/${data.id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body,
-    });
+  const res = await fetch(`/api/boards/${data.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body,
+  });
 
-    if (res.ok) {
-        dispatch(deleteBoard(data.id));
-    }
+  if (res.ok) {
+    dispatch(deleteBoard(data.id));
+  }
 };
 
 const defaultState = {};
 
 const boardReducer = (state = defaultState, action) => {
+
     let newState = { ...state };
 
     switch (action.type) {
@@ -118,9 +121,9 @@ const boardReducer = (state = defaultState, action) => {
             delete newState[action.boards];
             return newState;
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default boardReducer;

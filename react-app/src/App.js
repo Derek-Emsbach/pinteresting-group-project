@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,48 +23,50 @@ import { useParams } from 'react-router-dom';
 import User from './components/User/User';
 import PinDetailPage from './components/Pages/PinDetailPage';
 
+
 function App() {
-	const [isLoaded, setisLoaded] = useState(false);
-	const dispatch = useDispatch();
-	const sessionUser = useSelector((state) => state.session.user);
+  const [isLoaded, setisLoaded] = useState(false);
+  const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
 
-	useEffect(() => {
-		(async () => {
-			await dispatch(authenticate());
-			setisLoaded(true);
-		})();
-	}, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setisLoaded(true);
+    })();
+  }, [dispatch]);
 
-	if (!isLoaded) {
-		return null;
-	}
+  if (!isLoaded) {
+    return null;
+  }
 
-	return (
-		<div>
-			<Route exact path='/'>
-				<HomePage />
-			</Route>
+  return (
+    <div>
+      <Route exact path="/">
+        <HomePage />
+      </Route>
 
-			{sessionUser && <Navigation isLoaded={isLoaded} />}
-			{isLoaded && (
-				<Switch>
-					{sessionUser && (
-						<Route exact path={`/${sessionUser.username}`}>
-							<Profile />
-						</Route>
-					)}
-					<Route exact path='/'>
-						<PinterestLayout />
-					</Route>
-					<Route exact path='/login'>
-						<LoginForm />
-					</Route>
-					<Route exact path='/signup'>
-						<SignUpForm />
-					</Route>
-					{/* <Route path='/pins'>
+      {sessionUser && <Navigation isLoaded={isLoaded} />}
+      {isLoaded && (
+        <Switch>
+          {sessionUser && (
+            <Route exact path={`/${sessionUser.username}`}>
+              <Profile />
+            </Route>
+          )}
+          <Route exact path="/">
+            <PinterestLayout />
+          </Route>
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
+          <Route exact path="/signup">
+            <SignUpForm />
+          </Route>
+          {/* <Route path='/pins'>
               <PinDetailPage />
             </Route> */}
+
 					={' '}
 					<ProtectedRoute exact path='/boards'>
 						<BoardsPage />
@@ -94,6 +97,7 @@ function App() {
 						<FollowingPage />
 					</Route> */}
 					{/*
+
             <Route path='/following`'>
               <FollowingPage/>
             </Route>
@@ -101,16 +105,16 @@ function App() {
               <FollowersPage/>
             </Route>
           */}
-					<ProtectedRoute exact path='/users'>
-						<UsersList />
-					</ProtectedRoute>
-					<ProtectedRoute exact path='/users/:userId'>
-						<User />
-					</ProtectedRoute>
-				</Switch>
-			)}
-		</div>
-	);
+          <ProtectedRoute exact path="/users">
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/users/:userId">
+            <User />
+          </ProtectedRoute>
+        </Switch>
+      )}
+    </div>
+  );
 }
 
 export default App;
