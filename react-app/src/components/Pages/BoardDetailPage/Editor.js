@@ -57,9 +57,9 @@ function BoardDetailEditor({ setOpen }) {
                 //     ]);
                 //   }
                 // })
-                // .finally(() => {
-                //   setPending(false);
-                // });
+                .finally(() => {
+                  setPending(false);
+                });
             }}
           >
             <EditorInput
