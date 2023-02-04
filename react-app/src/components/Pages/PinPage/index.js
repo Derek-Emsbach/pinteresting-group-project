@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPins } from '../../../store/pin';
-
+import { Link } from 'react-router-dom';
 function PinPage() {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -31,9 +31,16 @@ console.log(pins)
             <NavLink to={`/pins/${pin.id}`} activeClassName='active'>
             {pin.title}
             </NavLink>
+
+            <NavLink to={`/pins/${pin.id}`}>
+            <img src={pin.imageUrl}></img>
+            </NavLink>
             </h4>
-            <li>{pin.url}</li>
-            <li>{pin.imageUrl}</li>
+            <li>
+            <a href= {pin.url}>
+            {pin.url}
+            </a>
+            </li>
             </div>
           ))}
         </div>
