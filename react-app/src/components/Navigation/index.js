@@ -20,7 +20,7 @@ const Navigation = () => {
 
   const routerChange = () =>{
     let path = sessionUser.username
-    history.push(path)
+    history.push(`/${path}`)
   }
 
 
