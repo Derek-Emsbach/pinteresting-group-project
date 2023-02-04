@@ -3,9 +3,9 @@ from app.models import db, Board, environment, SCHEMA
 
 # Adds a demo board, you can add other boards here if you want
 def seed_boards():
-    board1 = Board(userId=1, title='animals', imageUrl='boardImageUrl')
-    board2 = Board(userId=1, title='places', imageUrl='boardImageUrl')
-    board3 = Board(userId=1, title='things', imageUrl='boardImageUrl')
+    board1 = Board(userId=1, title='animals', imageUrl='https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg')
+    board2 = Board(userId=1, title='places', imageUrl='https://i.insider.com/5d1270089c51010bb17c0536?width=1200&format=jpeg')
+    board3 = Board(userId=1, title='things', imageUrl='https://www.gannett-cdn.com/presto/2021/11/12/USAT/d6132cad-ab80-4cfa-b1d2-21b83048f5f6-Popular-Hero.png?width=660&height=372&fit=crop&format=pjpg&auto=webp')
 
     db.session.add(board1)
     db.session.add(board2)

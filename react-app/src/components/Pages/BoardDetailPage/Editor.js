@@ -11,14 +11,18 @@ function BoardDetailEditor({ setOpen }) {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  // const [description, setDescription] = useState("");
   const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     setTitle(board.title);
-    setDescription(board.description);
+    // setDescription(board.description);
+    setImageUrl(board.imageUrl)
   }, [board]);
+
+
 
   return (
     <div className="BoardDetail--Editor--Container">
@@ -32,30 +36,30 @@ function BoardDetailEditor({ setOpen }) {
               event.preventDefault();
 
               setPending(true);
-
+              const payload = { title, imageUrl }
               dispatch(
-                editBoardThunk({
-                  title,
-                  description,
-                })
+                editBoardThunk(
+                  boardId,
+                  payload
+                )
               )
-                .then((res) => {
-                  if (res) {
-                    setOpen(false);
-                  } else {
-                    throw new Error("No response???");
-                  }
-                })
-                .catch((reason) => {
-                  if (!reason?.data?.errors?.length) {
-                    setErrors([
-                      "Hmmm, something went wrong. Please try again later.",
-                    ]);
-                  }
-                })
-                .finally(() => {
-                  setPending(false);
-                });
+                // .then((res) => {
+                //   if (res) {
+                //     setOpen(false);
+                //   } else {
+                //     throw new Error("No response???");
+                //   }
+                // })
+                // .catch((reason) => {
+                //   if (!reason?.data?.errors?.length) {
+                //     setErrors([
+                //       "Hmmm, something went wrong. Please try again later.",
+                //     ]);
+                //   }
+                // })
+                // .finally(() => {
+                //   setPending(false);
+                // });
             }}
           >
             <EditorInput
@@ -64,23 +68,29 @@ function BoardDetailEditor({ setOpen }) {
               setValue={setTitle}
               disabled={pending}
             />
-            <EditorInput
+            {/* <EditorInput
               name="Description"
               type="textarea"
               rows={6}
               value={description}
               setValue={setDescription}
               disabled={pending}
+            /> */}
+            <EditorInput
+              name="ImageUrl"
+              value={imageUrl}
+              setValue={setImageUrl}
+              disabled={pending}
             />
             <button type="submit" disabled={pending}>
               Save
             </button>
           </form>
-          <ul>
+          {/* <ul>
             {errors.map((message, i) => (
               <li key={i}>{message}</li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
     </div>
