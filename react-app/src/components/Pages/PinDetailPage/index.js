@@ -47,7 +47,9 @@ const history= useHistory()
 				<li><strong>User Id: </strong> {pinId}</li>
 				<li><strong>Title: </strong> {pin.title}</li>
 
-                <li><strong>Link: </strong> {pin.url}</li>
+                <li><strong>Link: </strong>  <a href= {pin.url}>
+                {pin.url}
+                </a></li>
 
 			</div>
             <Link to={`/pins/${pin.id}/update`}>
