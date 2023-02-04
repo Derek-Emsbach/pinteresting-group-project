@@ -4,6 +4,7 @@
 const LOAD_BOARDS = 'boards/LOAD_BOARDS';
 const DELETE_BOARD = 'boards/DELETE_BOARD';
 const ADD_BOARD = 'boards/ADD_BOARD';
+const EDIT_BOARD = 'boards/EDIT_BOARD';
 
 const loadBoards = (boards) => {
     return {
@@ -18,6 +19,13 @@ const addBoard = (boards) => {
       boards,
     };
   };
+
+const editBoard = (boards) => {
+return {
+    type: EDIT_BOARD,
+    boards,
+};
+};
 
 const deleteBoard = (boards) => {
     return {
@@ -36,14 +44,14 @@ export const getAllBoardsThunk = () => async (dispatch) => {
     }
 };
 
-export const getOneBoardThunk = (boardId) => async (dispatch) => {
-    const res = await fetch(`/api/boards/${boardId}`);
+// export const getOneBoardThunk = (boardId) => async (dispatch) => {
+//     const res = await fetch(`/api/boards/${boardId}`);
 
-    if (res.ok) {
-        const board = await res.json();
-        dispatch(loadBoards(board));
-    }
-};
+//     if (res.ok) {
+//         const board = await res.json();
+//         dispatch(loadBoards(board));
+//     }
+// };
 
 export const createBoardThunk = (data) => async (dispatch) => {
     const newBoard = JSON.stringify(data);
@@ -62,22 +70,26 @@ export const createBoardThunk = (data) => async (dispatch) => {
     }
 };
 
-// export const editBoardThunk = (boardId) => async (dispatch) => {
-//     const editBoard = JSON.stringify(boardId);
+export const editBoardThunk = (board) => async (dispatch) => {
+    console.log('***********EDIT BOARD STORE *********************',board)
+    const res = await fetch(`/api/boards/${board.id}`, {
 
-//     const res = await fetch(`/api/boards/${boardId}`, {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: editBoard,
-//     });
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(board)
+    });
 
-//     if (res.ok) {
-//         const newData = await res.json();
-//         dispatch(loadBoards(newData));
-//     }
-// };
+    if (res.ok) {
+        console.log('***********EDIT BOARDasdf*********************')
+        const board = await res.json();
+        dispatch(loadBoards(board));
+        return board
+
+    }
+
+};
 
 
 export const deleteBoardThunk = (data) => async (dispatch) => {
@@ -114,6 +126,10 @@ const boardReducer = (state = defaultState, action) => {
               }
 
         case ADD_BOARD:
+            newState[action.boards.id] = action.boards;
+            return newState
+
+        case EDIT_BOARD:
             newState[action.boards.id] = action.boards;
             return newState
 

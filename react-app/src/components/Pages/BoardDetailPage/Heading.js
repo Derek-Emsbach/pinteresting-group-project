@@ -7,7 +7,7 @@ import "./Heading.css";
 
 function BoardDetailHeading() {
   const { boardId } = useParams();
-  const board = useSelector((state) => state.board.boards[boardId]);
+  const board = useSelector((state) => state.board[boardId]);
 
   const [editorOpen, setEditorOpen] = useState(false);
   const [popOverOpen, setPopOverOpen] = useState(false);

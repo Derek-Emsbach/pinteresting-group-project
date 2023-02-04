@@ -1,16 +1,17 @@
-from flask import Blueprint, jsonify,render_template,redirect,request
+from flask import Blueprint, jsonify, render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
-from flask_login import login_required,current_user
-from app.models import Board,db
+from flask_login import login_required, current_user
+from app.models import Board, db
 from app.forms import BoardForm
 # from app import dbfuncs
 
 board_routes = Blueprint('boards', __name__)
 
-@board_routes.route('/',methods=['GET'])
+
+@board_routes.route('/', methods=['GET'])
 # @login_required
 def get_all_boards():
     boards = Board.query.all()
@@ -19,12 +20,14 @@ def get_all_boards():
     print(boards)
     return {'boards': [board.to_dict() for board in boards]}
 
+
 @board_routes.route('/<int:id>')
 @login_required
 def get_board(id):
     print("************GET 1 BOARD********************")
     board = Board.query.get(id)
     return board.to_dict()
+
 
 @board_routes.route('/', methods=['GET', 'POST'])
 @login_required
@@ -49,22 +52,22 @@ def create_board():
         return redirect('/')
 
 
-
 @board_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_board(id):
-    print('*********************EDIT PIN*******************************')
+    print('*********************EDIT BOARD*******************************')
     form = BoardForm
     if form.validate_on_submit():
         data = form.data
         board = Board.query.get(id)
-        print(board)
+        print('***** BOARD: ', board)
         for key, value in data.items():
             setattr(board, key, value)
-        print('*********************UPDATED PIN*******************************')
+        print('*********************UPDATED BOARD*******************************')
         db.session.commit()
         return board.to_dict()
-    
+
+
 @board_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_board(id):

@@ -3,7 +3,7 @@ import "./EditorInput.css";
 export default function EditorInput({
   name,
   label = name,
-  id = `editor_input-${name}`,
+  id = 1,
   type = "text",
   value,
   setValue,
