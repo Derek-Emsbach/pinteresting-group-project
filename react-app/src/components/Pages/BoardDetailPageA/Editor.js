@@ -11,13 +11,13 @@ function BoardDetailEditor({ setOpen }) {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  // const [description, setDescription] = useState("");
   const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     setTitle(board.title);
-    setDescription(board.description);
+    // setDescription(board.description);
   }, [board]);
 
   return (
@@ -34,10 +34,11 @@ function BoardDetailEditor({ setOpen }) {
               setPending(true);
 
               dispatch(
-                editBoardThunk({
+                editBoardThunk(
+                  boardId,
                   title,
-                  description,
-                })
+                  // description,
+                )
               )
                 .then((res) => {
                   if (res) {
@@ -64,14 +65,14 @@ function BoardDetailEditor({ setOpen }) {
               setValue={setTitle}
               disabled={pending}
             />
-            <EditorInput
+            {/* <EditorInput
               name="Description"
               type="textarea"
               rows={6}
               value={description}
               setValue={setDescription}
               disabled={pending}
-            />
+            /> */}
             <button type="submit" disabled={pending}>
               Save
             </button>

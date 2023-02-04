@@ -1,129 +1,123 @@
+const GET_ALL_BOARDS = "/spots/GET_ALL_BOARDS";
 
+const ADD_BOARD = "/spots/ADD_BOARD";
 
-
-const LOAD_BOARDS = 'boards/LOAD_BOARDS';
-const DELETE_BOARD = 'boards/DELETE_BOARD';
-const ADD_BOARD = 'boards/ADD_BOARD';
+const REMOVE_BOARD='/spots/REMOVE_BOARD'
 
 const loadBoards = (boards) => {
-    return {
-        type: LOAD_BOARDS,
-        boards,
-    };
-};
-
-const addBoard = (boards) => {
-    return {
-      type: ADD_BOARD,
-      boards,
-    };
+  return {
+    type: GET_ALL_BOARDS,
+    boards
   };
-
-const deleteBoard = (boards) => {
-    return {
-        type: DELETE_BOARD,
-        boards,
-    };
 };
 
-export const getAllBoardsThunk = () => async (dispatch) => {
-    const res = await fetch('/api/boards/');
-
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(loadBoards(data));
-        return data
-    }
+const addingBoard = (boards) => {
+  return {
+    type: ADD_BOARD,
+    boards,
+  };
 };
 
-export const getOneBoardThunk = (boardId) => async (dispatch) => {
-    const res = await fetch(`/api/boards/${boardId}`);
+const removeBoard =(boardId)=>{
+  return{
+    type: REMOVE_BOARD,
+    boardId
+  }
+}
 
-    if (res.ok) {
-        const board = await res.json();
-        dispatch(loadBoards(board));
-    }
-};
+export const getAllBoards = () => async (dispatch) => {
+  const response = await fetch("/api/boards/");
 
-export const createBoardThunk = (data) => async (dispatch) => {
-    const newBoard = JSON.stringify(data);
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(loadBoards(list));
 
-    const res = await fetch('/api/boards/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: newBoard,
-    });
-
-    if (res.ok) {
-        const newData = await res.json();
-        dispatch(loadBoards(newData));
-    }
-};
-
-export const editBoardThunk = (boardId) => async (dispatch) => {
-    const editBoard = JSON.stringify(boardId);
-
-    const res = await fetch(`/api/boards/${boardId}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: editBoard,
-    });
-
-    if (res.ok) {
-        const newData = await res.json();
-        dispatch(loadBoards(newData));
-    }
-};
-
-
-export const deleteBoardThunk = (data) => async (dispatch) => {
-  const body = JSON.stringify(data);
-
-  const res = await fetch(`/api/boards/${data.id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body,
-  });
-
-  if (res.ok) {
-    dispatch(deleteBoard(data.id));
   }
 };
 
-const defaultState = {};
+export const getSingleBoard = (boardId) => async (dispatch) => {
+  const response = await fetch(`/api/boards/${boardId}`);
 
-const boardReducer = (state = defaultState, action) => {
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addingBoard(data));
+    return data;
+  }
+};
 
-    let newState = { ...state };
+export const addABoard = (boards) => async (dispatch) => {
+  const response = await fetch("/api/boards/",{
+    method: 'POST',
+    headers: {
+        'Content-Type':'application/json'
+    },
+    body: JSON.stringify(boards)
+  })
 
-    switch (action.type) {
-        case LOAD_BOARDS:
-            action.boards.boards.forEach((board) => {
-                console.log(board)
-                newState[board.id] = board;
-              });
-              return {
-                ...state,
-                ...newState
-              }
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addingBoard(data));
+    return data
 
-        case ADD_BOARD:
-            newState[action.boards.id] = action.boards;
-            return newState
+  }
+};
 
-        case DELETE_BOARD:
-            delete newState[action.boards];
-            return newState;
+export const editABoard=(id,boardData) =>async(dispatch)=>{
+  const response = await fetch(`/api/boards/${id}`,{
+    method:'PATCH',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify(boardData)
+
+  })
+if(response.ok){
+  const boardData= await response.json()
+  dispatch(addingBoard(boardData))
+  return boardData
+}
+
+}
+
+export const deleteABoard = (boardId) => async (dispatch) => {
+  const response = await fetch(`/api/boards/${boardId}`,{
+    method: 'DELETE',
+    headers:{
+      'Content-Type':'application/json'
+    }
+  });
+
+  if (response.ok) {
+
+    dispatch(removeBoard(boardId));
+
+  }
+};
+const initialBoards = {};
+
+const boardsReducer = (state = initialBoards, action) => {
+  let copy = { ...state };
+  switch (action.type) {
+    case GET_ALL_BOARDS:
+    action.boards.boards.forEach((board) => {
+        copy[board.id] = board;
+      });
+      return copy;
+
+    case ADD_BOARD:
+      copy[action.boards.id] = action.boards;
+    return copy
+
+    case REMOVE_BOARD:
+
+    delete copy[action.boardId]
+
+
+  return copy
 
     default:
       return state;
   }
 };
 
-export default boardReducer;
+export default boardsReducer;

@@ -26,45 +26,42 @@ def get_board(id):
     board = Board.query.get(id)
     return board.to_dict()
 
-@board_routes.route('/', methods=['GET', 'POST'])
-@login_required
+@board_routes.route('/', methods=['POST'])
 def create_board():
     print("************CREATE NEW BOARD********************")
-    #! POSTMAN testing code.
-#     data = request.json
-#     print(data)
-#     new_board = Board(userId=1,title=data['title'],imageUrl=data['imageUrl'])
-
     form = BoardForm()
+    #!POSTMAN Testing
+    # data = request.json
+    # print(data)
+    # new_board = Board(userId=current_user.get_id(),title=data['title'], url=data['url'], imageUrl=data['imageUrl'])
+    print(form.data)
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_board = Board(userId=current_user.get_id(),
-                          title=data['title'],
-                          imageUrl=data['imageUrl'])
-        print('*********************CREATED*******************************')
+                      title=data['title'],imageUrl=data['imageUrl'])
         form.populate_obj(new_board)
-        print(new_board)
+        print('*********************CREATED*******************************')
         db.session.add(new_board)
         db.session.commit()
-        return redirect('/')
+        return new_board.to_dict()
 
-
-
-@board_routes.route('/<int:id>', methods=['PUT'])
-@login_required
+@board_routes.route('/<int:id>', methods=['PATCH','PUT'])
+# @login_required
 def edit_board(id):
-    print('*********************EDIT PIN*******************************')
-    form = BoardForm
+    print('*********************EDIT BOARD*******************************')
+    form = BoardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         board = Board.query.get(id)
         print(board)
         for key, value in data.items():
             setattr(board, key, value)
-        print('*********************UPDATED PIN*******************************')
+        print('*********************UPDATED BOARD*******************************')
         db.session.commit()
         return board.to_dict()
-    
+
 @board_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_board(id):

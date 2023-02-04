@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { deleteABoard, } from '../../../store/board';
+import { deleteABoard } from '../../../store/board';
 
 function BoardDetailPage() {
 	const [board, setBoard] = useState([]);
@@ -44,9 +44,8 @@ const history= useHistory()
             <img src={board.imageUrl}></img>
             </div> */}
 				<h1>BOARD DETAIL PAGE</h1>
-				<li><strong>User Id: </strong> {boardId}</li>
+				<li><strong>Board Id: </strong> {boardId}</li>
 				<li><strong>Title: </strong> {board.title}</li>
-        <li><strong>ImageURL: </strong> {board.imageUrl}</li>
 
                 {/* <li><strong>Link: </strong>  <a href= {board.url}>
                 {board.url}
