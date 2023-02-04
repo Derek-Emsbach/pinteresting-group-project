@@ -64,7 +64,7 @@ export const addAPin = (pins) => async (dispatch) => {
 
 export const editAPin=(id,pinData) =>async(dispatch)=>{
   const response = await fetch(`/api/pins/${id}`,{
-    method:'PUT',
+    method:'PATCH',
     headers:{
       'Content-Type':'application/json'
     },

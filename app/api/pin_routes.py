@@ -46,7 +46,7 @@ def create_pin():
         return new_pin.to_dict()
 
 
-@pin_routes.route('/<int:id>', methods=['PUT'])
+@pin_routes.route('/<int:id>', methods=["PATCH", "PUT"])
 # @login_required
 def edit_pin(id):
     # data = request.json
@@ -60,12 +60,16 @@ def edit_pin(id):
     # db.session.commit()
     # print('*********************UPDATED PIN*******************************')
     form = PinForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         pin = Pin.query.get(id)
         print(pin)
         for key, value in data.items():
             setattr(pin, key, value)
+        # pin.title = data['title']
+        # pin.url = data['url']
+        # pin.imageUrl = data['imageUrl']
         print('*********************UPDATED PIN*******************************')
         db.session.commit()
         return pin.to_dict()

@@ -9,7 +9,7 @@ function EditPinForm(){
 
     const dispatch= useDispatch()
     const {pinId} = useParams()
-    const allPins = useSelector((state) => state.pins);
+    const allPins = useSelector((state) => state.pin);
     const specificPin = allPins[pinId];
 
     const [title,setTitle]=useState(specificPin.title)
@@ -24,8 +24,8 @@ function EditPinForm(){
     const payload = { title, imageUrl, url }
        let newPin
     // try{
-         newPin= await dispatch( editAPin(pinId,payload))
-         history.push(`/pins/${newPin.id}`);
+       dispatch( editAPin(pinId,payload))
+         history.push(`/pins/${specificPin.id}`);
     //    }catch(err){
     //     const data = await err.json()
     //     setErrors([...Object.values(data.errors)])
@@ -74,6 +74,7 @@ function EditPinForm(){
       />
       </label>
         
+      <button className='submity' type="submit">Update Pin</button>
         </form>
         </div>
     )

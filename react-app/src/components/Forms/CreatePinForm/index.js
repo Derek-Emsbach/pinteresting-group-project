@@ -12,6 +12,7 @@ function CreatePinForm() {
     const [imageUrl, setImageUrl] = useState("");
     const [url, setUrl] = useState("");
     const [errors, setErrors] = useState([])
+ 
     const history = useHistory();
 
     const handleSubmit = async (e) => {

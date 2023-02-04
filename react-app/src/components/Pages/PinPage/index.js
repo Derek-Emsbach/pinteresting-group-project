@@ -31,9 +31,12 @@ console.log(pins)
             <NavLink to={`/pins/${pin.id}`} activeClassName='active'>
             {pin.title}
             </NavLink>
+
+            <NavLink to={`/pins/${pin.id}`}>
+            <img src={pin.imageUrl}></img>
+            </NavLink>
             </h4>
             <li>{pin.url}</li>
-            <li>{pin.imageUrl}</li>
             </div>
           ))}
         </div>
