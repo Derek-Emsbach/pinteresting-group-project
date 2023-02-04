@@ -23,6 +23,7 @@ import { useParams } from 'react-router-dom';
 import User from './components/User/User';
 import PinDetailPage from './components/Pages/PinDetailPage';
 import EditPinForm from './components/Forms/EditPinForm';
+import { getAllPins } from './store/pin';
 
 
 
@@ -30,6 +31,11 @@ function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+
+
+  useEffect(()=>{
+	dispatch(getAllPins())
+},[dispatch])
 
   useEffect(() => {
     (async () => {
