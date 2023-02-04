@@ -14,16 +14,23 @@ function BoardsPage() {
 	}, [dispatch]);
 
 
-	// const CreateBoardForm = async(e)=>{
-	//     history.push('/boardform')
-
-	// }
-
 	return (
 		<>
+			{boards && (
+
+
 			<div>
 				<div>
-					<h1>ALL BOARDS</h1>
+					<div>
+						<h1>ALL BOARDS</h1>
+						<NavLink
+							to="/boardform"
+							exact={true}
+							activeClassName="active"
+						>
+							Create Board
+						</NavLink>
+					</div>
 					{/* <h2>{boards.title}</h2> */}
 					{boards.map((board) => (
 						<div key={board.id}>
@@ -35,10 +42,20 @@ function BoardsPage() {
 									{board.title}
 								</NavLink>
 							</h4>
+							<NavLink
+									to={`/boards/${board.id}`}
+									activeClassName="active"
+								>
+									<img src={board.imageUrl}></img>
+
+							</NavLink>
+
 						</div>
+
 					))}
 				</div>
 			</div>
+			)}
 		</>
 	);
 }

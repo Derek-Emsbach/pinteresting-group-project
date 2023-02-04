@@ -36,6 +36,7 @@ def create_board():
 #     new_board = Board(userId=1,title=data['title'],imageUrl=data['imageUrl'])
 
     form = BoardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_board = Board(userId=current_user.get_id(),
@@ -46,15 +47,16 @@ def create_board():
         print(new_board)
         db.session.add(new_board)
         db.session.commit()
-        return redirect('/')
+        return new_board.to_dict()
 
 
 
-@board_routes.route('/<int:id>', methods=['PUT'])
+@board_routes.route('/<int:id>', methods=["PATCH", "PUT"])
 @login_required
 def edit_board(id):
     print('*********************EDIT PIN*******************************')
-    form = BoardForm
+    form = BoardForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         board = Board.query.get(id)
@@ -64,7 +66,7 @@ def edit_board(id):
         print('*********************UPDATED PIN*******************************')
         db.session.commit()
         return board.to_dict()
-    
+
 @board_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_board(id):
