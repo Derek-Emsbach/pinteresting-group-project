@@ -1,0 +1,11 @@
+
+
+
+.pin img{
+    margin: 15px 10px;
+    padding: 0;
+   width: 150px;
+    border-radius: 16px;
+    background-Color: lightgrey;
+    grid-row-end: span 26;
+}
