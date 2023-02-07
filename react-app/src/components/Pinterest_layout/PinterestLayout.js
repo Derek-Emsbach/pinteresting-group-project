@@ -1,52 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { getAllPins } from "../../store/pin.js";
+import { getAllPins } from "../../store/pin";
+import { getAllBoardsThunk } from "../../store/board";
 import { useDispatch } from "react-redux";
-import Pin from "./Pin.js";
+import PinsGrid from "../PinsGrid";
 
-import "./PinterestLayout.css";
-import { NavLink } from "react-router-dom";
+// using the common "PinsGrid" component that can be re-used in all other pages
+// import "./PinterestLayout.css";
 
 function PinterestLayout() {
-    const pins = useSelector((state) => Object.values(state.pin));
-    const sessionUser = useSelector((state) => state.session.user);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getAllPins());
-    }, [dispatch]);
+  const pins = useSelector((state) => Object.values(state.pin));
+  const boards = useSelector((state) => Object.values(state.board));
+  const sessionUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
-    return (
-        <div>
-            {sessionUser && (
-                <div style={styles.pin_container}>
-                    {pins.map((pin) => (
-                        <div key={pin.id} className="pin_container">
-                            <div className="pin">
-                            <NavLink to={`/pins/${pin.id}`}>
-                            <img src={pin.imageUrl}></img>
-                            </NavLink>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
+  useEffect(() => {
+    dispatch(getAllPins());
+    dispatch(getAllBoardsThunk());
+  }, [dispatch]);
+
+  return <div>{sessionUser && <PinsGrid pins={pins} boards={boards} />}</div>;
 }
-
-const styles = {
-    pin_container: {
-        margin: 0,
-        padding: 0,
-        width: "80vw",
-        backgroundColor: "white",
-        position: "absolute",
-        left: "50%",
-        transform: "translateX(-50%",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, 250px)",
-        gridAutoRows: "10px",
-    },
-};
 
 export default PinterestLayout;
