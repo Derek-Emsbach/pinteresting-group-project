@@ -1,8 +1,9 @@
 import os
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User,db
 from app.forms import ProfileForm
+from app.forms import EmptyForm
 
 
 
@@ -33,8 +34,6 @@ def user(id):
     return user.to_dict()
 
 
-
-
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_user(id):
@@ -55,4 +54,63 @@ def edit_user(id):
         
         return user.to_dict()
 
+
+@user_routes.route('/follow/<username>', methods=['POST'])
+@login_required
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+   
+    current_user.follow(user)
+    db.session.commit()
+    
+    return current_user.to_dict()
+
+
+    
+
+@user_routes.route('/unfollow/<username>', methods=['POST'])
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    
+    
+    current_user.followed.remove(user)
+    print(user.followers,'hellloo')
+    db.session.commit()
+    
+    return current_user.to_dict()
+    
+    
+    
+@user_routes.route('/<int:id>/followers', methods=['GET'])
+# @login_required
+def getFollowers(id):
+    user = User.query.get(id)
+    users = user.getAllFollowers()
+    return { 'followers': [user.to_dict() for user in users]}
+
+@user_routes.route('/<int:id>/followings', methods=['GET'])
+# @login_required
+def getFollowings(id):
+    user = User.query.get(id)
+    users = user.getAllFollowing()
+    return { 'followings': [user.to_dict() for user in users]}
+    
+
+    
+# @user_routes.route('/<int:id>', methods=['POST'])
+# @login_required
+# def unfollow(username):
+#     form = EmptyForm()
+#     if form.validate_on_submit():
+#         user = User.query.filter_by(username=username).first()
+#         if user is None:
+#             return flash('User {} not found.'.format(username))
+#         if user == current_user: 
+#             return flash('You cannot unfollow yourself!')
+#         current_user.unfollow(user)
+#         db.session.commit()
+#         return flash('You are not following {}.'.format(username))
+#     else:
+#         return user.to_dict()
     

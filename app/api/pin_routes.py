@@ -33,17 +33,17 @@ def create_pin():
     # data = request.json
     # print(data)
     # new_pin = Pin(userId=current_user.get_id(),title=data['title'], url=data['url'], imageUrl=data['imageUrl'])
-
+    print(form.data)
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_pin = Pin(userId=current_user.get_id(),
-                      title=data['title'], url=data['url'], imageUrl=data['imageurl'])
+                      title=data['title'], url=data['url'], imageUrl=data['imageUrl'])
         form.populate_obj(new_pin)
-    print('*********************CREATED*******************************')
-    print(new_pin)
-    db.session.add(new_pin)
-    db.session.commit()
-    return redirect('/')
+        print('*********************CREATED*******************************')
+        db.session.add(new_pin)
+        db.session.commit()
+        return new_pin.to_dict()
 
 
 @pin_routes.route('/<int:id>', methods=['PUT'])

@@ -5,7 +5,7 @@ import "./PinsGrid.css";
 
 function BoardDetailPinGrid() {
   const { boardId } = useParams();
-  const board = useSelector((state) => state.board.boards[boardId]);
+  const board = useSelector((state) => state.board[boardId]);
 
   const [fakePins, setFakePins] = useState([]);
 
