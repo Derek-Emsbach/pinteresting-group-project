@@ -3,9 +3,10 @@ from app.models import db, Pin, environment, SCHEMA
 
 # Adds a demo pin, you can add other pins here if you want
 def seed_pins():
-    pin1 = Pin(userId=1,title='animals',save=True,url='pinUrl',imageUrl='pinImageUrl')
-    pin2 = Pin(userId=1,title='places',save=False,url='pinUrl',imageUrl='pinImageUrl')
-    pin3 = Pin(userId=1,title='things',save=False,url='pinUrl',imageUrl='pinImageUrl')
+    # these pins have no pinning data (they are not pinned to a board)
+    pin1 = Pin(userId=1,title='animals',save=True,url='pinUrl',imageUrl='https://picsum.photos/id/116/200/300')
+    pin2 = Pin(userId=1,title='places',save=False,url='pinUrl',imageUrl='https://picsum.photos/id/117/200/300')
+    pin3 = Pin(userId=1,title='things',save=False,url='pinUrl',imageUrl='https://picsum.photos/id/118/200/300')
 
     db.session.add(pin1)
     db.session.add(pin2)

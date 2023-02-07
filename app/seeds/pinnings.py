@@ -1,16 +1,19 @@
-from app.models import db, Pinning, environment, SCHEMA
+from app.models import db, environment, SCHEMA
 
 
 # Adds a demo pinning, you can add other pinnings here if you want
 def seed_pinnings():
-    pinning1 = Pinning(boardId=1,pinId=1)
-    pinning2 = Pinning(boardId=2,pinId=2)
-    pinning3 = Pinning(boardId=3,pinId=3)
+    pass
+    # pinnings shouldn't be seeded manually. They should be made implicitly by appending a Pin to a Board.pins list
+    #
+    # pinning1 = Pinning(boardId=1,pinId=1)
+    # pinning2 = Pinning(boardId=2,pinId=2)
+    # pinning3 = Pinning(boardId=3,pinId=3)
 
-    db.session.add(pinning1)
-    db.session.add(pinning2)
-    db.session.add(pinning3)
-    db.session.commit()
+    # db.session.add(pinning1)
+    # db.session.add(pinning2)
+    # db.session.add(pinning3)
+    # db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the pinnings table. SQLAlchemy doesn't
