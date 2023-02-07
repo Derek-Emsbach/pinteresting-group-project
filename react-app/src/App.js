@@ -23,6 +23,7 @@ import { useParams } from 'react-router-dom';
 import User from './components/User/User';
 import PinDetailPage from './components/Pages/PinDetailPage';
 import EditPinForm from './components/Forms/EditPinForm';
+import { getAllFollowerThunk } from './store/following_follower';
 
 
 
@@ -30,6 +31,16 @@ function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  
+  // useEffect(() => {
+  //   (async () => {
+  //     await dispatch(getAllFollowerThunk());
+  //     setisLoaded(true)
+  //   })();
+  // }, [dispatch]);
+
+
+
 
   useEffect(() => {
     (async () => {

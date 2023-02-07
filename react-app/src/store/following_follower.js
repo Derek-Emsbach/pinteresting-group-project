@@ -3,12 +3,15 @@ const defaultState = {};
 const LOAD_FOLLOW = 'followings_followers/LOAD_FOLLOWING';
 const DELETE_FOLLOW = 'followings_followers/DELETE_FOLLOW';
 
+
 const loadFollow = (payload) => {
     return {
         type: LOAD_FOLLOW,
         payload,
     };
-};
+}
+
+
 
 const unFollow = (payload) => {
     return {
@@ -17,8 +20,38 @@ const unFollow = (payload) => {
     };
 };
 
-export const getAllFollowingThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/followings_followers/`);
+export const follow = (username) => async (dispatch) => {
+    const response = await fetch(`/api/users/follow/${username}`,{
+      method: 'POST',
+      headers: {
+          'Content-Type':'application/json'
+      },
+      body: JSON.stringify(username)
+    })
+  
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(loadFollow(data));
+      return data
+  
+    }
+  };
+
+
+
+// export const getAllFollowingThunk = (id) => async (dispatch) => {
+//     const res = await fetch(`/api/users/${id}/followings`);
+
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(loadFollow(data));
+//     }
+// };
+
+
+
+export const getAllFollowerThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/users/${id}/followers`);
 
     if (res.ok) {
         const data = await res.json();
@@ -26,37 +59,32 @@ export const getAllFollowingThunk = () => async (dispatch) => {
     }
 };
 
-export const getAllFollowerThunk = () => async (dispatch) => {
-    const res = await fetch(`/api/followings_followers/`);
+export const unFollowThunk = (username) => async (dispatch) => {
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(loadFollow(data));
-    }
-};
-
-export const unFollowThunk = (data) => async (dispatch) => {
-    const body = JSON.stringify(data);
-
-    const res = await fetch(`/api/followings_followers/`, {
-        method: 'DELETE',
+    const res = await fetch(`/api/users/unfollow/${username}`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body,
+        body: JSON.stringify(username)
     });
 
     if (res.ok) {
-        dispatch(unFollow(data.id));
+        dispatch(follow(username));
     }
 };
 
-const followReducer = (state = defaultState, action) => {
-    const newState = { ...state };
+
+const followerReducer = (state = defaultState, action) => {
+    let newState = { ...state };
 
     switch (action.type) {
         case LOAD_FOLLOW:
-            return { ...newState, ...action.payload };
+            action.payload.followers.forEach(follower=>{
+                newState[follower.id] = {...follower}
+            })
+            return newState
+
 
         case DELETE_FOLLOW:
             delete newState[action.payload];
@@ -67,4 +95,4 @@ const followReducer = (state = defaultState, action) => {
     }
 };
 
-export default followReducer;
+export default followerReducer;
