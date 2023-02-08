@@ -32,7 +32,7 @@ export const getAllBoardsThunk = () => async (dispatch) => {
     if (res.ok) {
         const data = await res.json();
         dispatch(loadBoards(data));
-        return data
+        // return data
     }
 };
 
@@ -42,57 +42,56 @@ export const getOneBoardThunk = (boardId) => async (dispatch) => {
     if (res.ok) {
         const board = await res.json();
         dispatch(loadBoards(board));
+        return board
     }
 };
 
-export const createBoardThunk = (data) => async (dispatch) => {
-    const newBoard = JSON.stringify(data);
+export const createBoardThunk = (boards) => async (dispatch) => {
 
     const res = await fetch('/api/boards/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: newBoard,
+        body: JSON.stringify(boards),
     });
 
     if (res.ok) {
         const newData = await res.json();
-        dispatch(loadBoards(newData));
+        dispatch(addBoard(newData));
+        return newData
     }
 };
 
-export const editBoardThunk = (boardId) => async (dispatch) => {
-    const editBoard = JSON.stringify(boardId);
+export const editBoardThunk = (boardId, boardData) => async (dispatch) => {
 
     const res = await fetch(`/api/boards/${boardId}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: editBoard,
+        body: JSON.stringify(boardData),
     });
 
     if (res.ok) {
-        const newData = await res.json();
-        dispatch(loadBoards(newData));
+        const boardData = await res.json();
+        dispatch(addBoard(boardData));
+        return boardData
     }
 };
 
 
-export const deleteBoardThunk = (data) => async (dispatch) => {
-  const body = JSON.stringify(data);
+export const deleteBoardThunk = (boardId) => async (dispatch) => {
 
-  const res = await fetch(`/api/boards/${data.id}`, {
+  const res = await fetch(`/api/boards/${boardId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-    },
-    body,
+    }
   });
 
   if (res.ok) {
-    dispatch(deleteBoard(data.id));
+    dispatch(deleteBoard(boardId));
   }
 };
 

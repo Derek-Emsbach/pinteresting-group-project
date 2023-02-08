@@ -3,13 +3,15 @@ from app.models import db, Board, environment, SCHEMA
 
 # Adds a demo board, you can add other boards here if you want
 def seed_boards():
-    board1 = Board(userId=1, title='animals', imageUrl='boardImageUrl')
-    board2 = Board(userId=1, title='places', imageUrl='boardImageUrl')
-    board3 = Board(userId=1, title='things', imageUrl='boardImageUrl')
+    boardData = [
+    Board(userId=4, title='Cute Animals', imageUrl='https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg'),
+    Board(userId=6, title='Gaming Computers', imageUrl='https://i.ytimg.com/vi/wKoHS2aKSUI/maxresdefault.jpg'),
+    Board(userId=1, title='Pokemon', imageUrl='https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/800px-International_Pok%C3%A9mon_logo.svg.png'),
+    Board(userId=5, title='Cars', imageUrl='https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg'),
+    Board(userId=3, title='Games', imageUrl='https://media.kasperskydaily.com/wp-content/uploads/sites/85/2014/04/20122626/online-gamer-threats-featured.jpg'),
+    Board(userId=2, title='Fashion', imageUrl='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lisa-adams-closet-designer-1561745904.jpg')]
 
-    db.session.add(board1)
-    db.session.add(board2)
-    db.session.add(board3)
+    db.session.bulk_save_objects(boardData)
     db.session.commit()
 
 

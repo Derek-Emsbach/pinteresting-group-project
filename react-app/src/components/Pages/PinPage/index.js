@@ -5,11 +5,12 @@ import { getAllPins } from '../../../store/pin';
 
 function PinPage() {
 	const history = useHistory();
-	const dispatch = useDispatch();
-
-
+	const dispatch = useDispatch()
     const pins = useSelector((state)=> Object.values(state.pin))
-console.log(pins)
+    const currentUser = useSelector((state) => state.session.user)
+
+
+
     useEffect(()=>{
         dispatch(getAllPins())
     },[dispatch])
@@ -24,19 +25,52 @@ console.log(pins)
 
         <div>
         <div>
-            <h1>ALL PINS</h1>
-          {pins.map((pin)=>(
-            <div key={pin.id}>
-            <h4>
-            <NavLink to={`/pins/${pin.id}`} activeClassName='active'>
-            {pin.title}
-            </NavLink>
-            </h4>
-            <li>{pin.url}</li>
-            <li>{pin.imageUrl}</li>
-            </div>
-          ))}
+        
+            <h1>PINS I'VE CREATED</h1>
+          
+
+                {pins.map((pin)=>(
+
+                   
+                    <div key={pin.id}>
+                    
+                    {currentUser?.id === pin.userId &&(
+                    <NavLink to={`/pins/${pin.id}`} activeClassName='active'>
+                    {pin.title}
+                    </NavLink>
+                    )}
+
+                    {currentUser?.id === pin.userId &&(
+                    <NavLink to={`/pins/${pin.id}`}>
+                    <img src={pin.imageUrl}></img>
+                    </NavLink>
+
+                    )}
+                   
+
+                    {currentUser?.id === pin.userId &&(
+                    <li>
+                    <a href= {pin.url}>
+                    {pin.url}
+                    </a>
+                    
+                    </li>
+                   )}
+                    </div>
+                 
+                    
+                  ))}   
+        
+                
+
+
+
+       
+           
+ 
+   
         </div>
+       
         <button onClick={CreatePinForm}>Create Pins</button>
     </div>
 

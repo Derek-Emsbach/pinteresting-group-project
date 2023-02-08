@@ -24,6 +24,7 @@ import User from './components/User/User';
 import PinDetailPage from './components/Pages/PinDetailPage';
 import EditPinForm from './components/Forms/EditPinForm';
 import { getAllFollowerThunk } from './store/following_follower';
+import { getAllPins } from './store/pin';
 
 
 
@@ -41,6 +42,11 @@ function App() {
 
 
 
+
+
+  useEffect(()=>{
+	dispatch(getAllPins())
+},[dispatch])
 
   useEffect(() => {
     (async () => {
