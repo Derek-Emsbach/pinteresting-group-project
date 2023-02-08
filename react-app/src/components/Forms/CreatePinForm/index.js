@@ -22,7 +22,14 @@ function CreatePinForm() {
         dispatch(addAPin(payload));
        console.log(payload)
         history.push(`/pins`);
-     
+        try{
+            dispatch(addAPin(payload))
+              history.push(`/pins}`);
+            }catch(err){
+             const data = await err.json()
+             setErrors([...Object.values(data.errors)])
+            }
+        
     };
 
     return (
