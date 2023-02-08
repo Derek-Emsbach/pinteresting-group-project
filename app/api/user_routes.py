@@ -85,15 +85,19 @@ def unfollow(username):
 @user_routes.route('/<int:id>/followers', methods=['GET'])
 # @login_required
 def getFollowers(id):
-    user = User.query.get(id)
-    users = user.getAllFollowers()
+    curUser = User.query.get(id)
+    users = curUser.getAllFollowers()
+    print(users, 'FOLLWERSS USERSSS FROMMM BACK ENDD @@@')
+    [print(user.to_dict()) for user in users]
     return { 'followers': [user.to_dict() for user in users]}
 
 @user_routes.route('/<int:id>/followings', methods=['GET'])
 # @login_required
 def getFollowings(id):
-    user = User.query.get(id)
-    users = user.getAllFollowing()
+    curUser = User.query.get(id)
+    users = curUser.getAllFollowing()
+    print(users, 'FOLLOWINGG USERSSS FROMMM BACK ENDD @@@')
+   
     return { 'followings': [user.to_dict() for user in users]}
     
 

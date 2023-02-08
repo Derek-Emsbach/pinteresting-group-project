@@ -2,6 +2,7 @@ const defaultState = {};
 
 const LOAD_FOLLOW = 'followings_followers/LOAD_FOLLOWING';
 const DELETE_FOLLOW = 'followings_followers/DELETE_FOLLOW';
+const FOLLOW_USER = "follow/FOLLOW_USER"
 
 
 const loadFollow = (payload) => {
@@ -9,6 +10,13 @@ const loadFollow = (payload) => {
         type: LOAD_FOLLOW,
         payload,
     };
+}
+
+const followAUser = (payload) =>{
+    return {
+        type:FOLLOW_USER,
+        payload
+    }
 }
 
 
@@ -31,7 +39,7 @@ export const follow = (username) => async (dispatch) => {
   
     if (response.ok) {
       const data = await response.json();
-      dispatch(loadFollow(data));
+      dispatch(followAUser(data));
       return data
   
     }
@@ -39,14 +47,14 @@ export const follow = (username) => async (dispatch) => {
 
 
 
-// export const getAllFollowingThunk = (id) => async (dispatch) => {
-//     const res = await fetch(`/api/users/${id}/followings`);
+export const getAllFollowingThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/users/${id}/followings`);
 
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(loadFollow(data));
-//     }
-// };
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadFollow(data));
+    }
+};
 
 
 
@@ -70,7 +78,7 @@ export const unFollowThunk = (username) => async (dispatch) => {
     });
 
     if (res.ok) {
-        dispatch(follow(username));
+        dispatch(unFollow(username));
     }
 };
 
@@ -79,15 +87,20 @@ const followerReducer = (state = defaultState, action) => {
     let newState = { ...state };
 
     switch (action.type) {
+        
         case LOAD_FOLLOW:
             action.payload.followers.forEach(follower=>{
                 newState[follower.id] = {...follower}
             })
             return newState
 
+        case FOLLOW_USER:
+             newState[action.payload.id] = action.payload
+            return newState
+
 
         case DELETE_FOLLOW:
-            delete newState[action.payload];
+            newState[action.payload.id] = action.payload
             return newState;
 
         default:

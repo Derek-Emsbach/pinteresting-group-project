@@ -31,7 +31,7 @@ function User() {
   }
 
   const unFollowing = async () =>{
-    await dispatch(unFollowThunk(user.id))
+    await dispatch(unFollowThunk(user.username))
   }
 
   return (

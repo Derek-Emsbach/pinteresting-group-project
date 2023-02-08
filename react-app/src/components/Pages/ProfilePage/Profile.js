@@ -41,13 +41,14 @@ function Profile(){
 
 
 
-
     useEffect(()=>{
         dispatch(getAllFollowerThunk(sessionUser.id))
+        
         dispatch(getAllFollowingThunk(sessionUser.id))
      
-        },[dispatch])
-
+        },[dispatch,sessionUser.id])
+        
+    
 
       
    
