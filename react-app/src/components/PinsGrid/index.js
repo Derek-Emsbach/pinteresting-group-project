@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import PopOver from "../PopOver";
 import "./PinsGrid.css";
+import { addPinning, removePinning } from "../../store/pinning";
 
-function BoardDetailPinGrid({ pins = [], boards = [] }) {
+function PinsGrid({
+  pins = [],
+  boards = [],
+  currentBoard,
+  showRemove = false,
+}) {
   const [saveTo, setSaveTo] = useState("");
 
   return (
@@ -14,6 +21,8 @@ function BoardDetailPinGrid({ pins = [], boards = [] }) {
           boards={boards}
           saveTo={saveTo}
           setSaveTo={setSaveTo}
+          currentBoard={currentBoard}
+          showRemove={showRemove}
           {...pin}
         />
       ))}
@@ -21,10 +30,19 @@ function BoardDetailPinGrid({ pins = [], boards = [] }) {
   );
 }
 
-export default BoardDetailPinGrid;
+export default PinsGrid;
 
-function PinItem({ id, imageUrl, boards, saveTo, setSaveTo }) {
+function PinItem({
+  id,
+  imageUrl,
+  boards,
+  saveTo,
+  setSaveTo,
+  currentBoard,
+  showRemove = false,
+}) {
   const [popOverOpen, setPopOverOpen] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <NavLink to={`/pins/${id}`}>
@@ -49,33 +67,52 @@ function PinItem({ id, imageUrl, boards, saveTo, setSaveTo }) {
                   setPopOverOpen(true);
                 }}
               >
-                Save
+                ...
               </button>
             }
           >
-            <div className="PinsGrid--Action--Save">
-              <select
-                onChange={(event) => {
-                  setSaveTo(event.target.value);
-                }}
-              >
-                {!saveTo && <option value="">choose a board</option>}
-                {boards.map(({ id, title }) => (
-                  <option key={id} selected={id === saveTo} value={id}>
-                    {title}
-                  </option>
-                ))}
-              </select>
-              <button
-                disabled={!saveTo}
-                onClick={(event) => {
-                  event.preventDefault();
-                  console.log("@@@");
-                  setPopOverOpen(false);
-                }}
-              >
-                confirm
-              </button>
+            <div className="PinsGrid--Action--Content">
+              {showRemove && currentBoard ? (
+                <>
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault();
+                      dispatch(removePinning(currentBoard, id));
+                      setPopOverOpen(false);
+                    }}
+                  >
+                    remove
+                  </button>
+                </>
+              ) : (
+                <>
+                  <select
+                    style={{
+                      width: "180px",
+                    }}
+                    onChange={(event) => {
+                      setSaveTo(event.target.value);
+                    }}
+                  >
+                    {!saveTo && <option value="">choose a board</option>}
+                    {boards.map(({ id, title }) => (
+                      <option key={id} selected={id === saveTo} value={id}>
+                        {title}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    disabled={!saveTo}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      dispatch(addPinning(saveTo, id));
+                      setPopOverOpen(false);
+                    }}
+                  >
+                    confirm
+                  </button>
+                </>
+              )}
             </div>
           </PopOver>
         </div>

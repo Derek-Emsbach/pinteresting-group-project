@@ -42,9 +42,8 @@
   cursor: pointer;
 }
 
-.PinsGrid--Item .PinsGrid--Action--Save {
+.PinsGrid--Item .PinsGrid--Action--Content {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 180px;
 }

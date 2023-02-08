@@ -19,10 +19,10 @@ class Board(db.Model):
 
 
     def to_dict(self):
-            return {
-                'id': self.id,
-                'userId': self.userId,
-                'title': self.title,
-                'imageUrl': self.imageUrl,
-                'pins': list(map(lambda p: p.to_dict(), self.pins))
-            }
+        return {
+            'id': self.id,
+            'userId': self.userId,
+            'title': self.title,
+            'imageUrl': self.imageUrl,
+            'pins': list(map(lambda p: p.to_dict(), self.pins))
+        }

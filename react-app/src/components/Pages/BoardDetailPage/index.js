@@ -14,12 +14,19 @@ function BoardDetailPage() {
   }, []);
 
   const { boardId } = useParams();
-  const { pins = [] } = useSelector((state) => state.board[boardId]) || {};
+
+  const currentUser = useSelector((state) => state.session.user);
+  const { userId: ownerId, pins = [] } =
+    useSelector((state) => state.board[boardId]) || {};
 
   return (
     <div className="BoardDetail--Page">
       <Heading />
-      <PinsGrid pins={pins} />
+      <PinsGrid
+        pins={pins}
+        currentBoard={boardId}
+        showRemove={currentUser.id === ownerId}
+      />
       <Footing />
     </div>
   );
