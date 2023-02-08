@@ -18,7 +18,9 @@ Pin(userId=1,title="demo10",save=False,url="https://www.amazon.com/Beast-Kingdom
 Pin(userId=1,title="demo1",save=False,url="https://www.amazon.com/VSATEN-Dinosaur-Changing-Silicone-Rechargeable/dp/B08D9NWV23/ref=sxin_25_trfobq2a_2_B08D9NWV23?content-id=amzn1.sym.d87bdde9-97f6-47ac-b339-55167deba1dc%3Aamzn1.sym.d87bdde9-97f6-47ac-b339-55167deba1dc&crid=FXWPV2P0BRXV&cv_ct_cx=cool+things&keywords=cool+things&pd_rd_i=B08D9NWV23&pd_rd_r=c9308e9e-a1c5-46a2-852f-748fa64fda3a&pd_rd_w=hYvqf&pd_rd_wg=wLOM4&pf_rd_p=d87bdde9-97f6-47ac-b339-55167deba1dc&pf_rd_r=20Z3Z2X22GB6J5F3P4NH&qid=1675752303&sprefix=cool+thing%2Caps%2C98&sr=1-3-c944532c-3909-4a2a-84a2-570d2ee3cd13",imageUrl="https://m.media-amazon.com/images/I/61et25jE9tL._AC_SL1500_.jpg"),
     ]
 
-    pokemonBoard.pins.extend(pokemonPins)
+    for pin in pokemonPins:
+        pokemonBoard.pins.append(pin)
+
     data.append(pokemonBoard)
     data.extend(pokemonPins)
 
@@ -37,7 +39,9 @@ Pin(userId=2,title="cherry10",save=False,url="pinUrl",imageUrl="https://www.lulu
 
     ]
 
-    fashionBoard.pins.extend(fashionPins)
+    for pin in fashionPins:
+        fashionBoard.pins.append(pin)
+
     data.append(fashionBoard)
     data.extend(fashionPins)
 
@@ -55,7 +59,9 @@ Pin(userId=3,title="jimmy9",save=False,url="pinUrl",imageUrl="https://www.pcinva
 Pin(userId=3,title="jimmy10",save=False,url="pinUrl",imageUrl="https://image.api.playstation.com/vulcan/ap/rnd/202211/1900/wAVNdCzihoMYFtrFNju4Rzdj.jpg"),
     ]
 
-    gamingBoard.pins.extend(gamingPins)
+    for pin in gamingPins:
+        gamingBoard.pins.append(pin)
+
     data.append(gamingBoard)
     data.extend(gamingPins)
 
@@ -73,7 +79,9 @@ Pin(userId=4,title="aman9",save=False,url="pinUrl",imageUrl="https://www.popsci.
 Pin(userId=4,title="aman10",save=False,url="pinUrl",imageUrl="https://www.creativeboom.com/uploads/articles/db/dbc2cfcdb1abc43662a3806a790ab34935b1a0c0_810.jpg"),
     ]
 
-    animalsBoard.pins.extend(animalPins)
+    for pin in animalPins:
+        animalsBoard.pins.append(pin)
+
     data.append(animalsBoard)
     data.extend(animalPins)
 
@@ -91,7 +99,9 @@ Pin(userId=5,title="chris9",save=False,url="pinUrl",imageUrl="https://imageio.fo
 Pin(userId=5,title="chris10",save=False,url="pinUrl",imageUrl="https://pictures.dealer.com/a/astonmartinchicago/0572/64029d20921d904a6eacdc551c54fc1ex.jpg?impolicy=downsize&w=568"),
     ]
 
-    carsBoard.pins.extend(carPins)
+    for pin in carPins:
+        carsBoard.pins.append(pin)
+
     data.append(carsBoard)
     data.extend(carPins)
 
@@ -109,7 +119,9 @@ Pin(userId=6,title="derek9",save=False,url="pinUrl",imageUrl="https://i.pinimg.c
 Pin(userId=6,title="derek10",save=False,url="pinUrl",imageUrl="https://img.buzzfeed.com/buzzfeed-static/static/2017-06/19/11/campaign_images/buzzfeed-prod-fastlane-03/29-cool-and-random-things-you-can-probably-afford-2-21019-1497886981-2_dblbig.jpg"),
     ]
 
-    computersBoard.pins.extend(computerPins)
+    for pin in computerPins:
+        computersBoard.pins.append(pin)
+
     data.append(computersBoard)
     data.extend(computerPins)
 
