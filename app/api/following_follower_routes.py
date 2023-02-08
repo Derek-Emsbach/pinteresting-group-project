@@ -14,10 +14,17 @@ def get_all_followings_followers():
     return {'followings_followers': [following_follower.to_dict() for following_follower in followings_followers]}
 
 
-@following_follower_routes.route('/', methods=['POST'])
+@following_follower_routes.route('/<int:id>', methods=['POST'])
 @login_required
-def create_following_follower(id):
-    pass
+def user_following(id):
+    new_follower = Following_Follower.query.get(id)
+    print(new_follower)
+    
+    db.session.add(new_follower)
+    db.session.commit()
+    return new_follower.to_dict()
+
+    
 
 
 @following_follower_routes.route('/<int:id>', methods=['GET'])

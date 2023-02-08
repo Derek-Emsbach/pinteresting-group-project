@@ -1,12 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector} from "react-redux";
 import profile from '../../../icons/profile.png'
 import './Profile.css'
 import { useHistory, NavLink } from "react-router-dom";
+import { follow, getAllFollowerThunk} from "../../../store/following_follower";
+import { getAllFollowingThunk } from "../../../store/following";
+import Followers from "./Followers";
+import Followings from "./Followings";
 
 function Profile(){
     const sessionUser = useSelector(state => state.session.user)
+    const [users, setUsers] = useState([]);
+
     const history = useHistory()
+    const dispatch = useDispatch()
     const myPins = async(e)=>{
         history.push('/pins')
     }
@@ -15,38 +22,74 @@ function Profile(){
     }
 
     const profileForm = async(e)=>{
-        history.push('/profileform')
+        history.push(`/users/${sessionUser.id}`)
     }
-    const followingsFollowers = async(e)=>{
-        history.push('/followings_followers')
+
+    const allMyFollowers= useSelector(state =>Object.values(state.follower))
+
+    const allMyFollowings= useSelector(state =>Object.values(state.following))
+    
+
+  
+  
+  
+
+   
+    const following = async ()=>{
+        await dispatch(follow(sessionUser.id))
     }
+
+
+
+    useEffect(()=>{
+        dispatch(getAllFollowerThunk(sessionUser.id))
+        
+        dispatch(getAllFollowingThunk(sessionUser.id))
+     
+        },[dispatch,sessionUser.id])
+        
+    
+
+      
+   
+
+
     return(
         <div className="profile_container">
          <div className="user_info">
          <img src={profile} alt=''></img>
-        <h1>{sessionUser.username}</h1>
+        <div className="profile_info">
+        <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
+        <h3>{sessionUser.about}</h3>
          <h4>{sessionUser.email}</h4>
-         <div className="follow-container">
-            <nav id="follow-nav">
-                <ul>
-                    <li>
-                        <NavLink to='/followings_followers' exact={true} activeClassName='active'>
-                            followers
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/followings_followers' exact={true} activeClassName='active'>
-                            following
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
          </div>
+
+
+         {allMyFollowings && allMyFollowers &&(
+         <div className="follow-container">
+            
+                <div className="follower_container">
+                    {allMyFollowers.length}
+                 
+                    <Followers/>
+                </div>
+                       
+                <div className="following_container">
+                    {allMyFollowings.length}
+
+                    <Followings/>
+                </div>
+
+            
+         </div>
+         )}
 
                 <div>
                 <button>Share</button>
+
                 <button onClick={profileForm}>Edit Profile</button>
-                <button>Follow</button>
+
+                <button onClick={()=>dispatch(following)}>Follow</button>
 
                 </div>
 
@@ -58,6 +101,7 @@ function Profile(){
          </div>
 
         </div>
+         
 
     )
 }

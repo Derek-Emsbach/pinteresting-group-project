@@ -1,12 +1,30 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './HomePage.css'
 import icon from '../../../icons/Pinterest-Logo-PNG9.png'
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import SignupFormModal from "../../SignUpFormModal";
+import Modal from "../../Modal/Modal";
+import { login } from '../../../store/session'
+import DemoButton from "../../DemoButton/DemoButton";
 
 function HomePage(){
-
+    const dispatch = useDispatch()
+    const history = useHistory()
     const sessionUser = useSelector(state =>state.session.user)
+    const [modalOpen, setModalOpen] = useState(false);
+
+
+  
+        const demo = async (e)=>{
+            const user ={
+                email:'bobbie@aa.io',
+                password:'password'
+            }
+           await dispatch(login(user.email, user.password))
+           history.push('/')
+        }
+    
 
     return (
         <>
@@ -19,16 +37,22 @@ function HomePage(){
 
             <div className="right_menu">
 
-                <a href="/" alt='sdf'> About</a>
-                <a href="/"> Business</a>
-                <a href="/"> Blog</a>
+            <button onClick={demo}>Sign in as Demo User</button>
+                
                 <NavLink to='/login' exact={true} activeClassName='active'>
                 Login
-               </NavLink>
-               <NavLink to='/signup' exact={true} activeClassName='active'>
+               </NavLink>           
+                
+               <button
+               className="openModalBtn"
+               onClick={() => {
+                 setModalOpen(true);
+               }}
+             >
                Sign Up
-               </NavLink>
+             </button>
 
+             {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </div>
          
         </div>

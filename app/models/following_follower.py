@@ -9,8 +9,8 @@ class Following_Follower(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    followedUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    followerUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    followedUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
+    followerUserId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable =False)
 
 
     def to_dict(self):

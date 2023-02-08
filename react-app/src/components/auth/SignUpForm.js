@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import './SignUpForm.css'
+import icon from '../../icons/pinterest_icon.png'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,40 +45,54 @@ const SignUpForm = () => {
   }
 
   return (
+    <div className='signup_container'>
+      <div className='signup_header'>
+        <img src={icon}/>
+
+        <h1>Welcome to Pinterest</h1>
+        <h4>Find new ideas to try</h4>
+      
+      </div>
+
+
+
     <form onSubmit={onSignUp}>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+      <div id='form_detail'>
         <label>User Name</label>
         <input
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
+          placeholder='User Name'
         ></input>
       </div>
-      <div>
+      <div id='form_detail'>
         <label>Email</label>
         <input
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
+          placeholder='Emai'
         ></input>
       </div>
-      <div>
+      <div id='form_detail'>
         <label>Password</label>
         <input
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
+          placeholder='Create a password'
         ></input>
       </div>
-      <div>
+      <div id='form_detail'>
         <label>Repeat Password</label>
         <input
           type='password'
@@ -84,10 +100,12 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+          placeholder='Enter Your Password Again'
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button type='submit'>Continue</button>
     </form>
+    </div>
   );
 };
 

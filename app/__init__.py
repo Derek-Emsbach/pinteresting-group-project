@@ -18,6 +18,7 @@ app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
+
 login.login_view = 'auth.unauthorized'
 
 
@@ -99,3 +100,6 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+
