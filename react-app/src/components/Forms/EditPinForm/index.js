@@ -23,13 +23,15 @@ function EditPinForm(){
         e.preventDefault()
         setErrors([]);
     const payload = { title, imageUrl, url }
-    
-    try{
-       dispatch( editAPin(pinId,payload))
-         history.push(`/pins/${specificPin.id}`);
-       }catch(err){
-        const data = await err.json()
+
+       
+      let data = await dispatch( editAPin(pinId,payload))
+
+       if(data.errors){
+      
         setErrors([...Object.values(data.errors)])
+       } else{
+        history.push(`/pins/${specificPin.id}`);
        }
       
     }

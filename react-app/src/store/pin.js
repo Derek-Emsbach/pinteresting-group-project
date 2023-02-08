@@ -75,6 +75,10 @@ if(response.ok){
   const pinData= await response.json()
   dispatch(addingPin(pinData))
   return pinData
+
+} else{
+    const error = await response.json()
+    return error
 }
 
 }
