@@ -1,4 +1,4 @@
-.following_container{
+.follower_container{
     display: flex;
     align-items: center;
     background-color: transparent;
@@ -6,21 +6,17 @@
     cursor: pointer;
 
 }
-.following_container img{
+.follower_container img{
     width: 50px;
 }
-.following_info{
+.follower_info{
     margin-left: 20px;
 }
 
-.following_info h3{
+.follower_info h3{
     margin-bottom: 0;
 }
 
-.following_info h4{
+.follower_info h4{
     margin-top: 0;
-}
-
-.following_info:hover{
-    color: red;
 }

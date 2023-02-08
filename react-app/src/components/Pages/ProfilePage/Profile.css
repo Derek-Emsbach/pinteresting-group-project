@@ -69,3 +69,14 @@
     font-size: 1.7rem;
     text-align: center;
   }
+
+  .follow-container{
+    margin-bottom: 10px;
+  }
+  .profile_info{
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+  }

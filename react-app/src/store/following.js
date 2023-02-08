@@ -22,15 +22,16 @@ export const getAllFollowingThunk = (id) => async (dispatch) => {
 };
 
 const followingReducer = (state = defaultState, action) => {
- 
+    
     switch (action.type) {
         case LOAD_FOLLOWING:{
-            const newState = { ...state };
+            const newState = {}
             action.payload.followings.forEach(following=>{
                 newState[following.id] = {...following}
             })
             return newState
         }
+        
 
         default:
             return state;

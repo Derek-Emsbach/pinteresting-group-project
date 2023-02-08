@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { follow, unFollowThunk } from '../../store/following_follower';
 
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
   const dispatch = useDispatch()
+  const history = useHistory()
   const sessionUser = useSelector(state=>state.session.user)
 
   useEffect(() => {

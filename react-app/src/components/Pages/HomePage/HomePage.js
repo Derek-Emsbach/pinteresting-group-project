@@ -18,7 +18,7 @@ function HomePage(){
   
         const demo = async (e)=>{
             const user ={
-                email:'demo@aa.io',
+                email:'bobbie@aa.io',
                 password:'password'
             }
            await dispatch(login(user.email, user.password))

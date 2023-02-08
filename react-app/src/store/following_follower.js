@@ -84,24 +84,30 @@ export const unFollowThunk = (username) => async (dispatch) => {
 
 
 const followerReducer = (state = defaultState, action) => {
-    let newState = { ...state };
+
 
     switch (action.type) {
         
-        case LOAD_FOLLOW:
+        case LOAD_FOLLOW:{
+            const newState ={}
             action.payload.followers.forEach(follower=>{
                 newState[follower.id] = {...follower}
             })
             return newState
+        }
 
-        case FOLLOW_USER:
+        case FOLLOW_USER:{
+            const newState ={}
              newState[action.payload.id] = action.payload
             return newState
+        }
 
 
-        case DELETE_FOLLOW:
+        case DELETE_FOLLOW:{
+            const newState ={}
             newState[action.payload.id] = action.payload
             return newState;
+        }
 
         default:
             return state;

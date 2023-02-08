@@ -58,30 +58,31 @@ function Profile(){
         <div className="profile_container">
          <div className="user_info">
          <img src={profile} alt=''></img>
-        
+        <div className="profile_info">
         <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
-            <h3>{sessionUser.about}</h3>
+        <h3>{sessionUser.about}</h3>
          <h4>{sessionUser.email}</h4>
+         </div>
+
+
+         {allMyFollowings && allMyFollowers &&(
          <div className="follow-container">
-            <nav id="follow-nav">
-                <ul>
-                
-                    <li>
+            
+                <div className="follower_container">
                     {allMyFollowers.length}
                  
                     <Followers/>
+                </div>
                        
-                    </li>
-                    <li>
+                <div className="following_container">
                     {allMyFollowings.length}
 
+                    <Followings/>
+                </div>
 
-                       <Followings/>
-
-                    </li>
-                </ul>
-            </nav>
+            
          </div>
+         )}
 
                 <div>
                 <button>Share</button>
@@ -100,6 +101,7 @@ function Profile(){
          </div>
 
         </div>
+         
 
     )
 }
