@@ -4,12 +4,12 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     userData = [
-        User(username="Demo", email="demo@aa.io", password="password"),
-        User(username="Cherry", email="Cherry@aa.io", password="password"),
-        User(username="Jimmy", email="Jimmy@aa.io", password="password"),
-        User(username="Aman", email="Aman@aa.io", password="password"),
-        User(username="Chris", email="Chris@aa.io", password="password"),
-        User(username="Derek", email="Derek@aa.io", password="password")
+        User(firstName='Demo', lastName = 'User',username="Demo", email="demo@aa.io", password="password"),
+        User(firstName = 'Cherry',lastName ='Huang',username="Cherry",email="Cherry@aa.io", password="password"),
+        User(firstName = 'Jimmy',lastName ='Pham',username="Jimmy", email="Jimmy@aa.io", password="password"),
+        User(firstName = 'Aman',lastName ='Aman',username="Aman", email="Aman@aa.io", password="password"),
+        User(firstName = 'Chris',lastName ='Chan',username="Chris", email="Chris@aa.io", password="password"),
+        User(firstName = 'Derek',lastName ='Emsbach',username="Derek", email="Derek@aa.io", password="password")
     ]
     db.session.bulk_save_objects(userData)
     db.session.commit()

@@ -23,6 +23,7 @@ import { useParams } from 'react-router-dom';
 import User from './components/User/User';
 import PinDetailPage from './components/Pages/PinDetailPage';
 import EditPinForm from './components/Forms/EditPinForm';
+import { getAllFollowerThunk } from './store/following_follower';
 import { getAllPins } from './store/pin';
 
 
@@ -31,6 +32,16 @@ function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  
+  // useEffect(() => {
+  //   (async () => {
+  //     await dispatch(getAllFollowerThunk());
+  //     setisLoaded(true)
+  //   })();
+  // }, [dispatch]);
+
+
+
 
 
   useEffect(()=>{
@@ -99,24 +110,17 @@ function App() {
 					<Route exact path='/boardform'>
 						<CreateBoardForm />
 					</Route>
-					<Route exact path='/profileform'>
+					{sessionUser &&(
+					<Route exact path={`/users/${sessionUser.id}`}>
 						<EditProfileForm />
 					</Route>
+					
+		
+					)}
 					<Route exact path ='/followings_followers'>
 						<FollowersPage />
 					</Route>
-					{/* <Route exact path ='/following'>
-						<FollowingPage />
-					</Route> */}
-					{/*
-
-            <Route path='/following`'>
-              <FollowingPage/>
-            </Route>
-            <Route path='/followers/:userId`'>
-              <FollowersPage/>
-            </Route>
-          */}
+			
           <ProtectedRoute exact path="/users">
             <UsersList />
           </ProtectedRoute>

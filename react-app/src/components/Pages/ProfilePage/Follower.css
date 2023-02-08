@@ -1,0 +1,22 @@
+.follower_container{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+.follower_container img{
+    width: 50px;
+}
+.follower_info{
+    margin-left: 20px;
+}
+
+.follower_info h3{
+    margin-bottom: 0;
+}
+
+.follower_info h4{
+    margin-top: 0;
+}
