@@ -22,3 +22,8 @@
 .body img{
     width: auto;
 }
+.openModalBtn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

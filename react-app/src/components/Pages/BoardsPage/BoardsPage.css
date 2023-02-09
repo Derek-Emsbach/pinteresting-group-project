@@ -1,0 +1,23 @@
+/* .all-boards-container { */
+    /* border: 2px solid black; */
+/* } */
+
+/* .my-boards-create-boards-container { */
+    /* border: 2px solid blue; */
+/* } */
+
+.board-containers {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: space-between;
+    flex-direction: row;
+    object-fit: cover
+}
+
+.board-image {
+    width: 200px;
+    height: 300px;
+    object-fit: scale-down;
+  }

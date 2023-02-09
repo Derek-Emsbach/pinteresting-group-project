@@ -70,6 +70,23 @@ export const logout = () => async (dispatch) => {
   }
 };
 
+export const update_profile = (id, data) => async (dispatch) =>{
+  console.log(data)
+  const response = await fetch(`/api/users/${id}`,{
+    method:"PUT",
+    headers:{
+        "Content-Type": "application/json",
+    },
+       body: JSON.stringify(data)
+  })
+  
+  
+    const profile= await response.json()
+    dispatch(setUser(profile))
+    return profile
+  }
+
+
 
 export const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
@@ -103,7 +120,7 @@ export default function reducer(state = initialState, action) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
-      return { user: null }
+      return {...initialState}
     default:
       return state;
   }

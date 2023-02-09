@@ -3,7 +3,7 @@ from .users import seed_users, undo_users
 from .pins import seed_pins, undo_pins
 from .boards import seed_boards, undo_boards
 from .pinnings import seed_pinnings, undo_pinnings
-from .followings_followers import seed_followings_followers, undo_followings_followers
+
 
 from app.models.db import db, environment, SCHEMA
 
@@ -24,12 +24,11 @@ def seed():
         undo_pins()
         undo_boards()
         undo_pinnings()
-        undo_followings_followers()
     seed_users()
     seed_pins()
     seed_boards()
     seed_pinnings()
-    seed_followings_followers()
+
     # Add other seed functions here
 
 
@@ -40,5 +39,4 @@ def undo():
     undo_pins()
     undo_boards()
     undo_pinnings()
-    undo_followings_followers()
     # Add other undo functions here

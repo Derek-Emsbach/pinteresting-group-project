@@ -7,7 +7,7 @@ import App from './App';
 import configureStore from './store';
 
 import './index.css';
-// import * as sessionActions from './store/session';
+
 
 const store = configureStore();
 
@@ -19,6 +19,7 @@ function Root() {
 					<App />
 				</BrowserRouter>
 		</Provider>
+
 	);
 }
 

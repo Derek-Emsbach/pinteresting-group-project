@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllBoardsThunk } from "../../../store/board";
+import './BoardsPage.css'
 
 function BoardsPage() {
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const currentUser = useSelector((state) => state.session.user)
 
 	const boards = useSelector((state) => Object.values(state.board));
 	// console.log(boards, "BOARDS");
@@ -19,10 +21,10 @@ function BoardsPage() {
 			{boards && (
 
 
-			<div>
+			<div className="all-boards-container">
 				<div>
-					<div>
-						<h1>ALL BOARDS</h1>
+					<div className="my-boards-create-boards-container">
+						<h1>My Boards</h1>
 						<NavLink
 							to="/boardform"
 							exact={true}
@@ -33,23 +35,26 @@ function BoardsPage() {
 					</div>
 					{/* <h2>{boards.title}</h2> */}
 					{boards.map((board) => (
-						<div key={board.id}>
+						<div key={board.id} className='board-containers'>
 							<h4>
-								<NavLink
-									to={`/boards/${board.id}`}
-									activeClassName="active"
-								>
-									{board.title}
-								</NavLink>
+								{currentUser?.id === board.userId && (
+									<NavLink
+										to={`/boards/${board.id}`}
+										activeClassName="active"
+									>
+										{board.title}
+									</NavLink>
+								)}
 							</h4>
-							<NavLink
-									to={`/boards/${board.id}`}
-									activeClassName="active"
-								>
-									<img src={board.imageUrl}></img>
+							{currentUser?.id === board.userId && (
+								<NavLink
+										to={`/boards/${board.id}`}
+										activeClassName="active"
+									>
+										<img className="board-image" src={board.imageUrl}></img>
 
-							</NavLink>
-
+								</NavLink>
+							)}
 						</div>
 
 					))}
