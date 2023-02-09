@@ -53,7 +53,7 @@ def create_pin():
         db.session.add(new_pin)
         db.session.commit()
         return new_pin.to_dict()
-    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
         
 
 
@@ -84,7 +84,7 @@ def edit_pin(id):
         print('*********************UPDATED PIN*******************************')
         db.session.commit()
         return pin.to_dict()
-    else: return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @pin_routes.route('/<int:id>', methods=['DELETE'])
 # @login_required

@@ -59,7 +59,10 @@ export const addAPin = (pins) => async (dispatch) => {
     dispatch(addingPin(data));
     return data
 
-  }
+  }else{
+    const error = await response.json()
+    return error
+}
 };
 
 export const editAPin=(id,pinData) =>async(dispatch)=>{
