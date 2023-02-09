@@ -6,7 +6,6 @@ from flask_login import UserMixin
 
 followers = db.Table(
     'followers',
-    db.Model.metadata,
     db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
 )
