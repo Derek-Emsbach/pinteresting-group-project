@@ -13,7 +13,7 @@ function EditProfileForm(){
     const [lastName, setLastName] = useState(sessionUser.lastName)
     const [about, setAbout] = useState(sessionUser.about)
     const [username, setUserName] = useState(sessionUser.username)
-    const [image, setImage] = useState()
+    const [image, setImage] = useState(sessionUser.image)
 
 
     const handleSubmit= async (e)=>{
@@ -57,11 +57,13 @@ function EditProfileForm(){
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className='pro_photo'>
             <label>Photo</label>
-            <input type="file"
-            name='file'
-            onChange={updateFile}
-            placeholder="Image URL">
-            </input>
+            <input 
+            type="text"
+            value={image}
+            required
+            onChange={(e)=> setImage(e.target.value)}
+            
+            />
             </div>
 
             <div className='first_last_name'>
