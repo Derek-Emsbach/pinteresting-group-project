@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllFollowingThunk } from "../../../store/following_follower";
 import './Profile.css'
@@ -13,19 +13,33 @@ function Followings(){
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const history = useHistory()
+    const ref = useRef()
 
     const allMyFollowings= useSelector(state =>Object.values(state.following))
 
+// useEffect(()=>{
+//         const checkIfClickedOutside = (e)=>{
+//             console.log(e.button)
+//            if(e.button !== ref.current)
+//                 setModalOpen(false)
+            
+//         }
+//         document.addEventListener("click", checkIfClickedOutside);
+//         return () =>{
+//             document.removeEventListener("click", checkIfClickedOutside)
+//         }
+// },[modalOpen])
    
 
     if(modalOpen === true) {
         return(
-            <>
+            <div >
+            
             {allMyFollowings &&(
-            <div className="modalBackground">
+            <div className="modalBackground" >
             <div className="modalContainer">
               <div className="titleCloseBtn">
-                <button
+                <button 
                   onClick={() => {
                     setModalOpen(false);
                   }}
@@ -52,13 +66,13 @@ function Followings(){
             </div>
           </div>
           )}
-          </>
+          </div>
         )
       }
 
     return(
-        <div>
-        <button
+        <div >
+        <button ref={ref}
         className="openModalBtn"
         onClick={() => {
           setModalOpen(true);
@@ -74,3 +88,4 @@ function Followings(){
 }
 
 export default Followings
+

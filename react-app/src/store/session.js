@@ -1,3 +1,5 @@
+import { getAllPins } from "./pin";
+
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -46,6 +48,7 @@ export const login = (email, password) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
+    dispatch(getAllPins())
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -88,13 +91,15 @@ export const update_profile = (id, data) => async (dispatch) =>{
 
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (firstName, lastName,username, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      firstName,
+      lastName,
       username,
       email,
       password,
@@ -104,6 +109,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
+    
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
