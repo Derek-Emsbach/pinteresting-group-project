@@ -57,7 +57,7 @@ function Profile(){
     return(
         <div className="profile_container">
          <div className="user_info">
-         <img src={profile} alt=''></img>
+         <img src={sessionUser.image}></img>
         <div className="profile_info">
         <h1>{sessionUser.firstName} {sessionUser.lastName}</h1>
         <h3>{sessionUser.about}</h3>

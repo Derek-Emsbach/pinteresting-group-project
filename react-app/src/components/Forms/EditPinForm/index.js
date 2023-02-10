@@ -15,33 +15,36 @@ function EditPinForm(){
     const [title,setTitle]=useState(specificPin.title)
     const [imageUrl,setImageUrl] = useState(specificPin.imageUrl)
     const [url, setUrl] = useState(specificPin.url)
+    const [errors, setErrors] = useState([])
 
     const history = useHistory()
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
-        // setErrors([]);
+        setErrors([]);
     const payload = { title, imageUrl, url }
-       let newPin
-    // try{
-       dispatch( editAPin(pinId,payload))
-         history.push(`/pins/${specificPin.id}`);
-    //    }catch(err){
-    //     const data = await err.json()
-    //     setErrors([...Object.values(data.errors)])
-    //    }
+
+       
+      let data = await dispatch( editAPin(pinId,payload))
+
+       if(data.errors){
+      
+        setErrors([...Object.values(data.errors)])
+       } else{
+        history.push(`/pins/${specificPin.id}`);
+       }
       
     }
 
-    return(
+    return (
         <div>
         <form className='edit-form' onSubmit={handleSubmit}>
         <h1 className='update'>Update your pin!</h1>
         <ul>
-        {/*{errors.map((error, idx) => (
+        {errors.map((error, idx) => (
           <li className='edit-errors' key={idx}>{error}</li>
         ))}
-        */}
+        
       </ul >
 
       <label>

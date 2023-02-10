@@ -28,11 +28,12 @@ function User() {
   const following = async ()=>{
 
     await dispatch(follow(user.username))
-
+  history.push(`/${sessionUser.username}`)
   }
 
   const unFollowing = async () =>{
     await dispatch(unFollowThunk(user.username))
+    history.push(`/${sessionUser.username}`)
   }
 
   return (
