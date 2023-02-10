@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { follow, unFollowThunk } from '../../store/following_follower';
+import { follow, getAllFollowingThunk, unFollowThunk } from '../../store/following_follower';
 
 function User() {
   const [user, setUser] = useState({});
   const { userId }  = useParams();
+  const [openFollow, setOpenFollow] = useState()
   const dispatch = useDispatch()
   const history = useHistory()
-  const sessionUser = useSelector(state=>state.session.user)
+  const allMyFollowings= useSelector(state =>Object.values(state.following))
+  console.log(allMyFollowings)
+  console.log(userId)
+
 
   useEffect(() => {
     if (!userId) {
@@ -25,14 +29,17 @@ function User() {
     return null;
   }
 
+
   const following = async ()=>{
 
     await dispatch(follow(user.username))
+    setOpenFollow(true)
 
   }
 
   const unFollowing = async () =>{
     await dispatch(unFollowThunk(user.username))
+    setOpenFollow(false)
   }
 
   return (
@@ -48,7 +55,12 @@ function User() {
         <strong>Email</strong> {user.email}
       </li>
     </ul>
-      <button onClick={following}>Follow</button>
+      {allMyFollowings && (
+        <div>
+        {allMyFollowings.map(following => following.id === userId ? <div>hi</div>:<button onClick={following}>Follow</button>)}
+      
+        </div>
+      )}
       <button onClick={unFollowing}>UnFollow</button>
     </div>
   );

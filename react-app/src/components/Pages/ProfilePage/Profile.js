@@ -11,7 +11,6 @@ import { getAllBoardsThunk } from "../../../store/board";
 
 function Profile(){
     const sessionUser = useSelector(state => state.session.user)
-    const [users, setUsers] = useState([]);
     const [openMyBoards,setOpenMyBoards] = useState(true)
     const [openCreate, setOpenCreate] = useState(false)
     const allMyFollowers= useSelector(state =>Object.values(state.follower))
@@ -20,8 +19,8 @@ function Profile(){
     const boards = useSelector((state) => Object.values(state.board));
     const allMyBoards = boards.filter(board=>board.userId === sessionUser.id)
     console.log(boards)
-console.log(allMyBoards,'ehllo')
-  
+
+
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -89,9 +88,9 @@ console.log(allMyBoards,'ehllo')
          )}
 
                 <div>
-                <button onClick={()=>{setOpenCreate(true); setOpenMyBoards(false)}}>Create</button>
-
-                <button onClick={profileForm}>Edit Profile</button>
+                
+                <button className ='placehold_btn' onClick={myPins}>My Pins</button>
+                <button className ='placehold_btn' onClick={profileForm}>Edit Profile</button>
 
                 </div>
 
@@ -99,8 +98,9 @@ console.log(allMyBoards,'ehllo')
 
          <div className="option">
          <div className="option_btn">
-         <button onClick={myPins}>My Pins</button>
-         <button onClick={()=>{setOpenMyBoards(true); setOpenCreate(false)}}> My boards</button>
+         
+         <button onClick={()=>{setOpenCreate(true); setOpenMyBoards(false)}} className={ `button ${openCreate ? 'active' : null}`}> <span>Create</span></button>
+         <button onClick={()=>{setOpenMyBoards(true); setOpenCreate(false)}} className={ `button ${openMyBoards ? 'active' : null}`}><span>My boards</span> </button>
          </div>
         
 

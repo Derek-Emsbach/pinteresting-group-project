@@ -28,7 +28,7 @@ function CreatePinForm() {
     return (
         <div>
             <form className="edit-form" onSubmit={handleSubmit}>
-                <h1 className="update">Update your pin!</h1>
+                <h1 className="update">Create your pin!</h1>
                 <ul>
                     {errors.map((error, idx) => (
           <li className='edit-errors' key={idx}>{error}</li>
