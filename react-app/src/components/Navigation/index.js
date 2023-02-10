@@ -66,7 +66,7 @@ const Navigation = () => {
             </div>
 
             <div className='profile'>
-            <button  onClick={routerChange}><img src={profile} alt=''></img></button>
+            <button  onClick={routerChange}><img src={sessionUser.image} alt=''></img></button>
             </div>
 
             <div className='dropdown_buttton'>

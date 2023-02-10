@@ -1,11 +1,28 @@
 
-
-
 .pin img{
-    margin: 15px 10px;
-    padding: 0;
-   width: 150px;
+    object-fit: cover;
+ 
+   width: 230px;
     border-radius: 16px;
     background-Color: lightgrey;
     grid-row-end: span 26;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    
+}
+.pin_container {
+    margin: 0;
+    padding: 0;
+    width: 80vw ;
+    background-color: white ;
+    position: absolute ;
+    left: 50% ;
+    transform: translateX(-50%) ;
+    display: grid ;
+    grid-template-columns: repeat(auto-fill, 250px) ;
+    grid-row : 10px ;
+    column-count: auto;
+    column-width: 240px;
+    overflow: hidden;
+   
 }

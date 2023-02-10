@@ -25,14 +25,14 @@ import PinDetailPage from './components/Pages/PinDetailPage';
 import EditPinForm from './components/Forms/EditPinForm';
 import { getAllFollowerThunk } from './store/following_follower';
 import { getAllPins } from './store/pin';
-
+import { login } from './store/session';
 
 
 function App() {
   const [isLoaded, setisLoaded] = useState(false);
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  
+
   // useEffect(() => {
   //   (async () => {
   //     await dispatch(getAllFollowerThunk());
@@ -43,9 +43,9 @@ function App() {
 
 
 
-
   useEffect(()=>{
 	dispatch(getAllPins())
+
 },[dispatch])
 
   useEffect(() => {
