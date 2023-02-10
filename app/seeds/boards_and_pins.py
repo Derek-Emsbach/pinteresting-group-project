@@ -125,7 +125,7 @@ Pin(userId=6,title="derek10",save=False,url="pinUrl",imageUrl="https://img.buzzf
     data.append(computersBoard)
     data.extend(computerPins)
 
-    db.session.bulk_save_objects(data)
+    db.session.add_all(data)
     db.session.commit()
 
 
