@@ -1,5 +1,9 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+# From the docs about setting up many-to-many relationships: "`relationship.secondary` may also be passed as a callable function which is evaluated at mapper initialization time."
+#   (Link to the docs https://docs.sqlalchemy.org/en/14/orm/relationship_api.html#sqlalchemy.orm.relationship.params.secondary )
+#
+# tl;dr hopefully prevent Python from complaining about "can't find table `boards` when trying to create ForeignKeyConstraint"
 def get_pinning_table():
     return db.Table('pinnings',
         db.Column('pinId', db.Integer, db.ForeignKey('pins.id'), primary_key=True),
