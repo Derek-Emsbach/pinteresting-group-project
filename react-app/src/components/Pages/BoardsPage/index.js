@@ -10,7 +10,7 @@ function BoardsPage() {
 	const currentUser = useSelector((state) => state.session.user)
 
 	const boards = useSelector((state) => Object.values(state.board));
-	// console.log(boards, "BOARDS");
+	
 	useEffect(() => {
 		dispatch(getAllBoardsThunk());
 	}, [dispatch]);

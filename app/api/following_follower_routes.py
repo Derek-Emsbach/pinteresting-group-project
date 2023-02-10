@@ -9,7 +9,7 @@ following_follower_routes = Blueprint('followings_followers', __name__)
 @following_follower_routes.route('/', methods=['GET'])
 # @login_required
 def get_all_followings_followers():
-    print('********GET ALL FOLLOWINGS_FOLLOWERS********')
+    # print('********GET ALL FOLLOWINGS_FOLLOWERS********')
     followings_followers = Following_Follower.query.all()
     return {'followings_followers': [following_follower.to_dict() for following_follower in followings_followers]}
 
@@ -18,20 +18,20 @@ def get_all_followings_followers():
 @login_required
 def user_following(id):
     new_follower = Following_Follower.query.get(id)
-    print(new_follower)
-    
+    # print(new_follower)
+
     db.session.add(new_follower)
     db.session.commit()
     return new_follower.to_dict()
 
-    
+
 
 
 @following_follower_routes.route('/<int:id>', methods=['GET'])
 @login_required
 def get_following_follower(id):
     following_follower = following_follower.query.get(id)
-    print('************GET 1 FOLLOWING************')
+    # print('************GET 1 FOLLOWING************')
     return following_follower.to_dict()
 
 

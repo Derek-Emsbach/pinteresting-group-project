@@ -11,7 +11,7 @@ function Pin(props) {
 
 
     const pins = useSelector((state)=> Object.values(state.pin))
-console.log(pins)
+
     useEffect(()=>{
         dispatch(getAllPins())
     },[dispatch])
@@ -22,8 +22,8 @@ console.log(pins)
             ...styles.pin,
             ...styles[props.size]
         }}>
-      
-        
+
+
         </div>
     )
 }

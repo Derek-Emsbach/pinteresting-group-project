@@ -104,7 +104,7 @@ const boardReducer = (state = defaultState, action) => {
     switch (action.type) {
         case LOAD_BOARDS:
             action.boards.boards.forEach((board) => {
-                console.log(board)
+
                 newState[board.id] = board;
               });
               return {

@@ -24,7 +24,7 @@ const currentUser= useSelector((state)=> state.session.user)
     fetchData();
   }, []);
 
- 
+
 
 
 const dispatch= useDispatch()
@@ -37,7 +37,7 @@ const history= useHistory()
 
     history.push(`/pins`);
 
-    
+
   };
   useEffect(() => {
 		if (!pinId) {
@@ -58,7 +58,7 @@ const history= useHistory()
 
     const pinUsers = users.filter((user)=>user.id ===pin.userId)
 
-    console.log(pinUsers.map((user)=>user.username), 'users')
+
 
 	return (
 		<ul>
@@ -68,7 +68,7 @@ const history= useHistory()
             </div>
 				<h1>PIN DETAIL PAGE</h1>
 				<li><strong>Created By: </strong> {pinUsers.map((user)=>user.username)}</li>
-                
+
 				<li><strong>Title: </strong> {pin.title}</li>
 
                 <li><strong>Link: </strong>  <a href= {pin.url}>
@@ -83,7 +83,7 @@ const history= useHistory()
             <button className='delete_button' type="button" onClick={deletePin}>
             Delete Pin
           </button>
-       
+
 
           </Link>
           )}

@@ -12,14 +12,14 @@ pin_routes = Blueprint('pins', __name__)
 # @login_required
 def get_all_pins():
     pins = Pin.query.all()
-    print('********GET ALL PINS********')
+    # print('********GET ALL PINS********')
     return {'pins': [pin.to_dict() for pin in pins]}
 
 
 @pin_routes.route('/<int:id>')
 # @login_required
 def get_pin(id):
-    print('************GET 1 PIN********************')
+    # print('************GET 1 PIN********************')
     pin = Pin.query.get(id)
     return pin.to_dict()
 
@@ -27,20 +27,20 @@ def get_pin(id):
 @pin_routes.route('/', methods=['POST'])
 @login_required
 def create_pin():
-    print("************CREATE NEW PIN********************")
+    # print("************CREATE NEW PIN********************")
     form = PinForm()
     #!POSTMAN Testing
     # data = request.json
     # print(data)
     # new_pin = Pin(userId=current_user.get_id(),title=data['title'], url=data['url'], imageUrl=data['imageUrl'])
-    print(form.data)
+    # print(form.data)
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
         new_pin = Pin(userId=current_user.get_id(),
                       title=data['title'], url=data['url'], imageUrl=data['imageUrl'])
         form.populate_obj(new_pin)
-        print('*********************CREATED*******************************')
+        # print('*********************CREATED*******************************')
         db.session.add(new_pin)
         db.session.commit()
         return new_pin.to_dict()
@@ -50,7 +50,7 @@ def create_pin():
 # @login_required
 def edit_pin(id):
     # data = request.json
-    print('*********************EDIT PIN*******************************')
+    # print('*********************EDIT PIN*******************************')
     # print(data)
 
     # pin = Pin.query.get(id)
@@ -64,13 +64,13 @@ def edit_pin(id):
     if form.validate_on_submit():
         data = form.data
         pin = Pin.query.get(id)
-        print(pin)
+        # print(pin)
         for key, value in data.items():
             setattr(pin, key, value)
         # pin.title = data['title']
         # pin.url = data['url']
         # pin.imageUrl = data['imageUrl']
-        print('*********************UPDATED PIN*******************************')
+        # print('*********************UPDATED PIN*******************************')
         db.session.commit()
         return pin.to_dict()
 
