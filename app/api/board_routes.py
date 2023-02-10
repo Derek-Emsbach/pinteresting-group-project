@@ -4,7 +4,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
 from flask_login import login_required,current_user
-from app.models import Board,db
+from app.models import Board,Pin,db
 from app.forms import BoardForm
 # from app import dbfuncs
 
@@ -74,3 +74,33 @@ def delete_board(id):
     db.session.delete(board)
     db.session.commit()
     return "sucessfully deleted Board"
+
+
+@board_routes.route('/<int:board_id>/pin/<int:pin_id>', methods=["POST"])
+@login_required
+def add_pinning(board_id, pin_id):
+    pin = Pin.query.get(pin_id)
+    board = Board.query.get(board_id)
+
+    if board.userId != current_user.id:
+        return {'errors': ['Unauthorized']}, 403
+
+    board.pins.append(pin)
+
+    db.session.commit()
+    return board.to_dict()
+
+@board_routes.route('/<int:board_id>/pin/<int:pin_id>', methods=['DELETE'])
+@login_required
+def remove_pinning(board_id, pin_id):
+    board = Board.query.get(board_id)
+
+    if board.userId != current_user.id:
+        return {'errors': ['Unauthorized']}, 403
+
+    for pin in board.pins:
+        if pin.id == pin_id:
+            board.pins.remove(pin)
+
+    db.session.commit()
+    return board.to_dict()
