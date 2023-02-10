@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import PopOver from "../PopOver";
 import "./PinsGrid.css";
@@ -41,6 +41,7 @@ function PinItem({
   currentBoard,
   showRemove = false,
 }) {
+  const sessionUser = useSelector((state) => state.session.user);
   const [popOverOpen, setPopOverOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -95,11 +96,13 @@ function PinItem({
                     }}
                   >
                     {!saveTo && <option value="">choose a board</option>}
-                    {boards.map(({ id, title }) => (
-                      <option key={id} selected={id === saveTo} value={id}>
-                        {title}
-                      </option>
-                    ))}
+                    {boards
+                      .filter(({ userId }) => userId === sessionUser.id)
+                      .map(({ id, title }) => (
+                        <option key={id} selected={id === saveTo} value={id}>
+                          {title}
+                        </option>
+                      ))}
                   </select>
                   <button
                     disabled={!saveTo}
