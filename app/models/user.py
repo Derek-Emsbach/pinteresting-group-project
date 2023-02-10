@@ -1,7 +1,28 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .followers import followers
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+
+
+def get_followers_table():
+    return db.Table(
+        'followers',
+        db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
+        db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
+    )
+
+def followers_primary_join(id):
+    def inner_func():
+        followers = get_followers_table()
+        return followers.c.follower_id == id
+
+    return inner_func
+
+def followers_secondary_join(id):
+    def inner_func():
+        followers = get_followers_table()
+        return followers.c.followed_id == id
+
+    return inner_func
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -20,11 +41,10 @@ class User(db.Model, UserMixin):
 
 
     followed = db.relationship(
-        'User', secondary=followers,
-        primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
+        'User', secondary=get_followers_table,
+        primaryjoin=followers_primary_join(id),
+        secondaryjoin=followers_secondary_join(id),
         backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
-
 
 
     @property
