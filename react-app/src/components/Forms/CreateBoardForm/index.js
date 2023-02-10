@@ -18,10 +18,9 @@ function CreateBoardForm() {
 		setErrors([]);
 		const payload = { title, imageUrl };
 		dispatch(createBoardThunk(payload));
-		console.log(payload);
 		history.push(`/boards`);
 	};
-    console.log('CREATE BOARD WORKING')
+
 
 	return (
 		<div>

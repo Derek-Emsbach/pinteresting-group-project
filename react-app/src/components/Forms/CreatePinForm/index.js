@@ -6,13 +6,13 @@ import { addAPin, editAPin } from "../../../store/pin";
 
 function CreatePinForm() {
     const dispatch = useDispatch();
- 
+
 
     const [title, setTitle] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [url, setUrl] = useState("");
     const [errors, setErrors] = useState([])
- 
+
     const history = useHistory();
 
     const handleSubmit = async (e) => {
@@ -21,15 +21,15 @@ function CreatePinForm() {
         const payload = { title, imageUrl, url  };
         let data = await dispatch(addAPin(payload));
 
-       
+
       if(data.errors){
         setErrors([...Object.values(data.errors)])
       } else{
         history.push(`/pins}`);
       }
-           
-            
-        
+
+
+
     };
 
     return (
@@ -40,7 +40,7 @@ function CreatePinForm() {
                     {errors.map((error, idx) => (
           <li className='edit-errors' key={idx}>{error}</li>
         ))}
-        
+
                 </ul>
 
                 <label>

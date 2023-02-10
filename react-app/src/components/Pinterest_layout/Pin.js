@@ -11,18 +11,21 @@ function Pin(props) {
 
 
     const pins = useSelector((state)=> Object.values(state.pin))
-console.log(pins)
+
     useEffect(()=>{
         dispatch(getAllPins())
     },[dispatch])
 
 
-    return 
+    return (
+        <div style ={{
+            ...styles.pin,
+            ...styles[props.size]
+        }}>
 
-      
-        
-     
-    
+
+        </div>
+    )
 }
 
 

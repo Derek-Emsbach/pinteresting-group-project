@@ -27,7 +27,7 @@ export const authenticate = () => async (dispatch) => {
     if (data.errors) {
       return;
     }
-  
+
     dispatch(setUser(data));
   }
 }
@@ -43,8 +43,8 @@ export const login = (email, password) => async (dispatch) => {
       password
     })
   });
-  
-  
+
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))
@@ -74,7 +74,6 @@ export const logout = () => async (dispatch) => {
 };
 
 export const update_profile = (id, data) => async (dispatch) =>{
-  console.log(data)
   const response = await fetch(`/api/users/${id}`,{
     method:"PUT",
     headers:{
@@ -82,8 +81,8 @@ export const update_profile = (id, data) => async (dispatch) =>{
     },
        body: JSON.stringify(data)
   })
-  
-  
+
+
     const profile= await response.json()
     dispatch(setUser(profile))
     return profile
@@ -105,7 +104,7 @@ export const signUp = (firstName, lastName, username, email, password) => async 
       lastName
     }),
   });
-  
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setUser(data))

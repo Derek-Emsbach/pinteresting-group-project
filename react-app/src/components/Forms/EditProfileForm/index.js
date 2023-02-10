@@ -17,10 +17,10 @@ function EditProfileForm(){
 
 
     const handleSubmit= async (e)=>{
-    
+
 
         e.preventDefault();
-        
+
         const payload ={
                 id,
                firstName,
@@ -30,24 +30,24 @@ function EditProfileForm(){
                username
 
             }
-            
+
             //!!START SILENT
-       
+
              await dispatch(update_profile(sessionUser.id,payload));
 
               // If error is not a ValidationError, add slice at the end to remove extra
               // "Error: "
             //!!END
-           
+
             history.push(`/${sessionUser.username}`);
-        
+
         }
         const updateFile = (e) => {
             const file = e.target.files[0];
-            console.log(file)
+
             if (file) setImage(file);
           };
-   console.log(image,'hello')
+   
 
     return(
       <div className="profile_container">
@@ -72,9 +72,9 @@ function EditProfileForm(){
             required
             value={firstName}
             onChange={(e) =>setFirstName(e.target.value)}>
-      
+
             </input>
-            
+
             <label>Last name</label>
             <input type='text'
             required
@@ -83,12 +83,12 @@ function EditProfileForm(){
 
             </input>
             </div>
-            
+
             <label>About</label>
             <input type='text'
             value={about}
             onChange={(e) =>setAbout(e.target.value)}>
-      
+
             </input>
 
             <label>Username</label>
@@ -96,14 +96,14 @@ function EditProfileForm(){
             required
             value={username}
             onChange={(e) =>setAbout(e.target.value)}>
-      
+
             </input>
-           
+
             <button type='submit'>Continue</button>
             </form>
         </div>
-      
-      
+
+
       </div>
     )
 }

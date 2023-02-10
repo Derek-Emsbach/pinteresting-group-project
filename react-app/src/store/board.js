@@ -116,9 +116,26 @@ const boardReducer = (state = defaultState, action) => {
       newState[action.boards.id] = action.boards;
       return newState;
 
-    case DELETE_BOARD:
-      delete newState[action.boards];
-      return newState;
+    let newState = { ...state };
+
+    switch (action.type) {
+        case LOAD_BOARDS:
+            action.boards.boards.forEach((board) => {
+
+                newState[board.id] = board;
+              });
+              return {
+                ...state,
+                ...newState
+              }
+
+        case ADD_BOARD:
+            newState[action.boards.id] = action.boards;
+            return newState
+
+        case DELETE_BOARD:
+            delete newState[action.boards];
+            return newState;
 
     default:
       return state;
