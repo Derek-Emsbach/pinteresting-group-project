@@ -19,10 +19,17 @@ function CreatePinForm() {
         e.preventDefault();
         setErrors([]);
         const payload = { title, imageUrl, url  };
-        dispatch(addAPin(payload));
-       console.log(payload)
-        history.push(`/pins`);
-     
+        let data = await dispatch(addAPin(payload));
+
+       
+      if(data.errors){
+        setErrors([...Object.values(data.errors)])
+      } else{
+        history.push(`/pins}`);
+      }
+           
+            
+        
     };
 
     return (

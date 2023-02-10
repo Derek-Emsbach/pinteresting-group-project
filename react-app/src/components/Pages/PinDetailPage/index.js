@@ -56,7 +56,7 @@ const history= useHistory()
 		return null;
 	}
 
-    const pinUsers = users.filter((user)=>user.id ===pin.userId)
+    const pinUsers = users.filter((user)=>user.id ===pin?.userId)
 
     console.log(pinUsers.map((user)=>user.username), 'users')
 
@@ -69,15 +69,17 @@ const history= useHistory()
 				<h1>PIN DETAIL PAGE</h1>
 				<li><strong>Created By: </strong> {pinUsers.map((user)=>user.username)}</li>
                 
-				<li><strong>Title: </strong> {pin.title}</li>
+				<li><strong>Title: </strong> {pin?.title}</li>
 
-                <li><strong>Link: </strong>  <a href= {pin.url}>
+                <li><strong>Link: </strong>  <a href= {pin?.url}>
                 {pin.url}
-                </a></li>
+                </a>
+                
+                </li>
 
 			</div>
 
-            {currentUser?.id === specificPin.userId &&(
+            {currentUser?.id === specificPin?.userId &&(
             <Link to={`/pins/${pin.id}/update`}>
             <button className='update_button' type="button">Update Form</button>
             <button className='delete_button' type="button" onClick={deletePin}>

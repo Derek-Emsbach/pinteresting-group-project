@@ -7,6 +7,15 @@ from app.forms import PinForm
 
 pin_routes = Blueprint('pins', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @pin_routes.route('/', methods=['GET'])
 # @login_required
@@ -44,6 +53,8 @@ def create_pin():
         db.session.add(new_pin)
         db.session.commit()
         return new_pin.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+        
 
 
 @pin_routes.route('/<int:id>', methods=["PATCH", "PUT"])
@@ -73,6 +84,7 @@ def edit_pin(id):
         print('*********************UPDATED PIN*******************************')
         db.session.commit()
         return pin.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @pin_routes.route('/<int:id>', methods=['DELETE'])
 # @login_required

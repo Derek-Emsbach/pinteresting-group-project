@@ -7,7 +7,7 @@ import SignupFormModal from "../../SignUpFormModal";
 import Modal from "../../Modal/Modal";
 import { login } from '../../../store/session'
 import DemoButton from "../../DemoButton/DemoButton";
-
+import * as sessionActions from '../../../store/session';
 function HomePage(){
     const dispatch = useDispatch()
     const history = useHistory()
@@ -17,12 +17,13 @@ function HomePage(){
 
   
         const demo = async (e)=>{
+            e.preventDefault()
             const user ={
-                email:'bobbie@aa.io',
+                email:'demo@aa.io',
                 password:'password'
             }
-           await dispatch(login(user.email, user.password))
-           history.push('/')
+          dispatch(login(user.email, user.password))
+           
         }
     
 

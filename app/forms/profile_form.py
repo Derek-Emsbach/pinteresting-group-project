@@ -5,7 +5,7 @@ from flask_wtf.file import FileField, FileAllowed
 
 
 class ProfileForm(FlaskForm):
-    image = FileField('Update Profile Picture', validators=[FileAllowed(['jpg','png'])])
+    image = StringField('Update Profile Picture', validators=[DataRequired()])
     firstName = StringField('First name', validators=[DataRequired()])
     lastName = StringField('Last name', validators=[DataRequired()])
     about = StringField('About')
