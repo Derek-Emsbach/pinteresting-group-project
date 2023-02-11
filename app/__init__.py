@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User, Board, Pin
+from .models import db, User, Board, Pin, environment, SCHEMA
 from .api.following_follower_routes import following_follower_routes
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
@@ -12,6 +12,8 @@ from .api.pin_routes import pin_routes
 from .api.board_routes import board_routes
 from .seeds import seed_commands
 from .config import Config
+
+
 # from .routes.pinterest import bp
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
@@ -100,6 +102,3 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
-
-
-

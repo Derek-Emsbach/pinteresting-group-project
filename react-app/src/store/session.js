@@ -74,7 +74,6 @@ export const logout = () => async (dispatch) => {
 };
 
 export const update_profile = (id, data) => async (dispatch) =>{
-  console.log(data)
   const response = await fetch(`/api/users/${id}`,{
     method:"PUT",
     headers:{
