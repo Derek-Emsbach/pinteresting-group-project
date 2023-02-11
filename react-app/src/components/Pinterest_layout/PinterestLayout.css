@@ -8,7 +8,9 @@
     /* border: 1px solid; */
 }
 .create-board-form {
-    max-width: 10%
+    max-width: 10%;
+	display: flex;
+	flex-direction: column;
 }
 .create-pin-form {
     max-width: 10%
