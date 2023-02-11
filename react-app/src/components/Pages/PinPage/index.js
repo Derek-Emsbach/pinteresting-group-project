@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPins } from '../../../store/pin';
-
+import PinsGrid from '../../PinsGrid';
 function PinPage() {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -24,7 +24,8 @@ function PinPage() {
 				<button className='create-button' onClick={CreatePinForm}>
 					Create Pin
 				</button>
-                <div className='board-containers'>
+				<PinsGrid pins={pins}/>
+                {/* <div className='board-containers'>
 				{pins.map((pin) => (
 					<div className='pin-items' key={pin.id}>
 						{currentUser?.id === pin.userId && (
@@ -57,7 +58,7 @@ function PinPage() {
 					</div>
 
 				))}
-                </div>
+                </div> */}
 			</div>
 		</div>
 	);
