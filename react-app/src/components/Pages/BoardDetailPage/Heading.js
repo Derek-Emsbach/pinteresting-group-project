@@ -39,12 +39,17 @@ function BoardDetailHeading() {
           <PopOver
             open={popOverOpen}
             setOpen={setPopOverOpen}
-            style={{
-              left: "35px",
-            }}
-            button={<button onClick={() => setPopOverOpen(true)}>...</button>}
+            button={
+              <button
+                className="regular-button"
+                onClick={() => setPopOverOpen(true)}
+              >
+                ...
+              </button>
+            }
           >
             <button
+              className="regular-button"
               onClick={() => {
                 setEditorOpen(true);
                 setPopOverOpen(false);
@@ -53,7 +58,7 @@ function BoardDetailHeading() {
               edit
             </button>
             <button
-              className="delete_board_button"
+              className="create-button"
               type="button"
               onClick={deleteBoard}
             >

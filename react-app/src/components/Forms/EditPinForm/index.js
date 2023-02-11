@@ -24,16 +24,16 @@ function EditPinForm(){
         setErrors([]);
     const payload = { title, imageUrl, url }
 
-       
+
       let data = await dispatch( editAPin(pinId,payload))
 
        if(data.errors){
-      
+
         setErrors([...Object.values(data.errors)])
        } else{
         history.push(`/pins/${specificPin.id}`);
        }
-      
+
     }
 
     return (
@@ -44,12 +44,12 @@ function EditPinForm(){
         {errors.map((error, idx) => (
           <li className='edit-errors' key={idx}>{error}</li>
         ))}
-        
+
       </ul >
 
       <label>
       Title
-      <input 
+      <input
       type='text'
       value={title}
       required
@@ -59,7 +59,7 @@ function EditPinForm(){
 
       <label>
       Image Url
-      <input 
+      <input
       type='text'
       value={imageUrl}
       required
@@ -69,15 +69,15 @@ function EditPinForm(){
 
       <label>
       Link
-      <input 
+      <input
       type='text'
       value={url}
       required
       onChange={e=>setUrl(e.target.value)}
       />
       </label>
-        
-      <button className='submity' type="submit">Update Pin</button>
+
+      <button className='regular-button' type="submit">Update Pin</button>
         </form>
         </div>
     )

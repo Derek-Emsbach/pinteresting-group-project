@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { createBoardThunk } from "../../../store/board";
+import EditorInput from "../../Pages/BoardDetailPage/EditorInput";
 
 function CreateBoardForm() {
 	const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function CreateBoardForm() {
 	const [title, setTitle] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [errors, setErrors] = useState([]);
-
+	const [data,setData] = useState("");
 	const history = useHistory();
 
 	const handleSubmit = async (e) => {
@@ -24,7 +25,7 @@ function CreateBoardForm() {
 
 	return (
 		<div>
-			<form className="edit-board-form" onSubmit={handleSubmit}>
+			<form className="create-board-form" onSubmit={handleSubmit}>
 				<h1 className="update">Create a Board!</h1>
 				<ul>
 					{errors.map((error, idx) => (
@@ -33,7 +34,8 @@ function CreateBoardForm() {
 						</li>
 					))}
 				</ul>
-
+				{/* <EditorInput label='Title' value={title} setValue={setTitle}/> */}
+				{/* EXAMPLE helper function component */}
 				<label>
 					Title
 					<input
@@ -53,7 +55,7 @@ function CreateBoardForm() {
 						onChange={(e) => setImageUrl(e.target.value)}
 					/>
 				</label>
-				<button type="submit">Create new Board!</button>
+				<button className='create-button' type="submit">Create new Board!</button>
 			</form>
 		</div>
 	);

@@ -32,59 +32,61 @@ function PinDetailPage() {
     dispatch(deleteAPin(pinId));
 
     history.push(`/pins`);
-
-
   };
   useEffect(() => {
-		if (!pinId) {
-			return;
-		}
-		(async () => {
-			const response = await fetch(`/api/pins/${pinId}`);
-			const pin = await response.json();
-			setPin(pin);
-		})();
+    if (!pinId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/pins/${pinId}`);
+      const pin = await response.json();
+      setPin(pin);
+    })();
+  }, [pinId]);
 
+  if (!pin) {
+    return null;
+  }
 
-	}, [pinId]);
+  const pinUsers = users.filter((user) => user.id === pin?.userId);
 
-	if (!pin) {
-		return null;
-	}
+  console.log(
+    pinUsers.map((user) => user.username),
+    "users"
+  );
 
-    const pinUsers = users.filter((user)=>user.id ===pin.userId)
+  return (
+    <ul>
+      <div>
+        <h1>PIN DETAIL PAGE</h1>
+        <div>
+          <img className="pin-detail" src={pin.imageUrl}></img>
+        </div>
+        <li>
+          <strong>Created By: </strong> {pinUsers.map((user) => user.username)}
+        </li>
 
+        <li>
+          <strong>Title: </strong> {pin?.title}
+        </li>
 
+        <li>
+          <strong>Link: </strong> <a href={pin?.url}> Click Here </a>
+        </li>
+      </div>
 
-	return (
-		<ul>
-			<div>
-            <div>
-            <img src={pin.imageUrl}></img>
-            </div>
-				<h1>PIN DETAIL PAGE</h1>
-				<li><strong>Created By: </strong> {pinUsers.map((user)=>user.username)}</li>
-
-				<li><strong>Title: </strong> {pin.title}</li>
-
-                <li><strong>Link: </strong>  <a href= {pin.url}>
-                {pin.url}
-                </a></li>
-
-			</div>
-
-            {currentUser?.id === specificPin.userId &&(
-            <Link to={`/pins/${pin.id}/update`}>
-            <button className='update_button' type="button">Update Form</button>
-            <button className='delete_button' type="button" onClick={deletePin}>
+      {currentUser?.id === specificPin?.userId && (
+        <Link to={`/pins/${pin.id}/update`}>
+          <button className="regular-button" type="button">
+            Update Pin
+          </button>
+          <button className="create-button" type="button" onClick={deletePin}>
             Delete Pin
           </button>
-
-
-          </Link>
-          )}
-		</ul>
-	);
+        </Link>
+      )}
+    </ul>
+  );
 }
 
 export default PinDetailPage;

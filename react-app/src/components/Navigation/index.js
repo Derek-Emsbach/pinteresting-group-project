@@ -1,5 +1,6 @@
 
 import React,{ useEffect,useState, useRef} from 'react';
+import { Redirect } from 'react-router-dom';
 import { NavLink, useHistory} from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './Navigation.css'
@@ -19,14 +20,20 @@ const Navigation = () => {
   const sessionUser = useSelector(state=> state.session.user)
 
   const routerChange = () =>{
-    
     history.push(`/${sessionUser.username}`)
   }
 
+  if(sessionUser) {
+    Redirect('/')
+  }
 
+  const users = async (e) => {
+		history.push('/users');
+	};
 
 
   return (
+    <div className='main-container'>
     <div className='Nav-container'>
     <nav id='navigation-bar'>
       <ul>
@@ -35,35 +42,35 @@ const Navigation = () => {
             <img src={pinterestIcon} className='globe' alt='globe'/>
              </button>
              <li>
-              <NavLink to='/' exact={true} activeClassName='active'>
+              <NavLink className='nav-title' to='/' exact={true} activeClassName='active'>
                  Home
               </NavLink>
              </li>
-            <li> Today</li>
+            {/* <li className='nav-title'>Today</li> */}
             <li>
-            <NavLink to='/pinform' exact={true} activeClassName='active'>
-            Create
+            <NavLink className='nav-title' to='/pinform' exact={true} activeClassName='active'>
+            CreatePin
          </NavLink>
          </li>
         </div>
 
         <div className='search_middle'>
-            <form>
+            {/* <form>
               <input type = 'Text' placeholder='Search'></input>
               <button type ='Submit'></button>
-            </form>
-    
+            </form> */}
+
         </div>
 
         <div className='right_side'>
-            <div className='notification'>
+            {/* <div className='notification'>
             <button><img src={bell} alt=''></img></button>
-            
+
             </div>
 
             <div className='message'>
             <button><img src={message} alt=''></img></button>
-            </div>
+            </div> */}
 
             <div className='profile'>
             <button  onClick={routerChange}><img src={sessionUser.image} alt=''></img></button>
@@ -74,52 +81,51 @@ const Navigation = () => {
             <FontAwesomeIcon icon={faChevronDown } />
             </button>
             </div>
-        
+
         </div>
 
         <div className={`dropdown-menu ${open ? 'active' :'inactive'} `} ref={menuRef} >
-            {sessionUser&&
+            {sessionUser &&
             <div className='menu_dropdown'>
                   <h5>Currently in</h5>
                   <div className='profile'>
                        <div className='prof_icon'>
-                      <button onClick={routerChange}><img src={profile} alt =''/></button>
+                      <button onClick={routerChange}><img src={sessionUser.image} alt =''/></button>
                        </div>
                        <div className='user_info'>
                        {sessionUser.username}
                         <h5>Personal</h5>
                        {sessionUser.email}
                        </div>
-                        
-                  </div>
-            
-            
 
-                <li>
+                  </div>
+
+
+
+                {/* <li>
                    <NavLink to='/signup' exact={true} activeClassName='active'>
                   Sign Up
                   </NavLink>
-                </li>
+                </li> */}
 
 
 
                  <li>
-                  <NavLink to='/users' exact={true} activeClassName='active'>
+                  <button className='regular-button' onClick={users}>
                    Users
-                 </NavLink>
-                </li>
-       
-                <li>
+                 </button>
+
                   <LogoutButton />
                  </li>
              </div>
             }
         </div>
-            
-        
+
+
 
       </ul>
     </nav>
+    </div>
     </div>
   );
 }

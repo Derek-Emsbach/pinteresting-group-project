@@ -4,14 +4,14 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     userData = [
-        User(firstName='Demo', lastName = 'User',username="Demo", email="demo@aa.io", password="password"),
-        User(firstName = 'Cherry',lastName ='Huang',username="Cherry",email="Cherry@aa.io", password="password"),
-        User(firstName = 'Jimmy',lastName ='Pham',username="Jimmy", email="Jimmy@aa.io", password="password"),
-        User(firstName = 'Aman',lastName ='Aman',username="Aman", email="Aman@aa.io", password="password"),
-        User(firstName = 'Chris',lastName ='Chan',username="Chris", email="Chris@aa.io", password="password"),
-        User(firstName = 'Derek',lastName ='Emsbach',username="Derek", email="Derek@aa.io", password="password")
+        User(firstName='Demo', lastName = 'User',username="Demo", image='https://cdn-icons-png.flaticon.com/512/9591/9591054.png',email="demo@aa.io", password="password"),
+        User(firstName = 'Cherry',lastName ='Huang',username="Cherry",image='https://cdn-icons-png.flaticon.com/512/9590/9590989.png',email="Cherry@aa.io", password="password"),
+        User(firstName = 'Jimmy',lastName ='Pham',username="Jimmy", image='https://cdn-icons-png.flaticon.com/512/9566/9566655.png',email="Jimmy@aa.io", password="password"),
+        User(firstName = 'Aman',lastName ='Aman',username="Aman", image='https://cdn-icons-png.flaticon.com/512/9583/9583021.png',email="Aman@aa.io", password="password"),
+        User(firstName = 'Chris',lastName ='Chan',username="Chris", image='https://cdn-icons-png.flaticon.com/512/9477/9477191.png',email="Chris@aa.io", password="password"),
+        User(firstName = 'Derek',lastName ='Emsbach',username="Derek", image='https://cdn-icons-png.flaticon.com/512/9477/9477279.png',email="Derek@aa.io", password="password")
     ]
-    db.session.bulk_save_objects(userData)
+    db.session.add_all(userData)
     db.session.commit()
 
 

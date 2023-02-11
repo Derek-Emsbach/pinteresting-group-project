@@ -49,8 +49,8 @@ function User() {
         <strong>Email</strong> {user.email}
       </li>
     </ul>
-      <button onClick={following}>Follow</button>
-      <button onClick={unFollowing}>UnFollow</button>
+      <button className='create-button'onClick={following}>Follow</button>
+      <button className='regular-button' onClick={unFollowing}>UnFollow</button>
     </div>
   );
 }

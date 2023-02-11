@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getAllBoardsThunk } from "../../../store/board";
-import './BoardsPage.css'
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllBoardsThunk } from '../../../store/board';
+import './BoardsPage.css';
 
 function BoardsPage() {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const currentUser = useSelector((state) => state.session.user)
+	const currentUser = useSelector((state) => state.session.user);
 
 	const boards = useSelector((state) => Object.values(state.board));
 	
@@ -15,51 +15,48 @@ function BoardsPage() {
 		dispatch(getAllBoardsThunk());
 	}, [dispatch]);
 
+	const CreateBoardForm = async (e) => {
+		history.push('/boardform');
+	};
 
 	return (
 		<>
 			{boards && (
+				<div className='all-boards-container'>
+					<div>
+						<div className='my-boards-create-boards-container'>
+							<h1>My Boards</h1>
+							<button className='create-button' onClick={CreateBoardForm}>Create Board</button>
+						</div>
+						{/* <h2>{boards.title}</h2> */}
+						<div className='board-containers'>
+						{boards.map((board) => (
+							<div className='pin-items' key={board.id}>
+									{currentUser?.id === board.userId && (
+										<NavLink
+											to={`/boards/${board.id}`}
+											activeClassName='active'
+										>
+											<strong>Title:</strong> {board.title}
+										</NavLink>
+									)}
 
-
-			<div className="all-boards-container">
-				<div>
-					<div className="my-boards-create-boards-container">
-						<h1>My Boards</h1>
-						<NavLink
-							to="/boardform"
-							exact={true}
-							activeClassName="active"
-						>
-							Create Board
-						</NavLink>
-					</div>
-					{/* <h2>{boards.title}</h2> */}
-					{boards.map((board) => (
-						<div key={board.id} className='board-containers'>
-							<h4>
 								{currentUser?.id === board.userId && (
 									<NavLink
 										to={`/boards/${board.id}`}
-										activeClassName="active"
+										activeClassName='active'
 									>
-										{board.title}
+										<img
+											className='pin-detail'
+											src={board.imageUrl}
+										></img>
 									</NavLink>
 								)}
-							</h4>
-							{currentUser?.id === board.userId && (
-								<NavLink
-										to={`/boards/${board.id}`}
-										activeClassName="active"
-									>
-										<img className="board-image" src={board.imageUrl}></img>
-
-								</NavLink>
-							)}
+							</div>
+						))}
 						</div>
-
-					))}
+					</div>
 				</div>
-			</div>
 			)}
 		</>
 	);
