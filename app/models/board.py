@@ -4,10 +4,11 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 #   (Link to the docs https://docs.sqlalchemy.org/en/14/orm/relationship_api.html#sqlalchemy.orm.relationship.params.secondary )
 #
 # tl;dr hopefully prevent Python from complaining about "can't find table `boards` when trying to create ForeignKeyConstraint"
-def get_pinning_table():
-    return db.Table('pinnings',
-        db.Column('pinId', db.Integer, db.ForeignKey('pins.id'), primary_key=True),
-        db.Column('boardId', db.Integer, db.ForeignKey('boards.id'), primary_key=True),
+pinnings = db.Table (
+    'pinnings',
+    db.Model.metadata,
+    db.Column('pinId', db.Integer, db.ForeignKey(add_prefix_for_prod('pins.id')), primary_key=True),
+    db.Column('boardId', db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), primary_key=True)
     )
 
 
@@ -18,11 +19,11 @@ class Board(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('pins.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     imageUrl = db.Column(db.String(255))
 
-    pins = db.relationship("Pin", secondary=get_pinning_table, lazy="joined")
+    pins = db.relationship("Pin", secondary=pinnings, lazy="joined")
 
     def __repr__(self):
         return f'<BoardId: {self.id}, userId: {self.userId}, title: {self.title},image:{self.imageUrl}>'

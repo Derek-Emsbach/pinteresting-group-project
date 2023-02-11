@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .followers import followers
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -8,8 +7,8 @@ from flask_login import UserMixin
 followers = db.Table(
     'followers',
     db.Model.metadata,
-    db.Column('follower_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'))),
-    db.Column('followed_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    db.Column('follower_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')),primary_key=True),
+    db.Column('followed_id', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')),primary_key=True)
 )
 
 
