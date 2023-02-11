@@ -79,7 +79,7 @@ function PinDetailPage() {
 			{currentUser?.id === specificPin?.userId && (
 				<Link to={`/pins/${pin.id}/update`}>
 					<button className='regular-button' type='button'>
-						Update Form
+						Update Pin
 					</button>
 					<button className='create-button'
 						type='button'
