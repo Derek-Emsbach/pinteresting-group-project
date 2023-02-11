@@ -9,3 +9,4 @@
 //8) pins that aren't yours need to have a real link
 //9) test all pages for functionaliy or bugs
 //10) add splash page image
+//11) user on the pin details page need to link to the user to follow or unfollow
