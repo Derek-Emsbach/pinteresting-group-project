@@ -12,8 +12,8 @@ class Pin(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String(255))
     save = db.Column(db.Boolean)
-    url = db.Column(db.String(255))
-    imageUrl = db.Column(db.String(255))
+    url = db.Column(db.String(1500))
+    imageUrl = db.Column(db.String(1500))
 
     def __repr__(self):
         return f'<Pin Id: {self.id}, userId: {self.userId}, title: {self.title}, save: {self.save}, url: {self.url}, imageUrl: {self.imageUrl}>'

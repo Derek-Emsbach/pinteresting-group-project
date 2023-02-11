@@ -62,8 +62,8 @@ def upgrade():
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=True),
     sa.Column('save', sa.Boolean(), nullable=True),
-    sa.Column('url', sa.String(length=255), nullable=True),
-    sa.Column('imageUrl', sa.String(length=255), nullable=True),
+    sa.Column('url', sa.String(length=1500), nullable=True),
+    sa.Column('imageUrl', sa.String(length=1500), nullable=True),
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -76,8 +76,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
-    sa.Column('imageUrl', sa.String(length=255), nullable=True),
-    sa.ForeignKeyConstraint(['userId'], ['pins.id'], ),
+    sa.Column('imageUrl', sa.String(length=1500), nullable=True),
+    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 
