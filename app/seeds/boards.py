@@ -9,7 +9,12 @@ def seed_boards():
     Board(userId=1, title='Pokemon', imageUrl='https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/800px-International_Pok%C3%A9mon_logo.svg.png'),
     Board(userId=5, title='Cars', imageUrl='https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg'),
     Board(userId=3, title='Games', imageUrl='https://media.kasperskydaily.com/wp-content/uploads/sites/85/2014/04/20122626/online-gamer-threats-featured.jpg'),
-    Board(userId=2, title='Fashion', imageUrl='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lisa-adams-closet-designer-1561745904.jpg')]
+    Board(userId=2, title='Fashion', imageUrl='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lisa-adams-closet-designer-1561745904.jpg'),
+    Board(userId=1, title='Cute Animals', imageUrl='https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg'),
+    Board(userId=1, title='Gaming Computers', imageUrl='https://i.ytimg.com/vi/wKoHS2aKSUI/maxresdefault.jpg'),
+    Board(userId=1, title='Cars', imageUrl='https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg'),
+    Board(userId=1, title='Games', imageUrl='https://media.kasperskydaily.com/wp-content/uploads/sites/85/2014/04/20122626/online-gamer-threats-featured.jpg'),
+    Board(userId=1, title='Fashion', imageUrl='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lisa-adams-closet-designer-1561745904.jpg')]
 
     db.session.bulk_save_objects(boardData)
     db.session.commit()

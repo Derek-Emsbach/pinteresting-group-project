@@ -23,10 +23,9 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
   }
-  
+
   .modalContainer {
-    width: 400px;
-    height: 550px;
+
     border-radius: 50px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -42,25 +41,25 @@
     display: flex;
     justify-content: center;
   }
-  
+
   .modalContainer .title {
     display: inline-block;
     text-align: center;
     margin-top: 10px;
   }
-  
+
   .titleCloseBtn {
     display: flex;
     justify-content: flex-end;
   }
-  
+
   .titleCloseBtn button {
     background-color: transparent;
     border: none;
     font-size: 25px;
     cursor: pointer;
   }
-  
+
   .modalContainer .body {
     flex: 50%;
     display: flex;
@@ -74,7 +73,7 @@
     margin-bottom: 10px;
   }
   .profile_info{
-   
+
     display: flex;
     flex-direction: column;
     align-items: center;

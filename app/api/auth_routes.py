@@ -53,7 +53,7 @@ def logout():
     Logs a user out
     """
     logout_user()
-    redirect('/login')
+    redirect('/')
     return {'message': 'User logged out'}
 
 
@@ -64,7 +64,7 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    
+
     if form.validate_on_submit():
         user = User(
             firstName = form.data['firstName'],

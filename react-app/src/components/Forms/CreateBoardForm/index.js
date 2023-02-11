@@ -25,7 +25,7 @@ function CreateBoardForm() {
 
 	return (
 		<div>
-			<form className="edit-board-form" onSubmit={handleSubmit}>
+			<form className="create-board-form" onSubmit={handleSubmit}>
 				<h1 className="update">Create a Board!</h1>
 				<ul>
 					{errors.map((error, idx) => (
@@ -54,7 +54,7 @@ function CreateBoardForm() {
 						onChange={(e) => setImageUrl(e.target.value)}
 					/>
 				</label>
-				<button type="submit">Create new Board!</button>
+				<button className='create-button' type="submit">Create new Board!</button>
 			</form>
 		</div>
 	);
