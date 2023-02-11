@@ -5,10 +5,11 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 #
 # tl;dr hopefully prevent Python from complaining about "can't find table `boards` when trying to create ForeignKeyConstraint"
 pinnings = db.Table (
-    add_prefix_for_prod('pinnings'),
+    'pinnings',
     db.Model.metadata,
     db.Column('pinId', db.Integer, db.ForeignKey(add_prefix_for_prod('pins.id')), primary_key=True),
-    db.Column('boardId', db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), primary_key=True)
+    db.Column('boardId', db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), primary_key=True),
+    schema=SCHEMA
     )
 
 
