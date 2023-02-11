@@ -19,9 +19,9 @@ class Board(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('pins.id')), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
-    imageUrl = db.Column(db.String(255))
+    imageUrl = db.Column(db.String(1500))
 
     pins = db.relationship("Pin", secondary=pinnings, lazy="joined")
 
