@@ -23,16 +23,8 @@ function PinDetailPage() {
     fetchData();
   }, []);
 
-<<<<<<< HEAD
-
-
-
-const dispatch= useDispatch()
-const history= useHistory()
-=======
   const dispatch = useDispatch();
   const history = useHistory();
->>>>>>> main
 
   const deletePin = (e) => {
     e.preventDefault();
@@ -40,7 +32,6 @@ const history= useHistory()
     dispatch(deleteAPin(pinId));
 
     history.push(`/pins`);
-<<<<<<< HEAD
 
 
   };
@@ -94,63 +85,6 @@ const history= useHistory()
           )}
 		</ul>
 	);
-=======
-  };
-  useEffect(() => {
-    if (!pinId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/pins/${pinId}`);
-      const pin = await response.json();
-      setPin(pin);
-    })();
-  }, [pinId]);
-
-  if (!pin) {
-    return null;
-  }
-
-  const pinUsers = users.filter((user) => user.id === pin.userId);
-
-  console.log(
-    pinUsers.map((user) => user.username),
-    "users"
-  );
-
-  return (
-    <ul>
-      <div>
-        <div>
-          <img src={pin.imageUrl}></img>
-        </div>
-        <h1>PIN DETAIL PAGE</h1>
-        <li>
-          <strong>Created By: </strong> {pinUsers.map((user) => user.username)}
-        </li>
-
-        <li>
-          <strong>Title: </strong> {pin.title}
-        </li>
-
-        <li>
-          <strong>Link: </strong> <a href={pin.url}>{pin.url}</a>
-        </li>
-      </div>
-
-      {currentUser?.id === specificPin.userId && (
-        <Link to={`/pins/${pin.id}/update`}>
-          <button className="update_button" type="button">
-            Update Form
-          </button>
-          <button className="delete_button" type="button" onClick={deletePin}>
-            Delete Pin
-          </button>
-        </Link>
-      )}
-    </ul>
-  );
->>>>>>> main
 }
 
 export default PinDetailPage;
