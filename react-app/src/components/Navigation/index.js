@@ -46,7 +46,7 @@ const Navigation = () => {
                  Home
               </NavLink>
              </li>
-            <li className='nav-title'>Today</li>
+            {/* <li className='nav-title'>Today</li> */}
             <li>
             <NavLink className='nav-title' to='/pinform' exact={true} activeClassName='active'>
             CreatePin
@@ -63,14 +63,14 @@ const Navigation = () => {
         </div>
 
         <div className='right_side'>
-            <div className='notification'>
+            {/* <div className='notification'>
             <button><img src={bell} alt=''></img></button>
 
             </div>
 
             <div className='message'>
             <button><img src={message} alt=''></img></button>
-            </div>
+            </div> */}
 
             <div className='profile'>
             <button  onClick={routerChange}><img src={sessionUser.image} alt=''></img></button>
