@@ -44,10 +44,9 @@ function Followings() {
 										className='following_container'
 									>
 										<div className='following_profile'>
-											<img src={profile} />
+											<img src={following.image} />
 										</div>
 										<div className='following_info'>
-											<h1>Following</h1>
 											<h3>
 												{' '}
 												{following.firstName}{' '}

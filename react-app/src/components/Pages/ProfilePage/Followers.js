@@ -30,6 +30,7 @@ function Followers() {
 
 					{allMyFollowers.map((follower) => {
 						return (
+
 							<button
 								onClick={() =>
 									history.push(`/users/${follower.id}`)
@@ -38,10 +39,11 @@ function Followers() {
 							>
 
 								<div className='follower_profile'>
-									<img src={profile} />
+									<img src={follower.image} />
 								</div>
+
 								<div className='follower_info'>
-								<h1>Followers</h1>
+
 									<h3>
 										{' '}
 										{follower.firstName} {follower.lastName}
