@@ -7,8 +7,8 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 pinnings = db.Table (
     'pinnings',
     db.Model.metadata,
-    db.Column('pinId', db.Integer, db.ForeignKey('pins.id'), primary_key=True),
-    db.Column('boardId', db.Integer, db.ForeignKey('boards.id'), primary_key=True),
+    db.Column('pinId', db.Integer, db.ForeignKey(add_prefix_for_prod('pins.id')), primary_key=True),
+    db.Column('boardId', db.Integer, db.ForeignKey(add_prefix_for_prod('boards.id')), primary_key=True)
     )
 
 
@@ -19,7 +19,7 @@ class Board(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('pins.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     imageUrl = db.Column(db.String(255))
 
