@@ -49,7 +49,7 @@ const Navigation = () => {
             <li className='nav-title'>Today</li>
             <li>
             <NavLink className='nav-title' to='/pinform' exact={true} activeClassName='active'>
-            Create
+            CreatePin
          </NavLink>
          </li>
         </div>
@@ -114,8 +114,7 @@ const Navigation = () => {
                   <button className='regular-button' onClick={users}>
                    Users
                  </button>
-                </li>
-                <li>
+
                   <LogoutButton />
                  </li>
              </div>

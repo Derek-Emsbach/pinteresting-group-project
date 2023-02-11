@@ -36,10 +36,12 @@ function Followers() {
 								}
 								className='follower_container'
 							>
+
 								<div className='follower_profile'>
 									<img src={profile} />
 								</div>
 								<div className='follower_info'>
+								<h1>Followers</h1>
 									<h3>
 										{' '}
 										{follower.firstName} {follower.lastName}

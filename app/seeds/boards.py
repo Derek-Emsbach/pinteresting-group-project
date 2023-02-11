@@ -16,7 +16,7 @@ def seed_boards():
     Board(userId=1, title='Games', imageUrl='https://media.kasperskydaily.com/wp-content/uploads/sites/85/2014/04/20122626/online-gamer-threats-featured.jpg'),
     Board(userId=1, title='Fashion', imageUrl='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lisa-adams-closet-designer-1561745904.jpg')]
 
-    db.session.bulk_save_objects(boardData)
+    db.session.add_all(boardData)
     db.session.commit()
 
 

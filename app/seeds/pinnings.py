@@ -3,13 +3,12 @@ from app.models import db, Pinning, environment, SCHEMA
 
 # Adds a demo pinning, you can add other pinnings here if you want
 def seed_pinnings():
-    pinning1 = Pinning(boardId=1,pinId=1)
-    pinning2 = Pinning(boardId=2,pinId=2)
-    pinning3 = Pinning(boardId=3,pinId=3)
-
-    db.session.add(pinning1)
-    db.session.add(pinning2)
-    db.session.add(pinning3)
+    pinningsData =[
+    Pinning(boardId=1,pinId=1),
+    Pinning(boardId=2,pinId=2),
+    Pinning(boardId=3,pinId=3)
+    ]
+    db.session.add_all(pinningsData)
     db.session.commit()
 
 

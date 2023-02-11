@@ -70,7 +70,7 @@ Pin(userId=1,title="demo1",save=False,url="https://www.amazon.com/VSATEN-Dinosau
 
     ]
 
-    db.session.bulk_save_objects(pinData)
+    db.session.add_all(pinData)
     db.session.commit()
 
 
