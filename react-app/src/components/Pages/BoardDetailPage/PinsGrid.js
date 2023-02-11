@@ -23,7 +23,7 @@ function BoardDetailPinGrid() {
 
   const { pins = fakePins } = board;
 
-  console.log(pins);
+
 
   return (
     <div className="PinsGrid--Container">
