@@ -78,10 +78,16 @@ export const update_profile = (id, data) => async (dispatch) => {
     },
     body: JSON.stringify(data),
   });
-
+  
+if (response.ok){
   const profile = await response.json();
   dispatch(setUser(profile));
   return profile;
+}else {
+    const error = await response.json();
+    return error;
+  }
+ 
 };
 
 export const signUp =

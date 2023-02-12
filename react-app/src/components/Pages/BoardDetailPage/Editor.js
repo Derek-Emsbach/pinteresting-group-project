@@ -59,6 +59,11 @@ const history = useHistory()
                  }
             }}
           >
+          <ul>
+            {errors.map((message, i) => (
+              <li className= 'errors' key={i}>{message}</li>
+            ))}
+          </ul> 
     
             <EditorInput
               name="Title"
@@ -84,11 +89,7 @@ const history = useHistory()
               Save
             </button>
           </form>
-           <ul>
-            {errors.map((message, i) => (
-              <li key={i}>{message}</li>
-            ))}
-          </ul> 
+           
         </div>
       </div>
     </div>
