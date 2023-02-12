@@ -55,65 +55,23 @@ def edit_user(id):
         return user.to_dict()
 
 
-@user_routes.route('/follow/<username>', methods=['POST'])
+@user_routes.route('/follow/<int:id>', methods=['POST'])
 @login_required
-def follow(username):
-    user = User.query.filter_by(username=username).first()
+def follow(id):
+    other_user = User.query.filter_by(id=id).first()
 
-    current_user.follow(user)
+    current_user.follow(other_user)
     db.session.commit()
 
-    return current_user.to_dict()
+    return current_user.to_dict_with_related()
 
 
-
-
-@user_routes.route('/unfollow/<username>', methods=['POST'])
+@user_routes.route('/unfollow/<int:id>', methods=['POST'])
 @login_required
-def unfollow(username):
-    user = User.query.filter_by(username=username).first()
+def unfollow(id):
+    other_user = User.query.filter_by(id=id).first()
 
-
-    current_user.followed.remove(user)
-    # print(user.followers,'hellloo')
+    current_user.unfollow(other_user)
     db.session.commit()
 
-    return current_user.to_dict()
-
-
-
-@user_routes.route('/<int:id>/followers', methods=['GET'])
-# @login_required
-def getFollowers(id):
-    curUser = User.query.get(id)
-    users = curUser.getAllFollowers()
-    # print(users, 'FOLLWERSS USERSSS FROMMM BACK ENDD @@@')
-    # [print(user.to_dict()) for user in users]
-    return { 'followers': [user.to_dict() for user in users]}
-
-@user_routes.route('/<int:id>/followings', methods=['GET'])
-# @login_required
-def getFollowings(id):
-    curUser = User.query.get(id)
-    users = curUser.getAllFollowing()
-    # print(users, 'FOLLOWINGG USERSSS FROMMM BACK ENDD @@@')
-
-    return { 'followings': [user.to_dict() for user in users]}
-
-
-
-# @user_routes.route('/<int:id>', methods=['POST'])
-# @login_required
-# def unfollow(username):
-#     form = EmptyForm()
-#     if form.validate_on_submit():
-#         user = User.query.filter_by(username=username).first()
-#         if user is None:
-#             return flash('User {} not found.'.format(username))
-#         if user == current_user:
-#             return flash('You cannot unfollow yourself!')
-#         current_user.unfollow(user)
-#         db.session.commit()
-#         return flash('You are not following {}.'.format(username))
-#     else:
-#         return user.to_dict()
+    return current_user.to_dict_with_related()

@@ -29,14 +29,15 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-
-    followed = db.relationship(
+    following = db.relationship(
         'User', secondary=followers,
         primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
-        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+        secondaryjoin=(followers.c.followed_id == id), lazy='dynamic')
 
-
+    followers = db.relationship(
+        'User', secondary=followers,
+        primaryjoin=(followers.c.followed_id == id),
+        secondaryjoin=(followers.c.follower_id == id), lazy='dynamic')
 
     @property
     def password(self):
@@ -51,32 +52,15 @@ class User(db.Model, UserMixin):
 
 
     def follow(self, user):
-        if not self.is_following(user):
-            self.followed.append(user)
-
+        self.following.append(user)
 
     def unfollow(self, user):
-        if self.is_following(user):
-            self.followed.remove(user)
-
-    def is_following(self, user):
-        return self.followed.filter(
-            followers.c.followed_id == user.id).count() > 0
-
-    def getAllFollowers(self):
-        getFollowers = User.query.join(followers,(followers.c.follower_id == User.id)).filter(followers.c.followed_id == self.id)
-        return getFollowers
-
-    def getAllFollowing(self):
-        getFollowings = User.query.join(followers,(followers.c.followed_id == User.id)).filter(followers.c.follower_id == self.id)
-        return getFollowings
-
-
+        for other_user in self.following:
+            if other_user.id == user.id:
+                self.following.remove(user)
 
     def __repr__(self):
         return f'<Userid: {self.id}, firstName:{self.firstName}, lastName:{self.lastName}, about:{self.about}, image:{self.image}, username: {self.username}, password: {self.password}>'
-
-
 
     def to_dict(self):
         return {
@@ -87,5 +71,16 @@ class User(db.Model, UserMixin):
             'image':self.image,
             'username': self.username,
             'email': self.email,
+        }
 
+    def to_dict_with_counts(self):
+        return self.to_dict() | {
+            'followingCount': self.following.count(),
+            'followersCount': self.followers.count(),
+        }
+
+    def to_dict_with_related(self):
+        return self.to_dict() | {
+            'following': list(map(lambda u: u.to_dict_with_counts(), self.following)),
+            'followers': list(map(lambda u: u.to_dict_with_counts(), self.followers)),
         }
