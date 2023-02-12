@@ -1,65 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllBoardsThunk } from '../../../store/board';
-import './BoardsPage.css';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  deleteBoardThunk,
+  getAllBoardsThunk,
+  selectMyBoards,
+} from "../../../store/board";
+import "./BoardsPage.css";
+import GridLayout from "../../GridLayout";
 
 function BoardsPage() {
-	const history = useHistory();
-	const dispatch = useDispatch();
-	const currentUser = useSelector((state) => state.session.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-	const boards = useSelector((state) => Object.values(state.board));
-	
-	useEffect(() => {
-		dispatch(getAllBoardsThunk());
-	}, [dispatch]);
+  const myBoards = useSelector(selectMyBoards);
 
-	const CreateBoardForm = async (e) => {
-		history.push('/boardform');
-	};
+  useEffect(() => {
+    dispatch(getAllBoardsThunk());
+  }, [dispatch]);
 
-	return (
-		<>
-			{boards && (
-				<div className='all-boards-container'>
-					<div>
-						<div className='my-boards-create-boards-container'>
-							<h1>My Boards</h1>
-							<button className='create-button' onClick={CreateBoardForm}>Create Board</button>
-						</div>
-						{/* <h2>{boards.title}</h2> */}
-						<div className='board-containers'>
-						{boards.map((board) => (
-							<div className='pin-items' key={board.id}>
-									{currentUser?.id === board.userId && (
-										<NavLink
-											to={`/boards/${board.id}`}
-											activeClassName='active'
-										>
-											<strong>Title:</strong> {board.title}
-										</NavLink>
-									)}
+  const navigateToCreateBoardForm = () => {
+    history.push("/boardform");
+  };
 
-								{currentUser?.id === board.userId && (
-									<NavLink
-										to={`/boards/${board.id}`}
-										activeClassName='active'
-									>
-										<img
-											className='pin-detail'
-											src={board.imageUrl}
-										></img>
-									</NavLink>
-								)}
-							</div>
-						))}
-						</div>
-					</div>
-				</div>
-			)}
-		</>
-	);
+  const navigateToBoard = (board) => {
+    history.push(`/boards/${board.id}`);
+  };
+
+  return (
+    <div className="MyBoards--Page">
+      <div className="MyBoards--Heading">
+        <h1>My Boards</h1>
+        <button className="create-button" onClick={navigateToCreateBoardForm}>
+          Create Board
+        </button>
+      </div>
+      <GridLayout
+        items={myBoards}
+        onItemClick={navigateToBoard}
+        renderItemActions={(board, closeActionPopOver) => (
+          <button
+            className="create-button"
+            onClick={() => {
+              dispatch(deleteBoardThunk(board.id));
+              closeActionPopOver();
+            }}
+          >
+            Delete
+          </button>
+        )}
+      />
+    </div>
+  );
 }
 
 export default BoardsPage;

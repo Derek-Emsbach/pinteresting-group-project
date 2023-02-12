@@ -14,6 +14,7 @@ function PopOver({ open, setOpen, button, children, style }) {
             className="PopOver--Backdrop"
             onClick={(event) => {
               event.preventDefault();
+              event.stopPropagation();
 
               if (event.target === backdropRef.current) {
                 setOpen(false);
@@ -25,6 +26,7 @@ function PopOver({ open, setOpen, button, children, style }) {
             className="PopOver--Card"
             onClick={(event) => {
               event.preventDefault();
+              event.stopPropagation();
             }}
           >
             {children}

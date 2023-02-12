@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./Profile.css";
-import profile from "../../../icons/profile.png";
 import "./Follower.css";
 
 function Followers() {
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
-  const allMyFollowers = useSelector((state) => Object.values(state.follower));
-  console.log(allMyFollowers);
+  const allMyFollowers = useSelector(
+    (state) => state.session.user?.followers || []
+  );
 
   if (modalOpen === true) {
     return (

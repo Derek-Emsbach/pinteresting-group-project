@@ -1,7 +1,7 @@
-const REPLACE_BOARD = "boards/REPLACE_BOARD";
-const LOAD_BOARDS = "boards/LOAD_BOARDS";
-const DELETE_BOARD = "boards/DELETE_BOARD";
-const ADD_BOARD = "boards/ADD_BOARD";
+const REPLACE_BOARD = "board/REPLACE_BOARD";
+const LOAD_BOARDS = "board/LOAD_BOARDS";
+const DELETE_BOARD = "board/DELETE_BOARD";
+const ADD_BOARD = "board/ADD_BOARD";
 
 export const replaceBoard = (board) => {
   return {
@@ -35,7 +35,7 @@ export const getAllBoardsThunk = () => async (dispatch) => {
   const res = await fetch("/api/boards/");
 
   if (res.ok) {
-    const { boards } = await res.json();
+    const boards = await res.json();
     dispatch(loadBoards(boards));
   }
 };
@@ -116,9 +116,9 @@ const boardReducer = (state = defaultState, action) => {
       newState[action.boards.id] = action.boards;
       return newState;
 
-        case DELETE_BOARD:
-            delete newState[action.boards];
-            return newState;
+    case DELETE_BOARD:
+      delete newState[action.boards];
+      return newState;
 
     default:
       return state;
@@ -126,3 +126,15 @@ const boardReducer = (state = defaultState, action) => {
 };
 
 export default boardReducer;
+
+export function selectMyBoards(state) {
+  const currentUser = state.session.user;
+
+  if (!currentUser) {
+    return [];
+  }
+
+  return Object.values(state.board).filter(
+    ({ userId: boardAuthorId }) => boardAuthorId === currentUser.id
+  );
+}
