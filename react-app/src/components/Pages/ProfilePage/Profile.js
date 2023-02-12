@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./Profile.css";
 import { useHistory } from "react-router-dom";
 import Followers from "./Followers";
 import Followings from "./Followings";
+import { selectMyBoards } from "../../../store/board";
+import './Profile.css'
 
 function Profile() {
   const currentUser = useSelector((state) => state.session.user);
+  const [openMyBoards,setOpenMyBoards] = useState(true);
+  const [openCreate, setOpenCreate] = useState(false);
   const history = useHistory();
+  const allMyBoards = useSelector(selectMyBoards)
+  console.log(allMyBoards)
 
   const myPins = async (e) => {
     history.push("/pins");
@@ -22,6 +28,10 @@ function Profile() {
 
   if (!currentUser) {
     return null;
+  }
+
+  if(!allMyBoards){
+    return null
   }
 
   return (
@@ -50,20 +60,55 @@ function Profile() {
           </div>
         </div>
 
-        <button className="regular-button" onClick={profileForm}>
-          Edit Profile
-        </button>
-      </div>
-
-      <div className="option">
         <button className="regular-button" onClick={myPins}>
           My Pins
         </button>
-        <button className="regular-button" onClick={myBoards}>
-          {" "}
-          My boards
+        <button className="regular-button" onClick={profileForm}>
+          Edit Profile
         </button>
+
       </div>
+
+      
+      <div className="option">
+        
+      <div className="option_btn">
+         
+      <button onClick={()=>{setOpenCreate(true); setOpenMyBoards(false)}} className={ `button ${openCreate ? 'active' : null}`}> <span>Create</span></button>
+      <button onClick={()=>{setOpenMyBoards(true); setOpenCreate(false)}} className={ `button ${openMyBoards ? 'active' : null}`}><span>My boards</span> </button>
+      </div>
+
+      </div>
+      <div className="all_my_boardImg">
+      {openMyBoards && allMyBoards &&(
+        allMyBoards.map(board =>{
+                  return(
+                  <button className="all_board_container" onClick={()=>history.push(`/boards/${board.id}`)}>
+                      <div>
+                      <img src={board.imageUrl} alt=''/>
+                      </div>
+                      <div>
+                          {board.title}
+                      </div>                                     
+                  </button>
+                  )
+              })
+             
+          )
+
+      }
+      </div>
+
+      {openCreate &&(
+             <div className="create_pin_container">
+             <h1> Inspire with an Idea Pin</h1>
+             <button onClick={()=> history.push('/pinform')} className='create_pin_btn'>Create</button>
+             </div>
+         
+      )}
+
+
+
     </div>
   );
 }
