@@ -1,82 +1,87 @@
-*{
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    text-decoration: none;
+* {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen-Sans, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans',
+		'Helvetica Neue', Helvetica, 'ヒラギノ角ゴ Pro W3',
+		'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', Arial,
+		sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	text-decoration: none;
 }
 
-
-.icon img{
-    width: 130px;
+.Splash {
+	max-width: 1512px;
 }
-.nav_bar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between
-
+.icon img {
+	width: 130px;
 }
-
-.right_menu{
-    width: 300px;
-    display: flex;
-    justify-content: space-evenly;
+.nav_bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.body img{
-    width: auto;
-}
-.openModalBtn{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+.right_menu {
+	width: 300px;
+	display: flex;
+	justify-content: space-evenly;
 }
 
-.login-button{
-    border: 0px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 20px;
-    -webkit-font-smoothing: antialiased;
-    padding: 0px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    vertical-align: middle;
-    text-align: center;
-    background-color: rgb(230, 0, 35);
-    color: rgb(255, 255, 255);
-    width: 100%;
+.body img {
+	width: auto;
 }
-.signup-button{
-    border: 0px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 20px;
-    -webkit-font-smoothing: antialiased;
-    padding: 0px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    vertical-align: middle;
-    text-align: center;
-    background-color: #efefef;
-    color: #111111;
-    width: 100%;
+.openModalBtn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
 }
-.submit-button{
-    border: 0px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 20px;
-    -webkit-font-smoothing: antialiased;
-    padding: 0px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    vertical-align: middle;
-    text-align: center;
-    background-color: #efefef;
-    color: #111111;
-    /* width: 100%; */
+
+.login-button {
+	border: 0px;
+	height: 40px;
+	display: inline-block;
+	border-radius: 20px;
+	-webkit-font-smoothing: antialiased;
+	padding: 0px 18px;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 8px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: rgb(230, 0, 35);
+	color: rgb(255, 255, 255);
+	width: 100%;
+}
+.signup-button {
+	border: 0px;
+	height: 40px;
+	display: inline-block;
+	border-radius: 20px;
+	-webkit-font-smoothing: antialiased;
+	padding: 0px 18px;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 8px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #efefef;
+	color: #111111;
+	width: 100%;
+}
+.submit-button {
+	border: 0px;
+	height: 40px;
+	display: inline-block;
+	border-radius: 20px;
+	-webkit-font-smoothing: antialiased;
+	padding: 0px 18px;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 8px;
+	vertical-align: middle;
+	text-align: center;
+	background-color: #efefef;
+	color: #111111;
+	/* width: 100%; */
 }
