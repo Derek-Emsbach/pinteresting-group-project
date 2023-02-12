@@ -11,15 +11,22 @@ function CreateBoardForm() {
 	const [title, setTitle] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [errors, setErrors] = useState([]);
-	const [data,setData] = useState("");
+	
 	const history = useHistory();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors([]);
 		const payload = { title, imageUrl };
-		dispatch(createBoardThunk(payload));
-		history.push(`/boards`);
+
+		let data = await dispatch(createBoardThunk(payload));
+
+		if (data.errors) {
+		  setErrors([...Object.values(data.errors)]);
+		} else {
+		  history.push(`/boards/${data.id}}`);
+		}
+
 	};
 
 
