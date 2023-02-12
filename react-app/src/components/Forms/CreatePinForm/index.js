@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { addAPin, editAPin } from "../../../store/pin";
+import './CreatePinForm.css'
 
 function CreatePinForm() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function CreatePinForm() {
           Title
           <input
             type="text"
+            className="pin-input"
             value={title}
             required
             onChange={(e) => setTitle(e.target.value)}
@@ -53,6 +55,7 @@ function CreatePinForm() {
           Image Url
           <input
             type="text"
+            className="pin-input"
             value={imageUrl}
             required
             onChange={(e) => setImageUrl(e.target.value)}
@@ -63,6 +66,7 @@ function CreatePinForm() {
           Link
           <input
             type="text"
+            className="pin-input"
             value={url}
             required
             onChange={(e) => setUrl(e.target.value)}
