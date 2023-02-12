@@ -12,7 +12,7 @@ function CreateBoardForm() {
 	const [title, setTitle] = useState("");
 	const [imageUrl, setImageUrl] = useState("");
 	const [errors, setErrors] = useState([]);
-	
+
 	const history = useHistory();
 
 	const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ function CreateBoardForm() {
 		if (data.errors) {
 		  setErrors([...Object.values(data.errors)]);
 		} else {
-		  history.push(`/boards/${data.id}}`);
+		  history.push(`/boards`);
 		}
 
 	};

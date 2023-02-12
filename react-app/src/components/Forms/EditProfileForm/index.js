@@ -48,12 +48,15 @@ function EditProfileForm() {
     <div className="edit_profile_container">
       <div className="profile_header">
         <h1> Public profile</h1>
-        <h4> People visiting your profile will see the following info</h4>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="profile-subheader">
+          <h4>People visiting your profile will see the following info</h4>
+        </div>
+        <form className="edit-profile-form" onSubmit={handleSubmit} encType="multipart/form-data">
           <div className="pro_photo">
-            <label>Photo</label>
+            <label className="edit-profile-labels">Photo</label>
             <input
               type="text"
+              className="edit-profile-inputs"
               value={image}
               required
               onChange={(e) => setImage(e.target.value)}
@@ -61,33 +64,37 @@ function EditProfileForm() {
           </div>
 
           <div className="first_last_name">
-            <label>First name</label>
+            <label className="edit-profile-labels">First name</label>
             <input
               type="text"
+              className="edit-profile-inputs"
               required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
 
-            <label>Last name</label>
+            <label className="edit-profile-labels">Last name</label>
             <input
               type="text"
+              className="edit-profile-inputs"
               required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
           </div>
 
-          <label>About</label>
-          <input
+          <label className="edit-profile-labels">About</label>
+          <textarea
             type="text"
+            className="edit-profile-input-about"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
-          ></input>
+          ></textarea>
 
-          <label>Username</label>
+          <label className="edit-profile-labels">Username</label>
           <input
             type="text"
+            className="edit-profile-inputs"
             required
             value={username}
             onChange={(e) => setAbout(e.target.value)}
