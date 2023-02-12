@@ -37,9 +37,9 @@ const LoginForm = () => {
         <img src={icon}/>
         <h1>Login</h1>
     <form onSubmit={onLogin}>
-      <div>
+      <div >
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='errors' key={ind}>{error}</div>
         ))}
       </div>
       <div id='form_detail'>
