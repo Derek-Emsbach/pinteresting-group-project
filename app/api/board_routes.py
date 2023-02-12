@@ -17,7 +17,7 @@ def get_all_boards():
     # print("**************** GET ALL BOARDS ****************")
 
     # print(boards)
-    return {'boards': [board.to_dict() for board in boards]}
+    return jsonify([board.to_dict() for board in boards])
 
 @board_routes.route('/<int:id>')
 @login_required
