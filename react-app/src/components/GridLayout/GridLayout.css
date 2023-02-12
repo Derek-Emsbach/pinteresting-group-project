@@ -41,6 +41,7 @@
 .GridLayout--Item .GridLayout--Image {
   object-fit: cover;
   width: 100%;
+  min-height: 120px;
 }
 
 .GridLayout--Item .GridLayout--Actions {
