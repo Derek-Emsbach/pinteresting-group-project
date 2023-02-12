@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User,db
+from app.models import User,Pin,db
 from app.forms import ProfileForm
 from app.forms import EmptyForm
 
@@ -19,7 +19,7 @@ def users():
     users = User.query.all()
     # print("**************** GET ALL USERS ****************")
     # print(users)
-    return {'users': [user.to_dict() for user in users]}
+    return jsonify([user.to_dict_with_related() for user in users])
 
 
 @user_routes.route('/<int:id>')
@@ -30,6 +30,8 @@ def user(id):
     Query for a user by id and returns that user in a dictionary
     """
     user = User.query.get(id)
+
+    return user.to_dict_with_related()
 
 @user_routes.route('/<int:id>/pins')
 @login_required
@@ -59,7 +61,7 @@ def edit_user(id):
         # print('*********************UPDATED User*******************************')
         db.session.commit()
 
-        return user.to_dict()
+        return user.to_dict_with_related()
 
 
 @user_routes.route('/follow/<int:id>', methods=['POST'])
