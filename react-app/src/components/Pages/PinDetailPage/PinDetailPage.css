@@ -1,0 +1,4 @@
+.PinDetail--Page .PinDetail--Image {
+	object-fit: contain;
+	width: 230px;
+}
