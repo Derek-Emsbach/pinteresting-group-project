@@ -41,29 +41,31 @@ function BoardDetailHeading() {
             setOpen={setPopOverOpen}
             button={
               <button
-                className="regular-button"
+                className="create-button"
                 onClick={() => setPopOverOpen(true)}
               >
                 ...
               </button>
             }
           >
-            <button
-              className="regular-button"
-              onClick={() => {
-                setEditorOpen(true);
-                setPopOverOpen(false);
-              }}
-            >
-              edit
-            </button>
-            <button
-              className="create-button"
-              type="button"
-              onClick={deleteBoard}
-            >
-              Delete
-            </button>
+            <div className="BoardDetail--Actions">
+              <button
+                className="regular-button"
+                onClick={() => {
+                  setEditorOpen(true);
+                  setPopOverOpen(false);
+                }}
+              >
+                edit
+              </button>
+              <button
+                className="create-button"
+                type="button"
+                onClick={deleteBoard}
+              >
+                Delete
+              </button>
+            </div>
           </PopOver>
         </div>
         {description && <p>{description}</p>}

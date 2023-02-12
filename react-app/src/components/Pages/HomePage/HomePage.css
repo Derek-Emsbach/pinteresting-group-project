@@ -80,39 +80,3 @@
     color: #111111;
     /* width: 100%; */
 }
-
-.regular-button{
-    border: 0px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 20px;
-    -webkit-font-smoothing: antialiased;
-    padding: 0px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    vertical-align: middle;
-    text-align: center;
-    background-color: #efefef;
-    color: #111111;
-    /* width: 100%; */
-}
-
-.create-button{
-    border: 0px;
-    height: 40px;
-    display: inline-block;
-    border-radius: 20px;
-    -webkit-font-smoothing: antialiased;
-    padding: 0px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    vertical-align: middle;
-    text-align: center;
-    background-color: rgb(230, 0, 35);
-    color: rgb(255, 255, 255);
-    /* width: 100%; */
-}
