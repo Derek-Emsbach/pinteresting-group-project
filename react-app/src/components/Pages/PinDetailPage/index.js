@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { deleteAPin } from "../../../store/pin";
+import { deleteAPin, getSinglePin } from "../../../store/pin";
 import "./PinDetailPage.css";
+import { getOneUserThunk } from "../../../store/user";
 
 function PinDetailPage() {
-  const [pin, setPin] = useState([]);
   const { pinId } = useParams();
-  const currentUser = useSelector((state) => state.session.user);
-  const allPins = useSelector((state) => state.pin);
-  const specificPin = allPins[pinId];
 
-  const [users, setUsers] = useState([]);
+  const { pin, pinAuthor, currentUser } = useSelector((state) => {
+    const pin = state.pin[pinId];
+    const pinAuthor = state.otherUser[pin?.userId];
+    const currentUser = state.session.user;
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch("/api/users/");
-      const responseData = await response.json();
-      setUsers(responseData.users);
-    }
-    fetchData();
-  }, []);
+    return {
+      pin,
+      pinAuthor,
+      currentUser,
+    };
+  });
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,22 +32,24 @@ function PinDetailPage() {
 
     history.push(`/pins`);
   };
-  useEffect(() => {
-    if (!pinId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/pins/${pinId}`);
-      const pin = await response.json();
-      setPin(pin);
-    })();
-  }, [pinId]);
 
-  if (!pin) {
-    return null;
+  useEffect(() => {
+    dispatch(getSinglePin(pinId));
+  }, []);
+
+  useEffect(() => {
+    if (pin?.userId && !pinAuthor) {
+      dispatch(getOneUserThunk(pin.userId));
+    }
+  }, [pin, pinAuthor]);
+
+  if (!pinId) {
+    return <Redirect to="/404" />;
   }
 
-  const pinUsers = users.filter((user) => user.id === pin?.userId);
+  if (!pin || !pinAuthor || !currentUser) {
+    return null;
+  }
 
   return (
     <ul className="PinDetail--Page">
@@ -58,20 +58,24 @@ function PinDetailPage() {
         <div>
           <img className="PinDetail--Image" src={pin.imageUrl}></img>
         </div>
-        <li>
-          <strong>Created By: </strong> {pinUsers.map((user) => user.username)}
-        </li>
 
         <li>
           <strong>Title: </strong> {pin?.title}
         </li>
 
         <li>
-          <strong>Link: </strong> <a href={pin?.url}> Click Here </a>
+          <strong>Author: </strong>{" "}
+          <NavLink to={`/users/${pinAuthor.id}`}>{pinAuthor.username}</NavLink>
         </li>
+
+        {!!pin.url && (
+          <li>
+            <strong>Link: </strong> <a href={pin?.url}> Click Here </a>
+          </li>
+        )}
       </div>
 
-      {currentUser?.id === specificPin?.userId && (
+      {currentUser.id === pinAuthor.id && (
         <Link to={`/pins/${pin.id}/update`}>
           <button className="regular-button" type="button">
             Update Pin
