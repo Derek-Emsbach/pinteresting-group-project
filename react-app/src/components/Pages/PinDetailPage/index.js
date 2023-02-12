@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteAPin } from "../../../store/pin";
+import "./PinDetailPage.css";
 
 function PinDetailPage() {
   const [pin, setPin] = useState([]);
@@ -50,17 +51,12 @@ function PinDetailPage() {
 
   const pinUsers = users.filter((user) => user.id === pin?.userId);
 
-  console.log(
-    pinUsers.map((user) => user.username),
-    "users"
-  );
-
   return (
-    <ul>
+    <ul className="PinDetail--Page">
       <div>
         <h1>PIN DETAIL PAGE</h1>
         <div>
-          <img className="pin-detail" src={pin.imageUrl}></img>
+          <img className="PinDetail--Image" src={pin.imageUrl}></img>
         </div>
         <li>
           <strong>Created By: </strong> {pinUsers.map((user) => user.username)}
