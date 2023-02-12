@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { createBoardThunk } from "../../../store/board";
 import EditorInput from "../../Pages/BoardDetailPage/EditorInput";
+import './CreateBoardForm.css'
 
 function CreateBoardForm() {
 	const dispatch = useDispatch();
@@ -31,7 +32,7 @@ function CreateBoardForm() {
 
 
 	return (
-		<div>
+		<div className="form-body">
 			<form className="create-board-form" onSubmit={handleSubmit}>
 				<h1 className="update">Create a Board!</h1>
 				<ul>
@@ -43,7 +44,7 @@ function CreateBoardForm() {
 				</ul>
 				{/* <EditorInput label='Title' value={title} setValue={setTitle}/> */}
 				{/* EXAMPLE helper function component */}
-				<label>
+				<label className="board-form-labels">
 					Title
 					<input
 						type="text"
@@ -53,7 +54,7 @@ function CreateBoardForm() {
 					/>
 				</label>
 
-				<label>
+				<label className="board-form-labels">
 					Image Url
 					<input
 						type="text"
