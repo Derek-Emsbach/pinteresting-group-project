@@ -1,9 +1,29 @@
 .PinsGrid--Container {
-  padding: 0 30px;
+  padding: 0 60px;
   column-count: auto;
   column-width: 240px;
   column-fill: balance;
   gap: 1rem;
+}
+
+@media (min-width: 480px) {
+  .PinsGrid--Container {
+    padding: 0 120px;
+    column-width: 180px;
+  }
+}
+
+@media (min-width: 768px) {
+  .PinsGrid--Container {
+    padding: 0 80px;
+    column-width: 240px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .PinsGrid--Container {
+    padding: 0 120px;
+  }
 }
 
 .PinsGrid--Container .PinsGrid--Item {
