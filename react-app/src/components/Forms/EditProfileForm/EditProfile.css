@@ -37,10 +37,6 @@
 .edit-profile-form > h1 {
     font-size: 16pt;
 }
-.profile-subheader {
-    display: flex;
-    font-size: 12pt;
-}
 
 .edit-profile-labels {
     display: flex;
