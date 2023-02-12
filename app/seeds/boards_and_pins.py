@@ -19,6 +19,85 @@ def create_board_with_pins(db, user_id, board_title, board_image, pin_image_list
 
 
 def seed_boards_and_pins():
+
+    create_board_with_pins(
+        db, 13, 'Cakes',
+        'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FrZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
+        cake_images
+    )
+
+    create_board_with_pins(
+        db, 12, 'Summer Camp',
+        'https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3VtbWVyJTIwY2FtcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
+        camp_images
+    )
+
+    create_board_with_pins(
+        db, 1, 'Christmas',
+        'https://images.unsplash.com/photo-1543589077-47d81606c1bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2hyaXN0bWFzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
+        christmas_images
+    )
+
+    create_board_with_pins(
+        db, 1, 'Decor',
+        'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8SG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=2000&q=60',
+        decor_images
+    )
+
+    create_board_with_pins(
+        db, 1, 'Dogs I Want',
+        'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
+        dog_images
+    )
+
+    create_board_with_pins(
+        db, 11, 'Food',
+        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
+        food_images
+    )
+
+    create_board_with_pins(
+        db, 10, 'Halloween',
+        'https://images.unsplash.com/photo-1633628569245-1a939e025ebb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8SGFsbG93ZWVufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
+        halloween_images
+    )
+
+    create_board_with_pins(
+        db, 1, 'Nature',
+        'https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8TmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
+        nature_images
+    )
+
+    create_board_with_pins(
+        db, 9, 'Plants',
+        'https://images.unsplash.com/photo-1463554050456-f2ed7d3fec09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fEdhcmRlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
+        plant_images
+    )
+
+    create_board_with_pins(
+        db, 4, 'Puppies',
+        'https://images.unsplash.com/photo-1525253013412-55c1a69a5738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8UHVwcGllc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
+        puppies_images
+    )
+
+    create_board_with_pins(
+        db, 7, 'Snowboarding',
+        'https://images.unsplash.com/photo-1611124600582-c9ef0e977585?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8U25vd2JvYXJkaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
+        snow_images
+    )
+
+    create_board_with_pins(
+        db, 8, 'Wedding Flowers',
+        'https://images.unsplash.com/photo-1593470309378-bf460a1c7f10?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2VkZGluZyUyMGZsb3dlcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=2000&q=60',
+        wedding_flower_images
+    )
+
+    create_board_with_pins(
+        db, 8, 'Wedding Ideas',
+        'https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aW5kaWFuJTIwd2VkZGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
+        wedding_images
+    )
+
     data = []
 
     pokemonBoard = Board(userId=1, title='Random',
@@ -206,87 +285,6 @@ def seed_boards_and_pins():
 
     db.session.add_all(data)
     db.session.commit()
-
-
-    create_board_with_pins(
-        db, 13, 'Cakes',
-        'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FrZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
-        cake_images
-    )
-
-    create_board_with_pins(
-        db, 12, 'Summer Camp',
-        'https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3VtbWVyJTIwY2FtcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
-        camp_images
-    )
-
-    create_board_with_pins(
-        db, 1, 'Christmas',
-        'https://images.unsplash.com/photo-1543589077-47d81606c1bf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2hyaXN0bWFzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-        christmas_images
-    )
-
-    create_board_with_pins(
-        db, 1, 'Decor',
-        'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8SG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=2000&q=60',
-        decor_images
-    )
-
-    create_board_with_pins(
-        db, 1, 'Dogs I Want',
-        'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-        dog_images
-    )
-
-    create_board_with_pins(
-        db, 11, 'Food',
-        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
-        food_images
-    )
-
-    create_board_with_pins(
-        db, 10, 'Halloween',
-        'https://images.unsplash.com/photo-1633628569245-1a939e025ebb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8SGFsbG93ZWVufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-        halloween_images
-    )
-
-    create_board_with_pins(
-        db, 1, 'Nature',
-        'https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8TmF0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-        nature_images
-    )
-
-    create_board_with_pins(
-        db, 9, 'Plants',
-        'https://images.unsplash.com/photo-1463554050456-f2ed7d3fec09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fEdhcmRlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
-        plant_images
-    )
-
-    create_board_with_pins(
-        db, 4, 'Puppies',
-        'https://images.unsplash.com/photo-1525253013412-55c1a69a5738?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8UHVwcGllc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
-        puppies_images
-    )
-
-    create_board_with_pins(
-        db, 7, 'Snowboarding',
-        'https://images.unsplash.com/photo-1611124600582-c9ef0e977585?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8U25vd2JvYXJkaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-        snow_images
-    )
-
-    create_board_with_pins(
-        db, 8, 'Wedding Flowers',
-        'https://images.unsplash.com/photo-1593470309378-bf460a1c7f10?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2VkZGluZyUyMGZsb3dlcnN8ZW58MHx8MHx8&auto=format&fit=crop&w=2000&q=60',
-        wedding_flower_images
-    )
-
-    create_board_with_pins(
-        db, 8, 'Wedding Ideas',
-        'https://images.unsplash.com/photo-1610173827043-9db50e0d8ef9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aW5kaWFuJTIwd2VkZGluZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60',
-        wedding_images
-    )
-
-
 
 # Uses a raw SQL query to TRUNCATE or DELETE the boards table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE
