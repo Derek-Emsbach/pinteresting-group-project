@@ -31,8 +31,15 @@ def user(id):
     """
     user = User.query.get(id)
 
-    return user.to_dict()
+@user_routes.route('/<int:id>/pins')
+@login_required
+def user_pins(id):
+    """
+    Query for a user by id and returns that user in a dictionary
+    """
+    pins = Pin.query.filter_by(userId=id)
 
+    return jsonify([pin.to_dict() for pin in pins])
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required
