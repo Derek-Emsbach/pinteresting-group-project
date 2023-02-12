@@ -3,23 +3,75 @@ import { useSelector } from "react-redux";
 import { getAllPins } from "../../store/pin";
 import { getAllBoardsThunk } from "../../store/board";
 import { useDispatch } from "react-redux";
-import PinsGrid from "../PinsGrid";
-
-// using the common "PinsGrid" component that can be re-used in all other pages
-// import "./PinterestLayout.css";
+import GridLayout from "../GridLayout";
+import { useHistory } from "react-router-dom";
+import { addPinning } from "../../store/pinning";
 
 function PinterestLayout() {
+  const [saveTo, setSaveTo] = useState("");
   const pins = useSelector((state) => Object.values(state.pin));
   const boards = useSelector((state) => Object.values(state.board));
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const navigateToPinPage = (pin) => {
+    history.push(`/pins/${pin.id}`);
+  };
 
   useEffect(() => {
     dispatch(getAllPins());
     dispatch(getAllBoardsThunk());
   }, [dispatch]);
 
-  return <div>{sessionUser && <PinsGrid pins={pins} boards={boards} />}</div>;
+  return (
+    <div>
+      {sessionUser && (
+        <GridLayout
+          items={pins}
+          onItemClick={navigateToPinPage}
+          renderItemActions={(pin, closeActionPopOver) => (
+            <>
+              <select
+                style={{
+                  width: "180px",
+                }}
+                onChange={(event) => {
+                  setSaveTo(event.target.value);
+                }}
+              >
+                {!saveTo && <option value="">choose a board</option>}
+                {boards
+                  .filter(
+                    ({ userId: boardAuthorId }) =>
+                      boardAuthorId === sessionUser.id
+                  )
+                  .map((board) => (
+                    <option
+                      key={board.id}
+                      selected={board.id === saveTo}
+                      value={board.id}
+                    >
+                      {board.title}
+                    </option>
+                  ))}
+              </select>
+              <button
+                className="create-button"
+                disabled={!saveTo}
+                onClick={() => {
+                  dispatch(addPinning(saveTo, pin.id));
+                  closeActionPopOver();
+                }}
+              >
+                confirm
+              </button>
+            </>
+          )}
+        />
+      )}
+    </div>
+  );
 }
 
 export default PinterestLayout;
