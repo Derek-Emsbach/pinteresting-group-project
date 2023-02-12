@@ -206,6 +206,8 @@ def undo_boards_and_pins():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.boards RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute("DELETE FROM boards")
+        db.session.execute("DELETE FROM pinnings CASCADE")
+        db.session.execute("DELETE FROM pins CASCADE")
+        db.session.execute("DELETE FROM boards CASCADE")
 
     db.session.commit()
