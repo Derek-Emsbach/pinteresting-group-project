@@ -15,7 +15,7 @@ function EditProfileForm() {
   const [username, setUserName] = useState(sessionUser.username);
   const [image, setImage] = useState(sessionUser.image);
   const [errors, setErrors] = useState([]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,7 +42,7 @@ function EditProfileForm() {
       history.push(`/${sessionUser.username}`);
     }
 
- 
+
   };
   const updateFile = (e) => {
     const file = e.target.files[0];
@@ -65,9 +65,10 @@ function EditProfileForm() {
         ))}
       </ul>
           <div className="pro_photo">
-            <label>Photo</label>
+            <label className="edit-profile-labels">Photo</label>
             <input
               type="text"
+              className="edit-profile-inputs"
               value={image}
               required
               onChange={(e) => setImage(e.target.value)}
@@ -75,33 +76,37 @@ function EditProfileForm() {
           </div>
 
           <div className="first_last_name">
-            <label>First name</label>
+            <label className="edit-profile-labels">First name</label>
             <input
               type="text"
+              className="edit-profile-inputs"
               required
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             ></input>
 
-            <label>Last name</label>
+            <label className="edit-profile-labels">Last name</label>
             <input
               type="text"
+              className="edit-profile-inputs"
               required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             ></input>
           </div>
 
-          <label>About</label>
-          <input
+          <label className="edit-profile-labels">About</label>
+          <textarea
             type="text"
+            className="edit-profile-input-about"
             value={about}
             onChange={(e) => setAbout(e.target.value)}
-          ></input>
+          ></textarea>
 
-          <label>Username</label>
+          <label className="edit-profile-labels">Username</label>
           <input
             type="text"
+            className="edit-profile-inputs"
             required
             value={username}
             onChange={(e) => setAbout(e.target.value)}
