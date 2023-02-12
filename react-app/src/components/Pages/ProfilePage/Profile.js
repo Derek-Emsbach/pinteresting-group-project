@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import profile from '../../../icons/profile.png'
-import './Profile.css'
-import { useHistory, NavLink } from "react-router-dom";
-import { follow, getAllFollowerThunk} from "../../../store/following_follower";
-import { getAllFollowingThunk } from "../../../store/following";
+import { useDispatch, useSelector } from "react-redux";
+import "./Profile.css";
+import { useHistory } from "react-router-dom";
 import Followers from "./Followers";
 import Followings from "./Followings";
 import { getAllBoardsThunk } from "../../../store/board";
+import { getAllFollowerThunk } from "../../../store/following_follower";
+import { getAllFollowingThunk } from "../../../store/following_follower";
+import profile from '../../../icons/profile.png'
 
 function Profile(){
     const sessionUser = useSelector(state => state.session.user)
@@ -42,19 +42,12 @@ function Profile(){
     //     history.push('/boards')
     // }
 
-    const profileForm = async(e)=>{
-        history.push(`/users/${sessionUser.id}`)
-    }
+  const profileForm = async (e) => {
+    history.push(`/users/${sessionUser.id}`);
+  };
 
-   
-    const following = async ()=>{
-        await dispatch(follow(sessionUser.id))
-    }
+ 
 
-
-
-      
-   
 
 
     return(
@@ -135,12 +128,10 @@ function Profile(){
                 </div>
             
          )}
-
-
-
-        </div>
          
-
+         </div>
     )
-}
-export default Profile
+    
+         }
+
+ export default Profile

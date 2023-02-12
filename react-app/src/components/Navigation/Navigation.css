@@ -1,4 +1,5 @@
 #navigation-bar ul {
+    /* min-width: 100%; */
     display: flex;
     list-style: none;
     justify-content: space-between;
@@ -20,7 +21,8 @@
 }
 
 .search_middle {
-    width: 75%;
+    min-width: 60%;
+    max-width: 90%;
     height: 49px;
     display: inline-flex;
     position: absolute;

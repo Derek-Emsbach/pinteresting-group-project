@@ -1,14 +1,23 @@
-
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Heading from "./Heading";
-import PinsGrid from "./PinsGrid";
+import GridLayout from "../../GridLayout";
 import Footing from "./Footing";
 import { getAllBoardsThunk } from "../../../store/board";
+import { removePinning } from "../../../store/pinning";
 
 function BoardDetailPage() {
+  const { boardId } = useParams();
+  const currentUser = useSelector((state) => state.session.user);
+  const { userId: boardAuthorId, pins = [] } =
+    useSelector((state) => state.board[boardId]) || {};
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const navigateToPinPage = (pin) => {
+    history.push(`/pins/${pin.id}`);
+  };
 
   useEffect(() => {
     dispatch(getAllBoardsThunk());
@@ -17,11 +26,27 @@ function BoardDetailPage() {
   return (
     <div className="BoardDetail--Page">
       <Heading />
-      <PinsGrid />
+      <GridLayout
+        items={pins}
+        onItemClick={navigateToPinPage}
+        renderItemActions={
+          currentUser.id === boardAuthorId &&
+          ((pin, closeActionPopOver) => (
+            <button
+              className="create-button"
+              onClick={() => {
+                dispatch(removePinning(boardId, pin.id));
+                closeActionPopOver();
+              }}
+            >
+              remove
+            </button>
+          ))
+        }
+      />
       <Footing />
     </div>
   );
-
 }
 
 export default BoardDetailPage;

@@ -1,11 +1,12 @@
 import React from 'react';
-import SignUpForm from '../auth/SignUpForm'
+import LoginForm from '../auth/LoginForm'
+import icon from '../../icons/pinterest_icon.png'
 import './Modal.css';
 
-function Modal({ setOpenModal }) {
+function LoginModal({ setLoginModalOpen }) {
   const handleClick = (event) => {
     if (event.target.className === 'modalBackground') {
-      setOpenModal(false);
+        setLoginModalOpen(false);
     }
   };
 
@@ -15,15 +16,15 @@ function Modal({ setOpenModal }) {
         <div className="titleCloseBtn">
           <button
             onClick={() => {
-              setOpenModal(false);
+                setLoginModalOpen(false);
             }}
           >
             X
           </button>
         </div>
 
-        <div className="sign_up">
-        <SignUpForm/>
+        <div className="Log_in">
+        <LoginForm/>
         </div>
 
       </div>
@@ -32,4 +33,4 @@ function Modal({ setOpenModal }) {
 }
 
 
-export default Modal;
+export default LoginModal;

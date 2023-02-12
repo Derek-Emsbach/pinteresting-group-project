@@ -1,0 +1,12 @@
+.MyBoards--Page {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.MyBoards--Heading {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+}

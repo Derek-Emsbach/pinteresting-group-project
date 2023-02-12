@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "./PopOver.css";
 
-function PopOver({ open, setOpen, button, children }) {
+function PopOver({ open, setOpen, button, children, style }) {
   const backdropRef = useRef();
 
   return (
@@ -13,12 +13,24 @@ function PopOver({ open, setOpen, button, children }) {
             ref={backdropRef}
             className="PopOver--Backdrop"
             onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+
               if (event.target === backdropRef.current) {
                 setOpen(false);
               }
             }}
           />
-          <div className="PopOver--Card">{children}</div>
+          <div
+            style={style}
+            className="PopOver--Card"
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+            }}
+          >
+            {children}
+          </div>
         </>
       )}
     </div>

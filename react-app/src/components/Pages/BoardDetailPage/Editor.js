@@ -28,7 +28,7 @@ function BoardDetailEditor({ setOpen }) {
     <div className="BoardDetail--Editor--Container">
       <div className="BoardDetail--Editor--Backdrop">
         <div className="BoardDetail--Editor--Card">
-          <button onClick={() => setOpen(false)} disabled={pending}>
+          <button className='regular-button' onClick={() => setOpen(false)} disabled={pending}>
             x
           </button>
           <form
@@ -82,7 +82,7 @@ function BoardDetailEditor({ setOpen }) {
               setValue={setImageUrl}
               disabled={pending}
             />
-            <button type="submit" disabled={pending}>
+            <button className='create-button' type="submit" disabled={pending}>
               Save
             </button>
           </form>

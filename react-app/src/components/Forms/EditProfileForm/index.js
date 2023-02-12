@@ -1,109 +1,105 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory, useParams } from 'react-router-dom';
-import { update_profile } from '../../../store/session';
-import './EditProfile.css'
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useHistory, useParams } from "react-router-dom";
+import { update_profile } from "../../../store/session";
+import "./EditProfile.css";
 
-function EditProfileForm(){
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const sessionUser = useSelector(state=>state.session.user)
-    const [id, setId] = useState(sessionUser.id)
-    const [firstName, setFirstName] = useState(sessionUser.firstName)
-    const [lastName, setLastName] = useState(sessionUser.lastName)
-    const [about, setAbout] = useState(sessionUser.about)
-    const [username, setUserName] = useState(sessionUser.username)
-    const [image, setImage] = useState()
+function EditProfileForm() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
+  const [id, setId] = useState(sessionUser.id);
+  const [firstName, setFirstName] = useState(sessionUser.firstName);
+  const [lastName, setLastName] = useState(sessionUser.lastName);
+  const [about, setAbout] = useState(sessionUser.about);
+  const [username, setUserName] = useState(sessionUser.username);
+  const [image, setImage] = useState(sessionUser.image);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleSubmit= async (e)=>{
-    
+    const payload = {
+      id,
+      firstName,
+      lastName,
+      image,
+      about,
+      username,
+    };
 
-        e.preventDefault();
-        
-        const payload ={
-                id,
-               firstName,
-               lastName,
-               image,
-               about,
-               username
+    //!!START SILENT
 
-            }
-            
-            //!!START SILENT
-       
-             await dispatch(update_profile(sessionUser.id,payload));
+    await dispatch(update_profile(sessionUser.id, payload));
 
-              // If error is not a ValidationError, add slice at the end to remove extra
-              // "Error: "
-            //!!END
-           
-            history.push(`/${sessionUser.username}`);
-        
-        }
-        const updateFile = (e) => {
-            const file = e.target.files[0];
-            console.log(file)
-            if (file) setImage(file);
-          };
-   console.log(image,'hello')
+    // If error is not a ValidationError, add slice at the end to remove extra
+    // "Error: "
+    //!!END
 
-    return(
-      <div className="profile_container">
-        <div className="profile_header">
-            <h1> Public profile</h1>
-            <h4> People visiting your profile will see the following info</h4>
-        <form onSubmit={handleSubmit} encType='multipart/form-data'>
-            <div className='pro_photo'>
+    history.push(`/${sessionUser.username}`);
+  };
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    if (file) setImage(file);
+  };
+  console.log(image, "hello");
+
+  return (
+    <div className="edit_profile_container">
+      <div className="profile_header">
+        <h1> Public profile</h1>
+        <h4> People visiting your profile will see the following info</h4>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className="pro_photo">
             <label>Photo</label>
-            <input type="file"
-            name='file'
-            onChange={updateFile}
-            placeholder="Image URL">
-            </input>
-            </div>
+            <input
+              type="text"
+              value={image}
+              required
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </div>
 
-            <div className='first_last_name'>
+          <div className="first_last_name">
             <label>First name</label>
-            <input type='text'
-            required
-            value={firstName}
-            onChange={(e) =>setFirstName(e.target.value)}>
-      
-            </input>
-            
+            <input
+              type="text"
+              required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            ></input>
+
             <label>Last name</label>
-            <input type='text'
-            required
-            value={lastName}
-            onChange={(e) =>setLastName(e.target.value)}>
+            <input
+              type="text"
+              required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            ></input>
+          </div>
 
-            </input>
-            </div>
-            
-            <label>About</label>
-            <input type='text'
+          <label>About</label>
+          <input
+            type="text"
             value={about}
-            onChange={(e) =>setAbout(e.target.value)}>
-      
-            </input>
+            onChange={(e) => setAbout(e.target.value)}
+          ></input>
 
-            <label>Username</label>
-            <input type='text'
+          <label>Username</label>
+          <input
+            type="text"
             required
             value={username}
-            onChange={(e) =>setAbout(e.target.value)}>
-      
-            </input>
-           
-            <button type='submit'>Continue</button>
-            </form>
-        </div>
-      
-      
+            onChange={(e) => setAbout(e.target.value)}
+          ></input>
+
+          <button className="create-button" type="submit">
+            Continue
+          </button>
+        </form>
       </div>
-    )
+    </div>
+  );
 }
 
-export default EditProfileForm
+export default EditProfileForm;

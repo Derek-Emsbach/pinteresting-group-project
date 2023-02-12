@@ -1,29 +1,29 @@
-const GET_ALL_PINS = "/spots/GET_ALL_PINS";
+const LOAD_MANY_PINS = "pin/LOAD_MANY_PINS";
 
-const ADD_PIN = "/spots/ADD_PIN";
+const LOAD_ONE_PIN = "pin/LOAD_ONE_PIN";
 
-const REMOVE_PIN='/spots/REMOVE_PIN'
+const REMOVE_PIN = "pin/REMOVE_PIN";
 
 const loadPins = (pins) => {
   return {
-    type: GET_ALL_PINS,
-    pins
-  };
-};
-
-const addingPin = (pins) => {
-  return {
-    type: ADD_PIN,
+    type: LOAD_MANY_PINS,
     pins,
   };
 };
 
-const removePin =(pinId)=>{
-  return{
+const loadOnePin = (pins) => {
+  return {
+    type: LOAD_ONE_PIN,
+    pins,
+  };
+};
+
+const removePin = (pinId) => {
+  return {
     type: REMOVE_PIN,
-    pinId
-  }
-}
+    pinId,
+  };
+};
 
 export const getAllPins = () => async (dispatch) => {
   const response = await fetch("/api/pins/");
@@ -31,7 +31,15 @@ export const getAllPins = () => async (dispatch) => {
   if (response.ok) {
     const list = await response.json();
     dispatch(loadPins(list));
+  }
+};
 
+export const getAllPinsByAUser = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}/pins`);
+
+  if (response.ok) {
+    const list = await response.json();
+    dispatch(loadPins(list));
   }
 };
 
@@ -40,57 +48,58 @@ export const getSinglePin = (pinId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(addingPin(data));
+    dispatch(loadOnePin(data));
     return data;
   }
 };
 
 export const addAPin = (pins) => async (dispatch) => {
-  const response = await fetch("/api/pins/",{
-    method: 'POST',
+  const response = await fetch("/api/pins/", {
+    method: "POST",
     headers: {
-        'Content-Type':'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(pins)
-  })
-
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(addingPin(data));
-    return data
-
-  }
-};
-
-export const editAPin=(id,pinData) =>async(dispatch)=>{
-  const response = await fetch(`/api/pins/${id}`,{
-    method:'PATCH',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body: JSON.stringify(pinData)
-
-  })
-if(response.ok){
-  const pinData= await response.json()
-  dispatch(addingPin(pinData))
-  return pinData
-}
-
-}
-
-export const deleteAPin = (pinId) => async (dispatch) => {
-  const response = await fetch(`/api/pins/${pinId}`,{
-    method: 'DELETE',
-    headers:{
-      'Content-Type':'application/json'
-    }
+    body: JSON.stringify(pins),
   });
 
   if (response.ok) {
-   
+    const data = await response.json();
+    dispatch(loadOnePin(data));
+    return data;
+  } else {
+    const error = await response.json();
+    return error;
+  }
+};
+
+export const editAPin = (id, pinData) => async (dispatch) => {
+  const response = await fetch(`/api/pins/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(pinData),
+  });
+  if (response.ok) {
+    const pinData = await response.json();
+    dispatch(loadOnePin(pinData));
+    return pinData;
+  } else {
+    const error = await response.json();
+    return error;
+  }
+};
+
+export const deleteAPin = (pinId) => async (dispatch) => {
+  const response = await fetch(`/api/pins/${pinId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
     dispatch(removePin(pinId));
-  
   }
 };
 const initialPins = {};
@@ -98,22 +107,20 @@ const initialPins = {};
 const pinsReducer = (state = initialPins, action) => {
   let copy = { ...state };
   switch (action.type) {
-    case GET_ALL_PINS: 
-    action.pins.pins.forEach((pin) => {
+    case LOAD_MANY_PINS:
+      action.pins.forEach((pin) => {
         copy[pin.id] = pin;
       });
       return copy;
 
-    case ADD_PIN: 
+    case LOAD_ONE_PIN:
       copy[action.pins.id] = action.pins;
-    return copy
+      return copy;
 
     case REMOVE_PIN:
+      delete copy[action.pinId];
 
-    delete copy[action.pinId] 
-
-   
-  return copy
+      return copy;
 
     default:
       return state;
@@ -121,3 +128,15 @@ const pinsReducer = (state = initialPins, action) => {
 };
 
 export default pinsReducer;
+
+export function selectMyPins(state) {
+  const currentUser = state.session.user;
+
+  if (!currentUser) {
+    return [];
+  }
+
+  return Object.values(state.pin).filter(
+    ({ userId: pinAuthorId }) => pinAuthorId === currentUser.id
+  );
+}

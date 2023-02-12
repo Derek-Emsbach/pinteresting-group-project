@@ -1,63 +1,57 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllBoardsThunk } from "../../../store/board";
+import {
+  deleteBoardThunk,
+  getAllBoardsThunk,
+  selectMyBoards,
+} from "../../../store/board";
+import "./BoardsPage.css";
+import GridLayout from "../../GridLayout";
 
 function BoardsPage() {
-	const history = useHistory();
-	const dispatch = useDispatch();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-	const boards = useSelector((state) => Object.values(state.board));
-	// console.log(boards, "BOARDS");
-	useEffect(() => {
-		dispatch(getAllBoardsThunk());
-	}, [dispatch]);
+  const myBoards = useSelector(selectMyBoards);
 
+  useEffect(() => {
+    dispatch(getAllBoardsThunk());
+  }, [dispatch]);
 
-	return (
-		<>
-			{boards && (
+  const navigateToCreateBoardForm = () => {
+    history.push("/boardform");
+  };
 
+  const navigateToBoard = (board) => {
+    history.push(`/boards/${board.id}`);
+  };
 
-			<div>
-				<div>
-					<div>
-						<h1>ALL BOARDS</h1>
-						<NavLink
-							to="/boardform"
-							exact={true}
-							activeClassName="active"
-						>
-							Create Board
-						</NavLink>
-					</div>
-					{/* <h2>{boards.title}</h2> */}
-					{boards.map((board) => (
-						<div key={board.id}>
-							<h4>
-								<NavLink
-									to={`/boards/${board.id}`}
-									activeClassName="active"
-								>
-									{board.title}
-								</NavLink>
-							</h4>
-							<NavLink
-									to={`/boards/${board.id}`}
-									activeClassName="active"
-								>
-									<img src={board.imageUrl}></img>
-
-							</NavLink>
-
-						</div>
-
-					))}
-				</div>
-			</div>
-			)}
-		</>
-	);
+  return (
+    <div className="MyBoards--Page">
+      <div className="MyBoards--Heading">
+        <h1>My Boards</h1>
+        <button className="create-button" onClick={navigateToCreateBoardForm}>
+          Create Board
+        </button>
+      </div>
+      <GridLayout
+        items={myBoards}
+        onItemClick={navigateToBoard}
+        renderItemActions={(board, closeActionPopOver) => (
+          <button
+            className="create-button"
+            onClick={() => {
+              dispatch(deleteBoardThunk(board.id));
+              closeActionPopOver();
+            }}
+          >
+            Delete
+          </button>
+        )}
+      />
+    </div>
+  );
 }
 
 export default BoardsPage;

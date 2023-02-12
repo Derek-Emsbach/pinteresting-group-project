@@ -1,34 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { NavLink, Redirect, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { deleteAPin } from '../../../store/pin';
-
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { deleteAPin, getSinglePin } from "../../../store/pin";
+import "./PinDetailPage.css";
+import { getOneUserThunk } from "../../../store/user";
 
 function PinDetailPage() {
-	const [pin, setPin] = useState([]);
-  const {pinId} = useParams();
-const currentUser= useSelector((state)=> state.session.user)
-  const allPins = useSelector((state) => state.pin);
-  const specificPin = allPins[pinId];
+  const { pinId } = useParams();
 
-  const [users, setUsers] = useState([]);
+  const { pin, pinAuthor, currentUser } = useSelector((state) => {
+    const pin = state.pin[pinId];
+    const pinAuthor = state.otherUser[pin?.userId];
+    const currentUser = state.session.user;
 
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('/api/users/');
-      const responseData = await response.json();
-      setUsers(responseData.users);
-    }
-    fetchData();
-  }, []);
+    return {
+      pin,
+      pinAuthor,
+      currentUser,
+    };
+  });
 
- 
-
-
-const dispatch= useDispatch()
-const history= useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const deletePin = (e) => {
     e.preventDefault();
@@ -36,59 +31,62 @@ const history= useHistory()
     dispatch(deleteAPin(pinId));
 
     history.push(`/pins`);
-
-    
   };
+
   useEffect(() => {
-		if (!pinId) {
-			return;
-		}
-		(async () => {
-			const response = await fetch(`/api/pins/${pinId}`);
-			const pin = await response.json();
-			setPin(pin);
-		})();
+    dispatch(getSinglePin(pinId));
+  }, []);
 
+  useEffect(() => {
+    if (pin?.userId && !pinAuthor) {
+      dispatch(getOneUserThunk(pin.userId));
+    }
+  }, [pin, pinAuthor]);
 
-	}, [pinId]);
+  if (!pinId) {
+    return <Redirect to="/404" />;
+  }
 
-	if (!pin) {
-		return null;
-	}
+  if (!pin || !pinAuthor || !currentUser) {
+    return null;
+  }
 
-    const pinUsers = users.filter((user)=>user.id ===pin.userId)
+  return (
+    <ul className="PinDetail--Page">
+      <div>
+        <h1>PIN DETAIL PAGE</h1>
+        <div>
+          <img className="PinDetail--Image" src={pin.imageUrl}></img>
+        </div>
 
-    console.log(pinUsers.map((user)=>user.username), 'users')
+        <li>
+          <strong>Title: </strong> {pin?.title}
+        </li>
 
-	return (
-		<ul>
-			<div>
-            <div>
-            <img src={pin.imageUrl}></img>
-            </div>
-				<h1>PIN DETAIL PAGE</h1>
-				<li><strong>Created By: </strong> {pinUsers.map((user)=>user.username)}</li>
-                
-				<li><strong>Title: </strong> {pin.title}</li>
+        <li>
+          <strong>Author: </strong>{" "}
+          <NavLink to={`/users/${pinAuthor.id}`}>{pinAuthor.username}</NavLink>
+        </li>
 
-                <li><strong>Link: </strong>  <a href= {pin.url}>
-                {pin.url}
-                </a></li>
+        {!!pin.url && (
+          <li>
+            <strong>Link: </strong> <a href={pin?.url}> Click Here </a>
+          </li>
+        )}
+      </div>
 
-			</div>
-
-            {currentUser?.id === specificPin.userId &&(
-            <Link to={`/pins/${pin.id}/update`}>
-            <button className='update_button' type="button">Update Form</button>
-            <button className='delete_button' type="button" onClick={deletePin}>
+      {currentUser.id === pinAuthor.id && (
+        <Link to={`/pins/${pin.id}/update`}>
+          <button className="regular-button" type="button">
+            Update Pin
+          </button>
+          <button className="create-button" type="button" onClick={deletePin}>
             Delete Pin
           </button>
-       
-
-          </Link>
-          )}
-		</ul>
-	);
+        </Link>
+      )}
+    </ul>
+  );
 }
 
 export default PinDetailPage;
