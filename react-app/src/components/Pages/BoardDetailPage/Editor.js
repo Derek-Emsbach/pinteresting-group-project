@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EditorInput from "./EditorInput";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editBoardThunk } from "../../../store/board";
 import "./Editor.css";
@@ -15,13 +15,16 @@ function BoardDetailEditor({ setOpen }) {
   // const [description, setDescription] = useState("");
   const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState([]);
-
+const history = useHistory()
   useEffect(() => {
     setTitle(board.title);
     // setDescription(board.description);
     setImageUrl(board.imageUrl)
   }, [board]);
 
+  const handleSubmit= async(e)=>{
+    
+  }
 
 
   return (
@@ -32,36 +35,31 @@ function BoardDetailEditor({ setOpen }) {
             x
           </button>
           <form
-            onSubmit={(event) => {
+            onSubmit={async (event) => {
               event.preventDefault();
 
               setPending(true);
               const payload = { title, imageUrl }
-              dispatch(
+              let data = await dispatch(
                 editBoardThunk(
                   boardId,
                   payload
                 )
               )
-                // .then((res) => {
-                //   if (res) {
-                //     setOpen(false);
-                //   } else {
-                //     throw new Error("No response???");
-                //   }
-                // })
-                // .catch((reason) => {
-                //   if (!reason?.data?.errors?.length) {
-                //     setErrors([
-                //       "Hmmm, something went wrong. Please try again later.",
-                //     ]);
-                //   }
-                // })
-                .finally(() => {
+                .finally((data) => {
                   setPending(false);
+                  return data
                 });
+                console.log(data, 'data')
+                if (data.errors) {
+                  setErrors([...Object.values(data.errors)]);
+                 
+                }else{
+                  history.push(`/boards/${board.id}`);
+                 }
             }}
           >
+    
             <EditorInput
               name="Title"
               value={title}
@@ -86,11 +84,11 @@ function BoardDetailEditor({ setOpen }) {
               Save
             </button>
           </form>
-          {/* <ul>
+           <ul>
             {errors.map((message, i) => (
               <li key={i}>{message}</li>
             ))}
-          </ul> */}
+          </ul> 
         </div>
       </div>
     </div>

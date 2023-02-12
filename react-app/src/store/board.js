@@ -63,6 +63,9 @@ export const createBoardThunk = (boards) => async (dispatch) => {
     const newData = await res.json();
     dispatch(addBoard(newData));
     return newData;
+  } else {
+    const error = await res.json();
+    return error;
   }
 };
 
@@ -74,11 +77,15 @@ export const editBoardThunk = (boardId, boardData) => async (dispatch) => {
     },
     body: JSON.stringify(boardData),
   });
-
+console.log(res,'thunk')
   if (res.ok) {
     const boardData = await res.json();
     dispatch(addBoard(boardData));
     return boardData;
+  }else {
+    const error = await res.json();
+    console.log(error,'error')
+    return error;
   }
 };
 
