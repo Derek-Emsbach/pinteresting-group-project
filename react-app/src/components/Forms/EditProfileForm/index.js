@@ -14,7 +14,8 @@ function EditProfileForm() {
   const [about, setAbout] = useState(sessionUser.about);
   const [username, setUserName] = useState(sessionUser.username);
   const [image, setImage] = useState(sessionUser.image);
-
+  const [errors, setErrors] = useState([]);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,13 +30,19 @@ function EditProfileForm() {
 
     //!!START SILENT
 
-    await dispatch(update_profile(sessionUser.id, payload));
+   let data = await dispatch(update_profile(sessionUser.id, payload));
 
     // If error is not a ValidationError, add slice at the end to remove extra
     // "Error: "
     //!!END
 
-    history.push(`/${sessionUser.username}`);
+    if (data.errors) {
+      setErrors([...Object.values(data.errors)]);
+    } else {
+      history.push(`/${sessionUser.username}`);
+    }
+
+ 
   };
   const updateFile = (e) => {
     const file = e.target.files[0];
@@ -50,6 +57,13 @@ function EditProfileForm() {
         <h1> Public profile</h1>
         <h4> People visiting your profile will see the following info</h4>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <ul>
+        {errors.map((error, idx) => (
+          <li className="edit-errors" key={idx}>
+            {error}
+          </li>
+        ))}
+      </ul>
           <div className="pro_photo">
             <label>Photo</label>
             <input

@@ -49,3 +49,19 @@ button:disabled,select:disabled {
   color: rgb(255, 255, 255);
   /* width: 100%; */
 }
+.edit-errors{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: red;
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+}
+
+.errors{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: red;
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+
+}
