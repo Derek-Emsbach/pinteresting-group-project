@@ -6,27 +6,30 @@ from app.models import db, Board, Pin, environment, SCHEMA
 def seed_boards_and_pins():
     data = []
 
-    pokemonBoard = Board(userId=1, title='Pokemon',
-                         imageUrl='https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/800px-International_Pok%C3%A9mon_logo.svg.png')
+    pokemonBoard = Board(userId=1, title='Random',
+                         imageUrl='https://m.media-amazon.com/images/I/81QVIs34c0L._AC_UX679_.jpg')
     pokemonPins = [
-        Pin(userId=1, title="demo2", save=False, url="https://www.amazon.com/BRIGHTWORLD-Control-Dimmable-Rechargeable-Birthday/dp/B07PY7GLKV/ref=sxin_15_pa_sp_search_thematic_sspa?content-id=amzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb%3Aamzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&crid=OSLD4WRSLHJL&cv_ct_cx=glass+moon+globe&keywords=glass+moon+globe&pd_rd_i=B07PY7GLKV&pd_rd_r=d1e5f8ae-8516-4269-8057-c2b664fc1274&pd_rd_w=Y58wb&pd_rd_wg=qCGWi&pf_rd_p=f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&pf_rd_r=Q5B8HAVKWK6PP65KCMB1&qid=1675751996&sprefix=glass+moon+globe%2Caps%2C84&sr=1-1-a73d1c8c-2fd2-4f19-aa41-2df022bcb241-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzRzY1Tk9USEU5TjdZJmVuY3J5cHRlZElkPUEwNDY2OTQ0TFhERVpNSUo4UFJZJmVuY3J5cHRlZEFkSWQ9QTA3NjY4MzgxSjY3UkEyNjNIVTQ2JndpZGdldE5hbWU9c3Bfc2VhcmNoX3RoZW1hdGljJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==", imageUrl="https://m.media-amazon.com/images/I/71GETtCC-fL.__AC_SY445_SX342_QL70_FMwebp_.jpg"),
-        Pin(userId=1, title="demo3", save=False, url="https://www.amazon.com/Star-Wars-Remote-Control-Droid/dp/B09SQB4CYX/ref=sr_1_2?keywords=star+wars+bb8&qid=1675751851&sr=8-2",
-            imageUrl="https://1.bp.blogspot.com/-jLBhcuYpLxI/VpeW1KKLd2I/AAAAAAAAAEA/XZfCHaz2YAQ/s1600/sphero1.png"),
-        Pin(userId=1, title="demo4", save=False, url="https://www.amazon.com/Vintage-Chromatic-Adorable-Collections-Project/dp/B07H8GZ38Z/ref=sr_1_2?crid=KQBXH1LYI5A9&keywords=troll+dolls&qid=1675751917&sprefix=troll+dolls%2Caps%2C93&sr=8-2",
-            imageUrl="https://creativebeacon.com/wp-content/uploads/2012/11/creature-cool-stuff-for-designers.jpg"),
-        Pin(userId=1, title="demo5", save=False, url="https://www.amazon.com/dp/B0B2K17LXZ?pd_rd_i=B0B2K17LXZ&pf_rd_p=b000e0a0-9e93-480f-bf78-a83c8136dfcb&pf_rd_r=D2GE9FF0MTN7KE50KDVA&pd_rd_wg=ucRIw&pd_rd_w=V7F7d&pd_rd_r=fc9f0325-9341-4e02-adaf-6a93512db5a1",
-            imageUrl="https://i.ytimg.com/vi/gVpHckybWkQ/maxresdefault.jpg"),
-        Pin(userId=1, title="demo6", save=False, url="https://www.amazon.com/Toddler-Groot-Cable-Controller-Holder/dp/B087547M9F/ref=sr_1_2?crid=ZDUQZ2TUACE2&keywords=groot+phone+holder&qid=1675752076&s=electronics&sprefix=grute+phone+holde%2Celectronics%2C88&sr=1-2",
-            imageUrl="https://cdn.thecoolist.com/wp-content/uploads/2021/12/Nerdy-Christmas-Gifts-Toddler-Groot-Device-Holder.jpg"),
-        Pin(userId=1, title="demo7", save=False, url="https://www.amazon.com/VOHO-Clear-Tealight-12-Holders/dp/B0B1MMDJ38/ref=sr_1_2?crid=14FCU98UP01U9&keywords=glass+light+candle&qid=1675752115&sprefix=glass+light+candle%2Caps%2C96&sr=8-2",
-            imageUrl="https://www.coolantarctica.com/Antarctica%20fact%20file/ice-light1.jpg"),
-        Pin(userId=1, title="demo8", save=False, url="https://www.businessinsider.com/coolest-things-in-space-2018-11",
-            imageUrl="https://i.insider.com/5be473950d7c676fb95cc4ca?width=750&format=jpeg"),
-        Pin(userId=1, title="demo9", save=False, url="https://www.amazon.com/Kidult-Design-Ltd-Lamp-Sounds/dp/B07NGQKD5T/ref=sr_1_8?crid=Z4B29XTFDXW5&keywords=pacman+light&qid=1675752212&sprefix=pacman+light%2Caps%2C112&sr=8-8",
-            imageUrl="https://styles.redditmedia.com/t5_3iuzh/styles/communityIcon_hceklnihybt51.jpg"),
-        Pin(userId=1, title="demo10", save=False, url="https://www.amazon.com/Beast-Kingdom-Avengers-Endgame-Multicolor/dp/B09D5WJ8Y9/ref=sr_1_3?crid=5FCMSZESDVS2&keywords=thor+egg&qid=1675752254&sprefix=thor+egg%2Caps%2C95&sr=8-3",
-            imageUrl="https://m.media-amazon.com/images/I/61HBsioY7BL._AC_SL1462_.jpg"),
-        Pin(userId=1, title="demo1", save=False, url="https://www.amazon.com/VSATEN-Dinosaur-Changing-Silicone-Rechargeable/dp/B08D9NWV23/ref=sxin_25_trfobq2a_2_B08D9NWV23?content-id=amzn1.sym.d87bdde9-97f6-47ac-b339-55167deba1dc%3Aamzn1.sym.d87bdde9-97f6-47ac-b339-55167deba1dc&crid=FXWPV2P0BRXV&cv_ct_cx=cool+things&keywords=cool+things&pd_rd_i=B08D9NWV23&pd_rd_r=c9308e9e-a1c5-46a2-852f-748fa64fda3a&pd_rd_w=hYvqf&pd_rd_wg=wLOM4&pf_rd_p=d87bdde9-97f6-47ac-b339-55167deba1dc&pf_rd_r=20Z3Z2X22GB6J5F3P4NH&qid=1675752303&sprefix=cool+thing%2Caps%2C98&sr=1-3-c944532c-3909-4a2a-84a2-570d2ee3cd13", imageUrl="https://m.media-amazon.com/images/I/61et25jE9tL._AC_SL1500_.jpg"),
+        Pin(userId=1, title="demo1", save=False, url="https://www.amazon.com/Erasers-Classroom-Birthday-Supplies-Wonderful/dp/B0B2P1Y211/ref=sr_1_4?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225106&sprefix=random%2Caps%2C110&sr=8-4",
+            imageUrl="https://m.media-amazon.com/images/I/81fs-GWce2L._AC_SX679_.jpg"),
+        Pin(userId=1, title="demo2", save=False, url="https://www.amazon.com/Jack-Links-Teriyaki-Protein-5-0-625oz/dp/B015SQAVB8/ref=sr_1_13?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225129&sprefix=random%2Caps%2C110&sr=8-13",
+            imageUrl="https://m.media-amazon.com/images/I/41gl-9qjJbS._SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=1, title="demo3", save=False, url="https://www.amazon.com/Rechargeable-Dimmable-Portable-Bedroom-Bedside/dp/B08PQNS73H/ref=sr_1_24?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225129&sprefix=random%2Caps%2C110&sr=8-24",
+            imageUrl="https://m.media-amazon.com/images/I/51UXG263MVS._AC_SX679_.jpg"),
+        Pin(userId=1, title="demo4", save=False, url="https://www.amazon.com/Piscifun-Baitcasting-Baitcaster-Aluminum-Baitcast/dp/B07PRPFBTF/?_encoding=UTF8&pd_rd_w=3kMUa&content-id=amzn1.sym.18be86ac-b16e-400a-b42f-43f216645498&pf_rd_p=18be86ac-b16e-400a-b42f-43f216645498&pf_rd_r=81GT5VWD20G81R1ZFPZ6&pd_rd_wg=iNqYJ&pd_rd_r=0e5f7cdf-383b-4f6d-96a0-88529eeb0aca&ref_=pd_gw_bmx_gp_cc4nxlro", imageUrl="https://m.media-amazon.com/images/I/71jLR8KuCtL._AC_SX466_.jpg"),
+        Pin(userId=1, title="demo5", save=False, url="https://www.amazon.com/Michael-Kors-Quartz-Stainless-Casual/dp/B06XJNM54R/ref=sr_1_46?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225129&sprefix=random%2Caps%2C110&sr=8-46",
+            imageUrl="https://m.media-amazon.com/images/I/71aq6HsZiKS._AC_UX522_.jpg"),
+        Pin(userId=1, title="demo6", save=False, url="https://www.amazon.com/Random-Axolotl-Fidget-Articulated-Decoration/dp/B0BHPY5G9Z/ref=sr_1_48?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225129&sprefix=random%2Caps%2C110&sr=8-48",
+            imageUrl="https://m.media-amazon.com/images/I/51+VYoYNcLL._AC_SX300_SY300_.jpg"),
+        Pin(userId=1, title="demo7", save=False, url="https://www.amazon.com/Pieces-Polyhedral-Random-Colored-Assortment/dp/B09FYY6J4X/ref=sr_1_54?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225129&sprefix=random%2Caps%2C110&sr=8-54",
+            imageUrl="https://m.media-amazon.com/images/I/81QJ34tuTgL._AC_SX466_.jpg"),
+        Pin(userId=1, title="demo8", save=False, url="https://www.amazon.com/WORD-TEASERS-Random-Conversation-Starters/dp/B07WTY38H6/ref=sr_1_59?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225129&sprefix=random%2Caps%2C110&sr=8-59",
+            imageUrl="https://m.media-amazon.com/images/I/81ObX8a-OQL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=1, title="demo9", save=False, url="https://www.amazon.com/Original-Rowntrees-Randoms-England-Rowntress/dp/B01DU6HAH6/ref=sr_1_55?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225238&sprefix=random%2Caps%2C110&sr=8-55",
+            imageUrl="https://m.media-amazon.com/images/I/51z8jIB898L._SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=1, title="demo10", save=False, url="https://www.amazon.com/Accoutrements-12041-Emergency-Underpants/dp/B003DM3MN4/ref=sr_1_56?crid=2FM1Y4YMGVLB4&keywords=random&qid=1676225253&sprefix=random%2Caps%2C110&sr=8-56",
+            imageUrl="https://m.media-amazon.com/images/I/81943kgHgHL._AC_SY879_.jpg"),
+
+
     ]
 
     for pin in pokemonPins:
@@ -35,29 +38,26 @@ def seed_boards_and_pins():
     data.append(pokemonBoard)
     data.extend(pokemonPins)
 
-    fashionBoard = Board(userId=2, title='Fashion',
-                         imageUrl='https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/lisa-adams-closet-designer-1561745904.jpg')
+    fashionBoard = Board(userId=2, title='Boba',
+                         imageUrl='https://m.media-amazon.com/images/I/51AcI6uBEtL._SX300_SY300_QL70_FMwebp_.jpg')
     fashionPins = [
-        Pin(userId=2, title="cherry1", save=False, url=None,
-            imageUrl="https://www.rosewe.com/images/202209/source_img/315093_P_1664502950659.jpg"),
-        Pin(userId=2, title="cherry2", save=False, url=None,
-            imageUrl="https://www.lulus.com/images/product/xlarge/7878381_1620796.jpg"),
-        Pin(userId=2, title="cherry3", save=False, url=None,
-            imageUrl="https://cdn.shopify.com/s/files/1/2322/9537/products/080222-Sofia-2988.jpg"),
-        Pin(userId=2, title="cherry4", save=False, url=None,
-            imageUrl="https://www.lulus.com/images/product/xlarge/8112501_1649856.jpg"),
-        Pin(userId=2, title="cherry5", save=False, url=None,
-            imageUrl="https://ke.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/54/284953/1.jpg"),
-        Pin(userId=2, title="cherry6", save=False, url=None,
-            imageUrl="https://static.fibre2fashion.com//articleresources/images/87/8609/fashion%20women-small_Small.jpg"),
-        Pin(userId=2, title="cherry7", save=False, url=None,
-            imageUrl="https://fayth.com/img/submobile_july2020.jpg"),
-        Pin(userId=2, title="cherry8", save=False, url=None,
-            imageUrl="https://www.maurices.com/assets/images/quickview-herofpo.jpg"),
-        Pin(userId=2, title="cherry9", save=False, url=None,
-            imageUrl="https://www.herstylecode.com/2021/05/how-to-style-cargo-pants-best-new-style-guide-for-women_herstylecode.jpg"),
-        Pin(userId=2, title="cherry10", save=False, url=None,
-            imageUrl="https://www.lulus.com/images/product/xlarge/5048791_606432.jpg"),
+        Pin(userId=2, title="cherry1", save=False, url="https://www.amazon.com/Strawberry-Pearls-Popping-Bursting-Bubble/dp/B01IJB1Z3M/ref=sr_1_2?keywords=boba&qid=1676231158&sr=8-2",
+            imageUrl="https://m.media-amazon.com/images/I/41uKZA6ligL._SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=2, title="cherry2", save=False, url="https://www.amazon.com/Black-Tapioca-Pearl-Boba-Pound/dp/B01IE9P1KC/ref=sr_1_2?keywords=boba&qid=1676231176&sr=8-2",
+            imageUrl="https://m.media-amazon.com/images/I/51Vc+Rc+1NL.jpg"),
+        Pin(userId=2, title="cherry3", save=False, url="https://www.amazon.com/Tapioca-Wufuyuan-FortuneHouse-Stainless-Cleaning/dp/B091Q6JY72/ref=sr_1_3?keywords=boba&qid=1676231176&sr=8-3",
+            imageUrl="https://m.media-amazon.com/images/I/81Mrwm4nt6L._AC_SX522_.jpg"),
+        Pin(userId=2, title="cherry4", save=False, url="https://www.amazon.com/WAY-Instant-Authentic-Tapioca-Included/dp/B096WHBM1K/ref=sr_1_5?keywords=boba&qid=1676231176&sr=8-5",
+            imageUrl="https://m.media-amazon.com/images/I/710XgEjpNbL._SX569_.jpg"),
+        Pin(userId=2, title="cherry5", save=False, url="https://www.amazon.com/Passion-Pearls-Popping-Bursting-Tapioca/dp/B09TTXYFRW/ref=sxin_15_pa_sp_search_thematic_sspa?content-id=amzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb%3Aamzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&cv_ct_cx=boba&keywords=boba&pd_rd_i=B09TTXYFRW&pd_rd_r=007de0e1-8330-41ef-bb7c-394c253c14b6&pd_rd_w=7DbXU&pd_rd_wg=4nEiR&pf_rd_p=f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&pf_rd_r=T1KY7F3JSW3GF1BW8TGA&qid=1676231176&sr=1-3-a73d1c8c-2fd2-4f19-aa41-2df022bcb241-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFUQVY1Q1MyVU8yWkQmZW5jcnlwdGVkSWQ9QTA3NDA5NTMxVzJXVUpOWURKRVg0JmVuY3J5cHRlZEFkSWQ9QTAxMjMyMjlZRDJKQkIxVldDUEMmd2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWMmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl", imageUrl="https://m.media-amazon.com/images/I/91R1-3yQZGL._SX679_.jpg"),
+        Pin(userId=2, title="cherry6", save=False, url="https://www.amazon.com/Locca-Premium-Drinks-Tapioca-Jasmine/dp/B08H1VQVJX/ref=sxin_15_pa_sp_search_thematic_sspa?content-id=amzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb%3Aamzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&cv_ct_cx=boba&keywords=boba&pd_rd_i=B08H1VQVJX&pd_rd_r=007de0e1-8330-41ef-bb7c-394c253c14b6&pd_rd_w=7DbXU&pd_rd_wg=4nEiR&pf_rd_p=f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&pf_rd_r=T1KY7F3JSW3GF1BW8TGA&qid=1676231176&sr=1-5-a73d1c8c-2fd2-4f19-aa41-2df022bcb241-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFUQVY1Q1MyVU8yWkQmZW5jcnlwdGVkSWQ9QTA3NDA5NTMxVzJXVUpOWURKRVg0JmVuY3J5cHRlZEFkSWQ9QTAxMjYwNzIxQzFDU1BUT1pYNlImd2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWMmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl", imageUrl="https://m.media-amazon.com/images/I/41wpLOhiZ2L._SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=2, title="cherry7", save=False, url="https://www.amazon.com/Wufuyuan-Tapioca-Pearl-8-8-Oz/dp/B00PLTPSOI/ref=sxin_24?asc_contentid=amzn1.osa.794df8ee-027e-406b-952e-aeaa777dc88f.ATVPDKIKX0DER.en_US&asc_contenttype=article&ascsubtag=amzn1.osa.794df8ee-027e-406b-952e-aeaa777dc88f.ATVPDKIKX0DER.en_US&content-id=amzn1.sym.2501e731-e00e-46aa-97f8-28a8de3ef511%3Aamzn1.sym.2501e731-e00e-46aa-97f8-28a8de3ef511&creativeASIN=B00PLTPSOI&cv_ct_cx=boba&cv_ct_id=amzn1.osa.794df8ee-027e-406b-952e-aeaa777dc88f.ATVPDKIKX0DER.en_US&cv_ct_pg=search&cv_ct_we=asin&cv_ct_wn=osp-single-source-pecos-desktop&keywords=boba&linkCode=oas&pd_rd_i=B00PLTPSOI&pd_rd_r=007de0e1-8330-41ef-bb7c-394c253c14b6&pd_rd_w=K4N3W&pd_rd_wg=4nEiR&pf_rd_p=2501e731-e00e-46aa-97f8-28a8de3ef511&pf_rd_r=T1KY7F3JSW3GF1BW8TGA&qid=1676231176&sr=1-4-c26ac7f6-b43f-4741-a772-17cad7536576&tag=momtastic-tca-20", imageUrl="https://m.media-amazon.com/images/I/71dAp6HqmwL._SY679_.jpg"),
+        Pin(userId=2, title="cherry8", save=False, url="https://www.amazon.com/Smoothie-Stainless-Reusable-Drinking-Silicone/dp/B0B1MJ41T1/ref=sr_1_14?keywords=boba&qid=1676231176&sr=8-14",
+            imageUrl="https://m.media-amazon.com/images/I/716psxxhg0L.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=2, title="cherry9", save=False, url="https://www.amazon.com/Yuki-and-Love-Boba-Mochi/dp/B08TB16RCX/ref=sr_1_16?keywords=boba&qid=1676231176&sr=8-16",
+            imageUrl="https://m.media-amazon.com/images/I/71AVLhfKb0L.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=2, title="cherry10", save=False, url="https://www.amazon.com/Angled-Reusable-Smoothie-Straws-Brushes/dp/B0B24V3WL4/ref=sr_1_18?keywords=boba&qid=1676231176&sr=8-18",
+            imageUrl="https://m.media-amazon.com/images/I/815MnOmXNBL._AC_SX466_PIbundle-12,TopRight,0,0_SH20_.jpg"),
 
     ]
 
@@ -68,28 +68,28 @@ def seed_boards_and_pins():
     data.extend(fashionPins)
 
     gamingBoard = Board(userId=3, title='Games',
-                        imageUrl='https://media.kasperskydaily.com/wp-content/uploads/sites/85/2014/04/20122626/online-gamer-threats-featured.jpg')
+                        imageUrl='https://m.media-amazon.com/images/I/81zg1vHpbkL._SX522_.jpg')
     gamingPins = [
-        Pin(userId=3, title="jimmy1", save=False, url=None,
-            imageUrl="https://c.files.bbci.co.uk/E909/production/_112375695_crucible976.jpg"),
-        Pin(userId=3, title="jimmy2", save=False, url=None,
-            imageUrl="https://www.gamingscan.com/wp-content/uploads/2020/10/Call-of-Duty-Game-Order.jpg"),
-        Pin(userId=3, title="jimmy3", save=False, url=None,
-            imageUrl="https://assets1.ignimgs.com/2018/03/06/fortnite---button-1520296499714.jpg"),
-        Pin(userId=3, title="jimmy4", save=False, url=None,
-            imageUrl="https://static.starcraft2.com/dist/images/global/fb-share.jpg"),
-        Pin(userId=3, title="jimmy5", save=False, url=None,
-            imageUrl="https://leekduck.com/assets/img/events/pokemon-go-tour-2023-hoenn-las-vegas-updated.jpg"),
-        Pin(userId=3, title="jimmy6", save=False, url=None,
-            imageUrl="https://www.gamespot.com/a/uploads/original/1601/16018044/4072257-seasonoftheseraph%281%29.jpg"),
-        Pin(userId=3, title="jimmy7", save=False, url=None,
-            imageUrl="https://www.digitaltrends.com/wp-content/uploads/2022/02/elden-ring-praising-sun.jpg"),
-        Pin(userId=3, title="jimmy8", save=False, url=None,
-            imageUrl="https://s.yimg.com/uu/api/res/1.2/dEzGhndCHaLCnUMD_zBcxw--~B/aD0xMTU4O3c9MTgwMDthcHBpZD15dGFjaHlvbg--/https:/media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2021-01/cdcf03a0-4e92-11eb-afdf-ffae59fc8055.cf.jpg"),
-        Pin(userId=3, title="jimmy9", save=False, url=None,
-            imageUrl="https://www.pcinvasion.com/wp-content/uploads/2022/08/overwatch-2-premium.jpg"),
-        Pin(userId=3, title="jimmy10", save=False, url=None,
-            imageUrl="https://image.api.playstation.com/vulcan/ap/rnd/202211/1900/wAVNdCzihoMYFtrFNju4Rzdj.jpg"),
+        Pin(userId=3, title="jimmy1", save=False, url="https://www.amazon.com/Call-Duty-Warfare-Cross-Gen-Pre-purchase/dp/B0BGMFJL53/ref=sr_1_1?crid=2G3L68ZVD8OG2&keywords=call+of+duty&qid=1676231487&sprefix=call+of+duty%2Caps%2C125&sr=8-1&ufe=app_do%3Aamzn1.fos.18ed3cb5-28d5-4975-8bc7-93deae8f9840",
+            imageUrl="https://m.media-amazon.com/images/I/81mQ7xi9rOL._AC_SX679_.jpg"),
+        Pin(userId=3, title="jimmy2", save=False, url="https://www.amazon.com/Starcraft-II-Battle-Chest-Online/dp/B01N1VDVP6/ref=sr_1_6?crid=1GMDNNYJZELN7&keywords=starcraft&qid=1676231519&sprefix=starcraft%2Caps%2C158&sr=8-6",
+            imageUrl="https://m.media-amazon.com/images/I/81jtTi1MIDL._SX522_.jpg"),
+        Pin(userId=3, title="jimmy3", save=False, url="https://www.amazon.com/Funko-Pop-Games-Pudge-Cleaver/dp/B07CSN1P3L/ref=sr_1_1?crid=9NQ27FQ77F5E&keywords=dota&qid=1676231538&sprefix=dota%2Caps%2C126&sr=8-1",
+            imageUrl="https://m.media-amazon.com/images/I/61o7uSPBWpL._AC_SX679_.jpg"),
+        Pin(userId=3, title="jimmy4", save=False, url="https://www.amazon.com/Elden-Ring-Xbox-One/dp/B07T8J27XQ/ref=sr_1_1?crid=3BTWP16ELXY69&keywords=elden+ring&qid=1676231581&sprefix=elden+ring%2Caps%2C118&sr=8-1&ufe=app_do%3Aamzn1.fos.18ed3cb5-28d5-4975-8bc7-93deae8f9840",
+            imageUrl="https://m.media-amazon.com/images/I/81cY7DwfO+S._SY500_.jpg"),
+        Pin(userId=3, title="jimmy5", save=False, url="https://www.amazon.com/Pok%C3%A9mon-Lets-Go-Eevee-Nintendo-Switch/dp/B07DJ1SS29/ref=sr_1_13?crid=6X70MFXIJ0UF&keywords=pokemon+go&qid=1676231626&sprefix=pokemon+go%2Caps%2C113&sr=8-13",
+            imageUrl="https://m.media-amazon.com/images/I/716xLw0R9+L._SY500_.jpg"),
+        Pin(userId=3, title="jimmy6", save=False, url="https://www.amazon.com/Oculus-Quest-Advanced-All-One-Virtual/dp/B099VMT8VZ/ref=sr_1_3?crid=18OCC3HT3I56W&keywords=quest+2&qid=1676231652&sprefix=quest+2%2Caps%2C113&sr=8-3&ufe=app_do%3Aamzn1.fos.ac2169a1-b668-44b9-8bd0-5ec63b24bcb5",
+            imageUrl="https://m.media-amazon.com/images/I/710yeNqefxL._SX522_.jpg"),
+        Pin(userId=3, title="jimmy7", save=False, url="https://www.amazon.com/Valve-Release-Headset-Stations-Controllers/dp/B07VPRVBFF/ref=sr_1_1?keywords=valve+index&qid=1676231678&sprefix=valve%2Caps%2C119&sr=8-1&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/61rt14PIodL.__AC_SY300_SX300_QL70_FMwebp_.jpg"),
+        Pin(userId=3, title="jimmy8", save=False, url="https://www.amazon.com/TUBBZ-Destiny-Gunslinger-Collectible-Figurine/dp/B09J5X6JQS/ref=sr_1_6?crid=2PGGSU2PIY8Y6&keywords=destiny+2&qid=1676231698&sprefix=destiny+2%2Caps%2C118&sr=8-6",
+            imageUrl="https://m.media-amazon.com/images/I/61Sz2zvfSfL._AC_SX466_.jpg"),
+        Pin(userId=3, title="jimmy9", save=False, url="https://www.amazon.com/Bubble-Bobble-Friends-Baron-Nintendo-Switch/dp/B08HDPKQTN/ref=sr_1_1?keywords=bubble+bobble&qid=1676231748&sprefix=bubble+bobb%2Caps%2C116&sr=8-1",
+            imageUrl="https://m.media-amazon.com/images/I/81hVcGkaMBL._AC_SX522_.jpg"),
+        Pin(userId=3, title="jimmy10", save=False, url="https://www.amazon.com/Nintendo-System-Super-Mario-Renewed-Entertainment/dp/B07KPNVVKH/ref=sxin_24_pa_sp_search_thematic-asin_sspa?content-id=amzn1.sym.139755fc-e653-4f77-9e36-97d145a75e7c%3Aamzn1.sym.139755fc-e653-4f77-9e36-97d145a75e7c&crid=I5LE6P5S19FP&cv_ct_cx=mario&keywords=mario&pd_rd_i=B07KPNVVKH&pd_rd_r=2a3718b2-a307-49b3-8237-de2291ad2816&pd_rd_w=KIPll&pd_rd_wg=rTQkh&pf_rd_p=139755fc-e653-4f77-9e36-97d145a75e7c&pf_rd_r=7CYT9VFEFZDS83NSERY7&qid=1676231772&sprefix=mario%2Caps%2C120&sr=1-3-4a643ae4-6005-4b15-bc31-2c5125e2b25b-spons&psc=1", imageUrl="https://m.media-amazon.com/images/I/710UJzpZN+L._SX522_.jpg"),
+
     ]
 
     for pin in gamingPins:
@@ -98,29 +98,28 @@ def seed_boards_and_pins():
     data.append(gamingBoard)
     data.extend(gamingPins)
 
-    animalsBoard = Board(userId=4, title='Cute Animals',
-                         imageUrl='https://static.boredpanda.com/blog/wp-content/uuuploads/cute-baby-animals/cute-baby-animals-2.jpg')
+    animalsBoard = Board(userId=4, title='Fishing',
+                         imageUrl='https://m.media-amazon.com/images/I/81eV6R7IIPL._AC_SX679_.jpg')
     animalPins = [
-        Pin(userId=4, title="aman1", save=False, url=None,
-            imageUrl="https://www.rd.com/wp-content/uploads/2020/11/GettyImages-899747778-e1606165481516.jpg"),
-        Pin(userId=4, title="aman2", save=False, url=None,
-            imageUrl="http://static.demilked.com/wp-content/uploads/2015/12/funny-animal-pictures-comedy-wildlife-photography-awards-paul-joynson-hicks-fb.png"),
-        Pin(userId=4, title="aman3", save=False, url=None,
-            imageUrl="https://static.nationalgeographic.co.uk/files/styles/image_3200/public/comedy-wildlife-awards-squirel-stop.jpg"),
-        Pin(userId=4, title="aman4", save=False, url=None,
-            imageUrl="https://www.gannett-cdn.com/presto/2022/10/24/USAT/6253d26d-8894-4a38-87ee-6c2f37b1c0d2-7._Miroslav-Srb_Hello-everyone_00001567.jpg"),
-        Pin(userId=4, title="aman5", save=False, url=None,
-            imageUrl="https://i.pinimg.com/originals/7f/64/3f/7f643f0db514d7971349c416e29e42a8.jpg"),
-        Pin(userId=4, title="aman6", save=False, url=None,
-            imageUrl="https://images.ctfassets.net/f60q1anpxzid/gQDJJFBOzTtvAcT8qUax3/5d0be6dd1c41391fb7683ad2e54185f6/Little_Things_featured_image_puppy.jpg"),
-        Pin(userId=4, title="aman7", save=False, url=None,
-            imageUrl="https://bestlifeonline.com/wp-content/uploads/sites/3/2018/04/Animal-jokes-funny-sheep.jpg"),
-        Pin(userId=4, title="aman8", save=False, url=None,
-            imageUrl="https://www.rd.com/wp-content/uploads/2018/12/50-Funny-Animal-Pictures-That-You-Need-In-Your-Life-45.jpg"),
-        Pin(userId=4, title="aman9", save=False, url=None,
-            imageUrl="https://www.popsci.com/uploads/2021/09/03/otters-comedy-animal-awards.jpg"),
-        Pin(userId=4, title="aman10", save=False, url=None,
-            imageUrl="https://www.creativeboom.com/uploads/articles/db/dbc2cfcdb1abc43662a3806a790ab34935b1a0c0_810.jpg"),
+        Pin(userId=4, title="chris1", save=False, url="https://www.amazon.com/Okuma-Surf-8K-Spinning-SURF-8K/dp/B07NQLC1LN/?_encoding=UTF8&pd_rd_w=hqNyh&content-id=amzn1.sym.18be86ac-b16e-400a-b42f-43f216645498&pf_rd_p=18be86ac-b16e-400a-b42f-43f216645498&pf_rd_r=FP300YEK2AEC1GR1YF0F&pd_rd_wg=THfvM&pd_rd_r=fbee4f29-4679-426f-99fb-f20458f2971d&ref_=pd_gw_bmx_gp_cc4nxlro", imageUrl="https://m.media-amazon.com/images/I/81eV6R7IIPL._AC_SX679_.jpg"),
+        Pin(userId=4, title="chris2", save=False, url="https://www.amazon.com/HDS-7-Live-Transducer-FishReveal-Integration/dp/B07HR13Q9Z/?_encoding=UTF8&pd_rd_w=hqNyh&content-id=amzn1.sym.18be86ac-b16e-400a-b42f-43f216645498&pf_rd_p=18be86ac-b16e-400a-b42f-43f216645498&pf_rd_r=FP300YEK2AEC1GR1YF0F&pd_rd_wg=THfvM&pd_rd_r=fbee4f29-4679-426f-99fb-f20458f2971d&ref_=pd_gw_bmx_gp_cc4nxlro", imageUrl="https://m.media-amazon.com/images/I/81QyrdVMQzL._AC_SX679_.jpg"),
+        Pin(userId=4, title="chris3", save=False, url="https://www.amazon.com/KastKing-Sol-Armis-UPF-Boonie/dp/B07PWWN8PM/ref=sr_1_10?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231915&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-10",
+            imageUrl="https://m.media-amazon.com/images/I/71EmtPnZtvL._AC_UX679_.jpg"),
+        Pin(userId=4, title="chris4", save=False, url="https://www.amazon.com/PLUSINNO-Including-Crankbaits-Spinnerbaits-Topwater/dp/B08GSDK5YS/ref=sr_1_9?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231931&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-9",
+            imageUrl="https://m.media-amazon.com/images/I/81ad9FiliFL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=4, title="chris5", save=False, url="https://www.amazon.com/TRUSCEND-Swimbaits-Swimming-Freshwater-Saltwater/dp/B07GP1DL4K/ref=sr_1_11?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231931&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-11",
+            imageUrl="https://m.media-amazon.com/images/I/81ju-MJ46NL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=4, title="chris6", save=False, url="https://www.amazon.com/ZACX-Fishing-Gripper-Upgraded-Muti-Function/dp/B07MXBLD23/ref=sr_1_19?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231931&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-19",
+            imageUrl="https://m.media-amazon.com/images/I/71qk-VX7LEL._AC_SX679_.jpg"),
+        Pin(userId=4, title="chris7", save=False, url="https://www.amazon.com/Piscifun-Fishing-Spooler-Unwinding-Function/dp/B08HLVDCZW/ref=sr_1_21?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231931&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-21",
+            imageUrl="https://m.media-amazon.com/images/I/61EntAvpGeL._AC_SX679_.jpg"),
+        Pin(userId=4, title="chris8", save=False, url="https://www.amazon.com/Allnice-Durable-Canvas-Fishing-Organizer/dp/B01AG0N9K6/ref=sr_1_25?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231931&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-25",
+            imageUrl="https://m.media-amazon.com/images/I/71-JA+kt0nL._AC_SX679_.jpg"),
+        Pin(userId=4, title="chris9", save=False, url="https://www.amazon.com/OstWony-High-Carbon-Specifications-Portable-Environments/dp/B08XQQ8K7Q/ref=sr_1_30?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676231999&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-30",
+            imageUrl="https://m.media-amazon.com/images/I/71Wz8M+7NGS._AC_SX466_.jpg"),
+        Pin(userId=4, title="chris10", save=False, url="https://www.amazon.com/PLUSINNO-Vertical-Fishing-Mounted-Diameter/dp/B09P176CP2/ref=sr_1_38?crid=1GBL33YJ7PV1N&keywords=fishing&qid=1676232016&s=sporting-goods&sprefix=fishing%2Csporting%2C117&sr=1-38",
+            imageUrl="https://m.media-amazon.com/images/I/71DXNv9d8KL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+
     ]
 
     for pin in animalPins:
@@ -129,29 +128,30 @@ def seed_boards_and_pins():
     data.append(animalsBoard)
     data.extend(animalPins)
 
-    carsBoard = Board(userId=5, title='Cars',
-                      imageUrl='https://images.squarespace-cdn.com/content/v1/51cdafc4e4b09eb676a64e68/1470951917131-VO6KK2XIFP4LPLCYW7YU/McQueen15.jpg')
+    carsBoard = Board(userId=5, title='Computer Systems',
+                      imageUrl='https://m.media-amazon.com/images/I/81OIn7984vS._AC_SX679_.jpg')
     carPins = [
-        Pin(userId=5, title="chris1", save=False, url=None,
-            imageUrl="https://images.lifestyleasia.com/wp-content/uploads/sites/6/2020/09/28161922/Tesla-Model-S-Plaid.jpg"),
-        Pin(userId=5, title="chris2", save=False, url=None,
-            imageUrl="https://cdn.motor1.com/images/mgl/JlgjM/s3/rimac-nevera.jpg"),
-        Pin(userId=5, title="chris3", save=False, url=None,
-            imageUrl="https://blog.way.com/wp-content/uploads/2022/11/Nissan-Skyline-GT-R-R34.jpg"),
-        Pin(userId=5, title="chris4", save=False, url=None,
-            imageUrl="https://image.cnbcfm.com/api/v1/image/105940475-1559232349684190164-car-ferrari-sf90-stradale.jpg"),
-        Pin(userId=5, title="chris5", save=False, url=None,
-            imageUrl="https://www.topgear.com/sites/default/files/cars-car/carousel/2019/12/tg_-_datsun_240z_-_pre_electrification_-_039.jpg"),
-        Pin(userId=5, title="chris6", save=False, url=None,
-            imageUrl="https://hips.hearstapps.com/hmg-prod/images/2022-tesla-cyber-truck-mmp-1-1579127142.jpg"),
-        Pin(userId=5, title="chris7", save=False, url=None,
-            imageUrl="https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/wp-content/uploads/2017/11/Tesla-Roadster-103.jpg"),
-        Pin(userId=5, title="chris8", save=False, url=None,
-            imageUrl="https://robbreport.com/wp-content/uploads/2021/07/1-15.jpg"),
-        Pin(userId=5, title="chris9", save=False, url=None,
-            imageUrl="https://imageio.forbes.com/specials-images/imageserve/5f02b2e299f5170006fad6fe/Aston-Martin-DB5-Continuation-car/960x0.jpg?format=jpg"),
-        Pin(userId=5, title="chris10", save=False, url=None,
-            imageUrl="https://pictures.dealer.com/a/astonmartinchicago/0572/64029d20921d904a6eacdc551c54fc1ex.jpg?impolicy=downsize&w=568"),
+        Pin(userId=6, title="derek1", save=False, url="https://www.amazon.com/Dell-OptiPlex-3050-Computer-Monitors/dp/B096GWPB6L/ref=sr_1_3?keywords=computer+system&qid=1676232186&sr=8-3",
+            imageUrl="https://m.media-amazon.com/images/I/81OIn7984vS._AC_SX679_.jpg"),
+        Pin(userId=6, title="derek2", save=False, url="https://www.amazon.com/Thermaltake-Liquid-Cooled-ToughRAM-Computer-S3WT-B550-G36-LCS/dp/B09FYNM2GW/ref=sr_1_4?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232210&sprefix=water+cooled+pc%2Caps%2C114&sr=8-4&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/61cXu9yGldL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=6, title="derek3", save=False, url="https://www.amazon.com/Thermaltake-Liquid-Cooled-ToughRAM-Computer-AHB2-B550-A36-LCS/dp/B09FYNSYBX/ref=sr_1_9?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232231&sprefix=water+cooled+pc%2Caps%2C114&sr=8-9&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/91jZtQCewFL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=6, title="derek4", save=False, url="https://www.amazon.com/Thermaltake-ToughRam-3000Mhz-GeForce-P3BK-B450-S36-LCS/dp/B08WYV48ZQ/ref=sr_1_13?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232231&sprefix=water+cooled+pc%2Caps%2C114&sr=8-13&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/81J6OIX+RBL._AC_SY300_SX300_.jpg"),
+        Pin(userId=6, title="derek5", save=False, url="https://www.amazon.com/Thermaltake-Liquid-Cooled-ToughRAM-Computer-TW1B-B550-R38-LCS/dp/B093K2P2HQ/ref=sr_1_16?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232231&sprefix=water+cooled+pc%2Caps%2C114&sr=8-16&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/816nxSZz+WS._AC_SY300_SX300_.jpg"),
+        Pin(userId=6, title="derek6", save=False, url="https://www.amazon.com/Thermaltake-Liquid-Cooled-i5-11600K-ToughRAM-P3WT-Z590-A36-LCS/dp/B09FYMPW34/ref=sr_1_19?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232231&sprefix=water+cooled+pc%2Caps%2C114&sr=8-19&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/91gHKdBAydL._AC_SX679_.jpg"),
+        Pin(userId=6, title="derek7", save=False, url="https://www.amazon.com/CLX-Set-VR-Ready-Gaming-Desktop/dp/B0BHTY49G2/ref=sr_1_19?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232324&sprefix=water+cooled+pc%2Caps%2C114&sr=8-19&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/71sgTE7o2oL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=6, title="derek8", save=False, url="https://www.amazon.com/Skytech-Prism-II-Gaming-Desktop/dp/B09699NMFK/ref=sr_1_26?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232337&sprefix=water+cooled+pc%2Caps%2C114&sr=8-26&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/91g0K9gzxDS.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=6, title="derek9", save=False, url="https://www.amazon.com/CORSAIR-ONE-a200-Compact-Workstation-Class/dp/B09BBLWX6Y/ref=sr_1_29?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232337&sprefix=water+cooled+pc%2Caps%2C114&sr=8-29&ufe=app_do%3Aamzn1.fos.4dd97f68-284f-40f5-a6f1-1e5b3de13370",
+            imageUrl="https://m.media-amazon.com/images/I/71WkZn95jlL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=6, title="derek10", save=False, url="https://www.amazon.com/CYBERPOWERPC-Supreme-Liquid-GeForce-SLC8260A6/dp/B09GWBKXRH/ref=sr_1_36?crid=NUT7ERTVGE25&keywords=water+cooled+pc&qid=1676232337&sprefix=water+cooled+pc%2Caps%2C114&sr=8-36",
+            imageUrl="https://m.media-amazon.com/images/I/818SNa1ruZL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+
     ]
 
     for pin in carPins:
@@ -160,29 +160,27 @@ def seed_boards_and_pins():
     data.append(carsBoard)
     data.extend(carPins)
 
-    computersBoard = Board(userId=6, title='Gaming Computers',
-                           imageUrl='https://i.ytimg.com/vi/wKoHS2aKSUI/maxresdefault.jpg')
+    computersBoard = Board(userId=6, title='Doggie Stuff',
+                           imageUrl='https://m.media-amazon.com/images/I/51QOhMS+XyL._AC_UX569_.jpg')
     computerPins = [
-        Pin(userId=6, title="derek1", save=False, url=None,
-            imageUrl="https://i.pinimg.com/236x/20/85/7a/20857a7e3183835fdff710771869df15.jpg"),
-        Pin(userId=6, title="derek2", save=False, url=None,
-            imageUrl="https://i.pinimg.com/564x/37/71/f9/3771f9afb113368ca31abb5e0aa9a882.jpg"),
-        Pin(userId=6, title="derek3", save=False, url=None,
-            imageUrl="https://i.pinimg.com/564x/3c/01/0d/3c010df11c2a709560c7cf33e9457275.jpg"),
-        Pin(userId=6, title="derek4", save=False, url=None,
-            imageUrl="https://i.pinimg.com/564x/f8/e2/be/f8e2be64ed593d5a1b4ecbb8051f98e6.jpg"),
-        Pin(userId=6, title="derek5", save=False, url=None,
-            imageUrl="https://i.pinimg.com/736x/8f/6f/c3/8f6fc333f93a8da943f93c1bf1328b9c.jpg"),
-        Pin(userId=6, title="derek6", save=False, url=None,
-            imageUrl="https://i.pinimg.com/564x/c0/74/ad/c074adadfed187035d98d427e4ea0753.jpg"),
-        Pin(userId=6, title="derek7", save=False, url=None,
-            imageUrl="https://i.pinimg.com/564x/fd/b5/c1/fdb5c12f1d01c205cd895c7af12ea421.jpg"),
-        Pin(userId=6, title="derek8", save=False, url=None,
-            imageUrl="https://i.etsystatic.com/23665971/r/il/4bcce4/3445693810/il_794xN.3445693810_m4vj.jpg"),
-        Pin(userId=6, title="derek9", save=False, url=None,
-            imageUrl="https://i.pinimg.com/736x/e7/34/09/e734092abcaa370d440aa59332451977.jpg"),
-        Pin(userId=6, title="derek10", save=False, url=None,
-            imageUrl="https://img.buzzfeed.com/buzzfeed-static/static/2017-06/19/11/campaign_images/buzzfeed-prod-fastlane-03/29-cool-and-random-things-you-can-probably-afford-2-21019-1497886981-2_dblbig.jpg"),
+        Pin(userId=5, title="aman1", save=False, url="https://www.amazon.com/vavalad-Retriever-Costume-Jumpsuit-Loungewear/dp/B09PTVTJVR/ref=sxin_15_pa_sp_search_thematic_sspa?content-id=amzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb%3Aamzn1.sym.f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&crid=NWKJMV1MLERA&cv_ct_cx=golden+retriever&keywords=golden+retriever&pd_rd_i=B09PTVTJVR&pd_rd_r=d2ee51ad-94fd-478a-952c-74d312cd176c&pd_rd_w=o73wg&pd_rd_wg=rngmf&pf_rd_p=f0c5ad8f-c1b9-48f0-8868-482b84b2d5eb&pf_rd_r=DT6T1XG46M763CQCNR5S&qid=1676232473&sprefix=golden+re%2Caps%2C115&sr=1-5-a73d1c8c-2fd2-4f19-aa41-2df022bcb241-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyR04xMFdURFhUUUM0JmVuY3J5cHRlZElkPUEwMjA5NDYxM0Y5MDBIQjdXQzdEMyZlbmNyeXB0ZWRBZElkPUEwNjE1NjA5TDE3MVZDUEhDR1NaJndpZGdldE5hbWU9c3Bfc2VhcmNoX3RoZW1hdGljJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==", imageUrl="https://m.media-amazon.com/images/I/51QOhMS+XyL._AC_UX569_.jpg"),
+        Pin(userId=5, title="aman2", save=False, url="https://www.amazon.com/LotFancy-Stuffed-Animal-Golden-Retriever/dp/B079B944C1/ref=sr_1_9?crid=NWKJMV1MLERA&keywords=golden+retriever&qid=1676232473&sprefix=golden+re%2Caps%2C115&sr=8-9",
+            imageUrl="https://m.media-amazon.com/images/I/61Sr2dbh-OL.__AC_SX300_SY300_QL70_FMwebp_.jpg"),
+        Pin(userId=5, title="aman3", save=False, url="https://www.amazon.com/Aggressive-Chewers-RANTOJOY-Durable-Indestructible/dp/B0983Z8NDJ/ref=sxin_25_trfobq2a_3_B0983Z8NDJ?content-id=amzn1.sym.d87bdde9-97f6-47ac-b339-55167deba1dc%3Aamzn1.sym.d87bdde9-97f6-47ac-b339-55167deba1dc&crid=NWKJMV1MLERA&cv_ct_cx=golden+retriever&keywords=golden+retriever&pd_rd_i=B0983Z8NDJ&pd_rd_r=d2ee51ad-94fd-478a-952c-74d312cd176c&pd_rd_w=fzJAw&pd_rd_wg=rngmf&pf_rd_p=d87bdde9-97f6-47ac-b339-55167deba1dc&pf_rd_r=DT6T1XG46M763CQCNR5S&qid=1676232473&sprefix=golden+re%2Caps%2C115&sr=1-4-c944532c-3909-4a2a-84a2-570d2ee3cd13", imageUrl="https://m.media-amazon.com/images/I/81R+9k+ZijL._AC_SX466_.jpg"),
+        Pin(userId=5, title="aman4", save=False, url="https://www.amazon.com/Bwogue-Restraint-Adjustable-Restraints-Seatbelts/dp/B078G6MKTN/ref=sr_1_5?crid=20OKDNU3PJAUK&keywords=cute+dog+stuff&qid=1676232534&sprefix=cute+dog+stuff%2Caps%2C110&sr=8-5",
+            imageUrl="https://m.media-amazon.com/images/I/714M4n5xTWL._AC_SX466_.jpg"),
+        Pin(userId=5, title="aman5", save=False, url="https://www.amazon.com/MewaJump-Aggressive-Training-Cleaning-Interactive/dp/B088D3GZSV/ref=sxin_24_ac_d_bv?ac_md=0-0-QnVkZ2V0IFBpY2s%3D-ac_d_bv_bv_bv&content-id=amzn1.sym.8f2bf95d-b9c2-4e6d-96a9-5fdf77a1951d%3Aamzn1.sym.8f2bf95d-b9c2-4e6d-96a9-5fdf77a1951d&crid=20OKDNU3PJAUK&cv_ct_cx=cute+dog+stuff&keywords=cute+dog+stuff&pd_rd_i=B088D3GZSV&pd_rd_r=ec8af3cd-e062-413c-ab16-66fa0881891f&pd_rd_w=DrAKk&pd_rd_wg=hGvWf&pf_rd_p=8f2bf95d-b9c2-4e6d-96a9-5fdf77a1951d&pf_rd_r=HJ8CGMS321AVSEAW2Q3C&qid=1676232549&sprefix=cute+dog+stuff%2Caps%2C110&sr=1-1-270ce31b-afa8-499f-878b-3bb461a9a5a6", imageUrl="https://m.media-amazon.com/images/I/61sIr-iTVNL._AC_SX466_.jpg"),
+        Pin(userId=5, title="aman6", save=False, url="https://www.amazon.com/Teething-Puppies-Squeaky-Cleaning-Protect/dp/B09SHZ791K/ref=sr_1_14?crid=20OKDNU3PJAUK&keywords=cute+dog+stuff&qid=1676232549&sprefix=cute+dog+stuff%2Caps%2C110&sr=8-14",
+            imageUrl="https://m.media-amazon.com/images/I/71kvYg+Ln0L._AC_SX466_.jpg"),
+        Pin(userId=5, title="aman7", save=False, url="https://www.amazon.com/Costume-Gimilife-Pajamas-Cartoon-Halloween/dp/B08FYQWY5P/ref=sr_1_17?crid=20OKDNU3PJAUK&keywords=cute+dog+stuff&qid=1676232549&sprefix=cute+dog+stuff%2Caps%2C110&sr=8-17",
+            imageUrl="https://m.media-amazon.com/images/I/41pYv9GZFoL.__AC_SY300_SX300_QL70_FMwebp_.jpg"),
+        Pin(userId=5, title="aman8", save=False, url="https://www.amazon.com/SiRee-Portable-Dispenser-Drinking-Antibacterial/dp/B07CG51J7C/ref=sr_1_33?crid=20OKDNU3PJAUK&keywords=cute+dog+stuff&qid=1676232549&sprefix=cute+dog+stuff%2Caps%2C110&sr=8-33",
+            imageUrl="https://m.media-amazon.com/images/I/81x0BR1AcPL._AC_SX466_.jpg"),
+        Pin(userId=5, title="aman9", save=False, url="https://www.amazon.com/Portable-Dispenser-Container-Multifunctional-Drinking/dp/B0B7GP4WM8/ref=sr_1_40?crid=20OKDNU3PJAUK&keywords=cute+dog+stuff&qid=1676232549&sprefix=cute+dog+stuff%2Caps%2C110&sr=8-40",
+            imageUrl="https://m.media-amazon.com/images/I/619MrMjvT5L._AC_SX466_.jpg"),
+        Pin(userId=5, title="aman10", save=False, url="https://www.amazon.com/Denim-Fabric-Adjustable-Fashion-Baseball/dp/B07Q1HKP4F/ref=sr_1_41?crid=20OKDNU3PJAUK&keywords=cute+dog+stuff&qid=1676232549&sprefix=cute+dog+stuff%2Caps%2C110&sr=8-41",
+            imageUrl="https://m.media-amazon.com/images/I/71PDRUZv9wL._AC_UX679_.jpg"),
+
     ]
 
     for pin in computerPins:
