@@ -23,7 +23,7 @@ function CreatePinForm() {
     if (data.errors) {
       setErrors([...Object.values(data.errors)]);
     } else {
-      history.push(`/pins}`);
+      history.push(`/pins/${data.id}`);
     }
   };
 
