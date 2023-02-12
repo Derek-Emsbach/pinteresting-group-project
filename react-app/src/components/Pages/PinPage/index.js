@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllPins, deleteAPin, selectMyPins } from "../../../store/pin";
 import GridLayout from "../../GridLayout";
-import { AddPinningControls } from "../../Pinterest_layout/PinterestLayout";
+import { AddPinningControls } from "../../PinterestLayout";
 
 function PinPage() {
   const history = useHistory();

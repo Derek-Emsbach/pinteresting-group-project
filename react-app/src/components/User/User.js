@@ -8,7 +8,7 @@ import {
   unfollowUserThunk,
 } from "../../store/user";
 import GridLayout from "../GridLayout";
-import { AddPinningControls } from "../Pinterest_layout/PinterestLayout";
+import { AddPinningControls } from "../PinterestLayout";
 
 function User() {
   const { userId } = useParams();
