@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteBoardThunk, getAllBoardsThunk } from "../../../store/board";
+import {
+  deleteBoardThunk,
+  getAllBoardsThunk,
+  selectMyBoards,
+} from "../../../store/board";
 import "./BoardsPage.css";
 import GridLayout from "../../GridLayout";
 
@@ -9,17 +13,7 @@ function BoardsPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const myBoards = useSelector((state) => {
-    const currentUser = state.session.user;
-
-    if (!currentUser) {
-      return [];
-    }
-
-    return Object.values(state.board).filter(
-      ({ userId: boardAuthorId }) => boardAuthorId === currentUser.id
-    );
-  });
+  const myBoards = useSelector(selectMyBoards);
 
   useEffect(() => {
     dispatch(getAllBoardsThunk());

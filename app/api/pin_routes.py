@@ -22,7 +22,7 @@ def validation_errors_to_error_messages(validation_errors):
 def get_all_pins():
     pins = Pin.query.all()
     # print('********GET ALL PINS********')
-    return {'pins': [pin.to_dict() for pin in pins]}
+    return jsonify([pin.to_dict() for pin in pins])
 
 
 @pin_routes.route('/<int:id>')
@@ -54,7 +54,7 @@ def create_pin():
         db.session.commit()
         return new_pin.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-        
+
 
 
 @pin_routes.route('/<int:id>', methods=["PATCH", "PUT"])
