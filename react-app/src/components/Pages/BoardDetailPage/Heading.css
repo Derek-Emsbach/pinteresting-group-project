@@ -8,3 +8,8 @@
   justify-content: center;
   gap: 20px;
 }
+
+.BoardDetail--Heading .BoardDetail--Actions {
+  display: flex;
+  flex-direction: column;
+}
