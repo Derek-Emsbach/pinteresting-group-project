@@ -24,9 +24,6 @@ const Navigation = () => {
         <nav id="navigation-bar">
           <ul>
             <div className="left_side">
-              <button className="pinterest_icon">
-                <img src={pinterestIcon} className="globe" alt="globe" />
-              </button>
               <li>
                 <NavLink
                   className="nav-title"
