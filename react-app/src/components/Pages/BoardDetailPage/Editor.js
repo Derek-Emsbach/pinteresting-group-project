@@ -15,56 +15,57 @@ function BoardDetailEditor({ setOpen }) {
   // const [description, setDescription] = useState("");
   const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState([]);
-const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
     setTitle(board.title);
     // setDescription(board.description);
-    setImageUrl(board.imageUrl)
+    setImageUrl(board.imageUrl);
   }, [board]);
 
-  const handleSubmit= async(e)=>{
-    
-  }
-
+  const handleSubmit = async (e) => {};
 
   return (
     <div className="BoardDetail--Editor--Container">
       <div className="BoardDetail--Editor--Backdrop">
         <div className="BoardDetail--Editor--Card">
-          <button className='regular-button' onClick={() => setOpen(false)} disabled={pending}>
+          <button
+            className="regular-button"
+            onClick={() => setOpen(false)}
+            disabled={pending}
+          >
             x
           </button>
           <form
             onSubmit={async (event) => {
               event.preventDefault();
 
+              const payload = { title, imageUrl };
               setPending(true);
-              const payload = { title, imageUrl }
+
               let data = await dispatch(
-                editBoardThunk(
-                  boardId,
-                  payload
-                )
-              )
-                .finally((data) => {
-                  setPending(false);
-                  return data
-                });
-                console.log(data, 'data')
-                if (data.errors) {
-                  setErrors([...Object.values(data.errors)]);
-                 
-                }else{
-                  history.push(`/boards/${board.id}`);
-                 }
+                editBoardThunk(boardId, payload)
+              ).finally((data) => {
+                setPending(false);
+                return data;
+              });
+
+              if (data.errors) {
+                setErrors([...Object.values(data.errors)]);
+              } else {
+                setOpen(false);
+              }
             }}
           >
-          <ul>
-            {errors.map((message, i) => (
-              <li className= 'errors' key={i}>{message}</li>
-            ))}
-          </ul> 
-    
+            {!!errors.length && (
+              <ul>
+                {errors.map((message, i) => (
+                  <li className="errors" key={i}>
+                    {message}
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <EditorInput
               name="Title"
               value={title}
@@ -85,11 +86,10 @@ const history = useHistory()
               setValue={setImageUrl}
               disabled={pending}
             />
-            <button className='create-button' type="submit" disabled={pending}>
+            <button className="create-button" type="submit" disabled={pending}>
               Save
             </button>
           </form>
-           
         </div>
       </div>
     </div>

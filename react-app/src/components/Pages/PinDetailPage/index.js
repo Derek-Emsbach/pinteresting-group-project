@@ -55,7 +55,7 @@ function PinDetailPage() {
     <ul className="PinDetail--Page">
       <div>
         <h1>PIN DETAIL PAGE</h1>
-        <div>
+        <div className="PinDetail--Image--Container">
           <img className="PinDetail--Image" src={pin.imageUrl}></img>
         </div>
 

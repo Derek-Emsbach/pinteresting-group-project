@@ -120,7 +120,7 @@ function Profile() {
           </button>
         </div>
       </div>
-      <div className="all_my_boardImg">
+      <div>
         {openMyBoards && (
           <GridLayout
             items={myBoards}

@@ -9,7 +9,11 @@
   width: 100px;
 }
 
-.profile_container .option{
+.profile_container {
+  margin-bottom: 200px;
+}
+
+.profile_container .option {
   display: flex;
   align-items: center;
   justify-content: center;
