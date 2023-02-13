@@ -8,8 +8,8 @@ import { useHistory } from "react-router-dom";
 import { addPinning } from "../../store/pinning";
 
 function PinterestLayout() {
-  const pins = useSelector((state) => Object.values(state.pin));
   const sessionUser = useSelector((state) => state.session.user);
+  const pins = useSelector((state) => Object.values(state.pin).slice(0, 120));
   const dispatch = useDispatch();
   const history = useHistory();
 

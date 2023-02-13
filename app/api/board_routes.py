@@ -24,9 +24,6 @@ def validation_errors_to_error_messages(validation_errors):
 # @login_required
 def get_all_boards():
     boards = Board.query.all()
-    # print("**************** GET ALL BOARDS ****************")
-
-    # print(boards)
     return jsonify([board.to_dict() for board in boards])
 
 @board_routes.route('/<int:id>')
@@ -39,12 +36,6 @@ def get_board(id):
 @board_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def create_board():
-    # print("************CREATE NEW BOARD********************")
-    #! POSTMAN testing code.
-#     data = request.json
-#     print(data)
-#     new_board = Board(userId=1,title=data['title'],imageUrl=data['imageUrl'])
-
     form = BoardForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -78,7 +69,7 @@ def edit_board(id):
         return board.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-    
+
 @board_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_board(id):

@@ -40,6 +40,15 @@ export const getAllBoardsThunk = () => async (dispatch) => {
   }
 };
 
+export const getAllBoardsByAUser = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/users/${userId}/boards`);
+
+  if (res.ok) {
+    const boards = await res.json();
+    dispatch(loadBoards(boards));
+  }
+};
+
 export const getOneBoardThunk = (boardId) => async (dispatch) => {
   const res = await fetch(`/api/boards/${boardId}`);
 
@@ -77,14 +86,14 @@ export const editBoardThunk = (boardId, boardData) => async (dispatch) => {
     },
     body: JSON.stringify(boardData),
   });
-console.log(res,'thunk')
+
   if (res.ok) {
     const boardData = await res.json();
     dispatch(addBoard(boardData));
     return boardData;
-  }else {
+  } else {
     const error = await res.json();
-    console.log(error,'error')
+    console.log(error, "error");
     return error;
   }
 };
@@ -112,7 +121,7 @@ const boardReducer = (state = defaultState, action) => {
       newState[action.board.id] = action.board;
       return newState;
 
-    case LOAD_BOARDS:{
+    case LOAD_BOARDS: {
       action.boards.forEach((board) => {
         newState[board.id] = board;
       });

@@ -1,5 +1,5 @@
 user_images = [
-  'https://cdn-icons-png.flaticon.com/512/2202/2202112.png',
+'https://cdn-icons-png.flaticon.com/512/2202/2202112.png',
 'https://cdn-icons-png.flaticon.com/128/9561/9561558.png',
 'https://cdn-icons-png.flaticon.com/128/9561/9561556.png',
 'https://cdn-icons-png.flaticon.com/128/9561/9561553.png',

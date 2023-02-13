@@ -1,4 +1,9 @@
+.PinDetail--Page .PinDetail--Image--Container {
+	width: 230px;
+}
+
 .PinDetail--Page .PinDetail--Image {
 	object-fit: contain;
-	width: 230px;
+	width: 100%;
+	min-height: 120px;
 }

@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import PopOver from "../PopOver";
 import "./GridLayout.css";
 
-function GridLayout({ items = [], onItemClick, renderItemActions = null }) {
+function GridLayout({
+  items = [],
+  buttonLabel = "save",
+  onItemClick,
+  renderItemActions = null,
+}) {
   return (
     <div className="GridLayout--Container">
       {items.map((item) => (
         <GridItem
           key={item.id}
           item={item}
+          buttonLabel={buttonLabel}
           onItemClick={onItemClick}
           renderItemActions={renderItemActions}
         />
@@ -19,7 +25,7 @@ function GridLayout({ items = [], onItemClick, renderItemActions = null }) {
 
 export default GridLayout;
 
-function GridItem({ item, onItemClick, renderItemActions }) {
+function GridItem({ item, buttonLabel, onItemClick, renderItemActions }) {
   const [popOverOpen, setPopOverOpen] = useState(false);
   const { image, imageUrl = image } = item;
 
@@ -53,7 +59,7 @@ function GridItem({ item, onItemClick, renderItemActions }) {
                   setPopOverOpen(true);
                 }}
               >
-                ...
+                {buttonLabel}
               </button>
             }
           >

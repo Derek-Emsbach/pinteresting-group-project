@@ -1,7 +1,7 @@
 import os
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User,Pin,db
+from app.models import db, User, Pin, Board
 from app.forms import ProfileForm
 from app.forms import EmptyForm
 
@@ -43,14 +43,16 @@ def user(id):
     return user.to_dict_with_related()
 
 @user_routes.route('/<int:id>/pins')
-@login_required
+# @login_required
 def user_pins(id):
-    """
-    Query for a user by id and returns that user in a dictionary
-    """
     pins = Pin.query.filter_by(userId=id)
-
     return jsonify([pin.to_dict() for pin in pins])
+
+@user_routes.route('/<int:id>/boards')
+# @login_required
+def user_boards(id):
+    boards = Board.query.filter_by(userId=id)
+    return jsonify([board.to_dict() for board in boards])
 
 @user_routes.route('/<int:id>', methods=['PUT'])
 @login_required

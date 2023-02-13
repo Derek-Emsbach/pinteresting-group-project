@@ -1,10 +1,10 @@
-import React from 'react';
-import SignUpForm from '../auth/SignUpForm'
-import './Modal.css';
+import React from "react";
+import SignUpForm from "../auth/SignUpForm";
+import "./Modal.css";
 
 function Modal({ setOpenModal }) {
   const handleClick = (event) => {
-    if (event.target.className === 'modalBackground') {
+    if (event.target.className === "modalBackground") {
       setOpenModal(false);
     }
   };
@@ -23,13 +23,15 @@ function Modal({ setOpenModal }) {
         </div>
 
         <div className="sign_up">
-        <SignUpForm/>
+          <SignUpForm
+            onSuccess={() => {
+              setOpenModal(false);
+            }}
+          />
         </div>
-
       </div>
     </div>
   );
 }
-
 
 export default Modal;
