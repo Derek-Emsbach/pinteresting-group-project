@@ -22,7 +22,6 @@ button:disabled,select:disabled {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 8px;
   vertical-align: middle;
   text-align: center;
   background-color: #efefef;
@@ -40,7 +39,6 @@ button:disabled,select:disabled {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 8px;
   vertical-align: middle;
   text-align: center;
   background-color: rgb(230, 0, 35);
