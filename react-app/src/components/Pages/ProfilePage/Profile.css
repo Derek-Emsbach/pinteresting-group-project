@@ -97,6 +97,7 @@ z-index: 4;
 .option{
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .all_my_boardImg img{
