@@ -124,6 +124,7 @@ function Profile() {
         {openMyBoards && (
           <GridLayout
             items={myBoards}
+            buttonLabel="Delete"
             onItemClick={navigateToBoard}
             renderItemActions={(board, closeActionPopOver) => (
               <button
@@ -133,7 +134,7 @@ function Profile() {
                   closeActionPopOver();
                 }}
               >
-                Delete
+                Are you sure?
               </button>
             )}
           />
