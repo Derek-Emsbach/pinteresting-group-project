@@ -71,7 +71,8 @@ def sign_up():
             lastName = form.data['lastName'],
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            image='https://cdn-icons-png.flaticon.com/512/1144/1144709.png'
         )
         db.session.add(user)
         db.session.commit()
