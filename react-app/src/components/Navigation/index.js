@@ -42,7 +42,7 @@ const Navigation = () => {
                   exact={true}
                   activeClassName="active"
                 >
-                  CreatePin
+                  Create Pin
                 </NavLink>
               </li>
             </div>
