@@ -5,7 +5,7 @@ import "./GridLayout.css";
 function GridLayout({
   items = [],
   buttonLabel = "save",
-  onItemClick,
+  onItemClick = null,
   renderItemActions = null,
 }) {
   return (
@@ -32,7 +32,11 @@ function GridItem({ item, buttonLabel, onItemClick, renderItemActions }) {
   return (
     <div
       className="GridLayout--Item"
-      onClick={(event) => onItemClick(item, event)}
+      onClick={
+        typeof onItemClick !== "function"
+          ? undefined
+          : (event) => onItemClick(item, event)
+      }
       style={{
         cursor: onItemClick ? "pointer" : "auto",
       }}

@@ -3,7 +3,7 @@
     align-items: center;
     height: 56px;
     gap: 20px;
-    margin: 0 10px;
+    margin: 10px 10px;
 }
 
 .left_side {
@@ -27,9 +27,9 @@
     color: black;
 }
 
-.search_middle form {
-    display: flex;
-    flex: 1;
+.hidden_search {
+    pointer-events: none;
+    opacity: 0;
 }
 
 .search_middle input{
@@ -37,21 +37,16 @@
     border: none;
     width: 100%;
     font-size: 16px;
+    padding: 0 20px;
 }
 
 .search_middle input:focus{
     outline: none;
 }
 
-.search_middle button {
-    background-color: transparent;
-    border: none;
-}
-
 .search_middle:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
-
 
 .right_side {
     display: flex;

@@ -63,7 +63,7 @@ function BoardDetailHeading() {
                 type="button"
                 onClick={deleteBoard}
               >
-                Delete
+                delete
               </button>
             </div>
           </PopOver>

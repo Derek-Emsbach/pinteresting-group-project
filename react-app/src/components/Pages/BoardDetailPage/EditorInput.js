@@ -12,8 +12,6 @@ export default function EditorInput({
   const changeHandler = (event) => {
     setValue(event.target.value);
   };
-  
-console.log({name,label,type,value,setValue,rest})
 
   return (
     <div className="EditorInput">

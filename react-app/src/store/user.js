@@ -1,3 +1,4 @@
+import { FULL_RESET } from "./full-reset";
 import { setUser } from "./session";
 
 const LOAD_OTHER_USERS = "user/LOAD_OTHER_USERS";
@@ -51,6 +52,9 @@ const otherUsersReducer = (state = defaultState, action) => {
   let newState = { ...state };
 
   switch (action.type) {
+    case FULL_RESET:
+      return { ...defaultState };
+
     case LOAD_OTHER_USERS:
       action.users.forEach((user) => {
         newState[user.id] = user;

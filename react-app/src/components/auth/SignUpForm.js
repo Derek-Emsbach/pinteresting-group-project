@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import "./SignUpForm.css";
-import icon from "../../icons/pinterest_icon.png";
 
 const SignUpForm = ({ onSuccess }) => {
   const [errors, setErrors] = useState([]);
@@ -61,9 +60,7 @@ const SignUpForm = ({ onSuccess }) => {
   return (
     <div className="signup_container">
       <div className="signup_header">
-        <img src={icon} />
-
-        <h1>Welcome to Pinterest</h1>
+        <h1>Welcome to Pinspired</h1>
         <h4>Find new ideas to try</h4>
       </div>
 

@@ -87,7 +87,7 @@ function BoardDetailEditor({ setOpen }) {
               disabled={pending}
             />
             <button className="create-button" type="submit" disabled={pending}>
-              Save
+              save
             </button>
           </form>
         </div>

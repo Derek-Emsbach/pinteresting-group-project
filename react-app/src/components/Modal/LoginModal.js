@@ -1,12 +1,11 @@
-import React from 'react';
-import LoginForm from '../auth/LoginForm'
-import icon from '../../icons/pinterest_icon.png'
-import './Modal.css';
+import React from "react";
+import LoginForm from "../auth/LoginForm";
+import "./Modal.css";
 
 function LoginModal({ setLoginModalOpen }) {
   const handleClick = (event) => {
-    if (event.target.className === 'modalBackground') {
-        setLoginModalOpen(false);
+    if (event.target.className === "modalBackground") {
+      setLoginModalOpen(false);
     }
   };
 
@@ -16,7 +15,7 @@ function LoginModal({ setLoginModalOpen }) {
         <div className="titleCloseBtn">
           <button
             onClick={() => {
-                setLoginModalOpen(false);
+              setLoginModalOpen(false);
             }}
           >
             X
@@ -24,13 +23,11 @@ function LoginModal({ setLoginModalOpen }) {
         </div>
 
         <div className="Log_in">
-        <LoginForm/>
+          <LoginForm />
         </div>
-
       </div>
     </div>
   );
 }
-
 
 export default LoginModal;
