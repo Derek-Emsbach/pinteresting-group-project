@@ -43,11 +43,15 @@ function PinDetailPage() {
     }
   }, [pin, pinAuthor]);
 
+  if (!currentUser) {
+    return <Redirect to="/login" />;
+  }
+
   if (!pinId) {
     return <Redirect to="/404" />;
   }
 
-  if (!pin || !pinAuthor || !currentUser) {
+  if (!pin || !pinAuthor) {
     return null;
   }
 

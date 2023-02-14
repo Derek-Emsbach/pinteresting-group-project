@@ -1,3 +1,5 @@
+import { FULL_RESET } from "./full-reset";
+
 const REPLACE_BOARD = "board/REPLACE_BOARD";
 const LOAD_BOARDS = "board/LOAD_BOARDS";
 const DELETE_BOARD = "board/DELETE_BOARD";
@@ -93,7 +95,6 @@ export const editBoardThunk = (boardId, boardData) => async (dispatch) => {
     return boardData;
   } else {
     const error = await res.json();
-    console.log(error, "error");
     return error;
   }
 };
@@ -117,6 +118,9 @@ const boardReducer = (state = defaultState, action) => {
   let newState = { ...state };
 
   switch (action.type) {
+    case FULL_RESET:
+      return { ...defaultState };
+
     case REPLACE_BOARD:
       newState[action.board.id] = action.board;
       return newState;

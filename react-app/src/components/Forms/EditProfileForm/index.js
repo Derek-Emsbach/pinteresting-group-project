@@ -42,12 +42,6 @@ function EditProfileForm() {
       history.push(`/my-profile`);
     }
   };
-  const updateFile = (e) => {
-    const file = e.target.files[0];
-    console.log(file);
-    if (file) setImage(file);
-  };
-  console.log(image, "hello");
 
   return (
     <div className="edit_profile_container">

@@ -12,10 +12,6 @@ export const addPinning = (boardId, pinId) => async (dispatch) => {
 };
 
 export const removePinning = (boardId, pinId) => async (dispatch) => {
-  console.log({
-    boardId,
-    pinId,
-  });
   const res = await fetch(`/api/boards/${boardId}/pin/${pinId}`, {
     method: "DELETE",
   });

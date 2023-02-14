@@ -37,10 +37,6 @@ function App() {
 
   return (
     <div>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
-
       {!!currentUser && <Navigation isLoaded={isLoaded} />}
       <Switch>
         {!!currentUser && (
@@ -49,7 +45,7 @@ function App() {
           </Route>
         )}
         <Route exact path="/">
-          <PinterestLayout />
+          {currentUser ? <PinterestLayout /> : <HomePage />}
         </Route>
         <Route exact path="/login">
           <LoginForm />

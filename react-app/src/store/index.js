@@ -4,6 +4,7 @@ import sessionReducer from "./session";
 import boardReducer from "./board";
 import pinsReducer from "./pin";
 import userReducer from "./user";
+import searchbarReducer from "./searchbar";
 // import storage from 'redux-persist/lib/storage'
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   board: boardReducer,
   pin: pinsReducer,
   otherUser: userReducer,
+  searchbar: searchbarReducer,
 });
 // const rootReducer = (state, action) => {
 //   if (action.type === 'session/REMOVE_USER') {

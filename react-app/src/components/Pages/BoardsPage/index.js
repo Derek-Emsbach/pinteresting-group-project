@@ -46,7 +46,7 @@ function BoardsPage() {
               closeActionPopOver();
             }}
           >
-            Delete
+            delete
           </button>
         )}
       />

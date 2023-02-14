@@ -1,3 +1,5 @@
+import { FULL_RESET } from "./full-reset";
+
 const LOAD_MANY_PINS = "pin/LOAD_MANY_PINS";
 
 const LOAD_ONE_PIN = "pin/LOAD_ONE_PIN";
@@ -107,6 +109,9 @@ const initialPins = {};
 const pinsReducer = (state = initialPins, action) => {
   let copy = { ...state };
   switch (action.type) {
+    case FULL_RESET:
+      return { ...initialPins };
+
     case LOAD_MANY_PINS:
       action.pins.forEach((pin) => {
         copy[pin.id] = pin;

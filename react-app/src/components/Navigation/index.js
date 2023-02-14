@@ -1,18 +1,28 @@
 import React, { useState, useRef } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
 import "./Navigation.css";
-import pinterestIcon from "../../icons/pinterest_icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchbarValue, selectSearchbarValue } from "../../store/searchbar";
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const history = useHistory();
+  const location = useLocation();
 
-  const currentUser = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+  const { currentUser, searchbarValue } = useSelector((state) => {
+    const currentUser = state.session.user;
+    const searchbarValue = selectSearchbarValue(state);
+
+    return {
+      currentUser,
+      searchbarValue,
+    };
+  });
 
   const navigateToHomePage = () => {
     history.push("/");
@@ -42,11 +52,19 @@ const Navigation = () => {
             </button>
           </div>
 
-          <div className="search_middle">
-            {/* <form>
-              <input type = 'Text' placeholder='Search'></input>
-              <button type ='Submit'></button>
-            </form> */}
+          <div
+            className={`search_middle ${
+              location.pathname === "/" ? "" : "hidden_search"
+            }`}
+          >
+            <input
+              type="Text"
+              placeholder="Search"
+              value={searchbarValue}
+              onChange={(event) => {
+                dispatch(setSearchbarValue(event.target.value));
+              }}
+            />
           </div>
 
           <div className="right_side" onClick={() => setOpen(!open)}>

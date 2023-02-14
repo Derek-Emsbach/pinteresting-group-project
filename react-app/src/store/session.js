@@ -1,3 +1,4 @@
+import { fullReset, FULL_RESET } from "./full-reset";
 import { getAllPins } from "./pin";
 
 // constants
@@ -67,6 +68,7 @@ export const logout = () => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeUser());
+    dispatch(fullReset());
   }
 };
 
@@ -78,16 +80,15 @@ export const update_profile = (id, data) => async (dispatch) => {
     },
     body: JSON.stringify(data),
   });
-  
-if (response.ok){
-  const profile = await response.json();
-  dispatch(setUser(profile));
-  return profile;
-}else {
+
+  if (response.ok) {
+    const profile = await response.json();
+    dispatch(setUser(profile));
+    return profile;
+  } else {
     const error = await response.json();
     return error;
   }
- 
 };
 
 export const signUp =
@@ -122,10 +123,15 @@ export const signUp =
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case FULL_RESET:
+      return { ...initialState };
+
     case SET_USER:
       return { user: action.payload };
+
     case REMOVE_USER:
       return { ...initialState };
+
     default:
       return state;
   }
