@@ -79,6 +79,7 @@ const SignUpForm = ({ onSuccess }) => {
             name="username"
             onChange={updateUsername}
             value={username}
+            required={true}
             placeholder="User Name"
           ></input>
         </div>
@@ -89,6 +90,7 @@ const SignUpForm = ({ onSuccess }) => {
             name="firstname"
             onChange={updateFirstName}
             value={firstName}
+            required={true}
             placeholder="First Name"
           ></input>
         </div>
@@ -99,6 +101,7 @@ const SignUpForm = ({ onSuccess }) => {
             name="lastname"
             onChange={updateLastName}
             value={lastName}
+            required={true}
             placeholder="Last Name"
           ></input>
         </div>
@@ -109,6 +112,7 @@ const SignUpForm = ({ onSuccess }) => {
             name="email"
             onChange={updateEmail}
             value={email}
+            required={true}
             placeholder="Email"
           ></input>
         </div>
