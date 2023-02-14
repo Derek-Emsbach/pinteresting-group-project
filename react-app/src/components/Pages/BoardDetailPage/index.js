@@ -28,6 +28,7 @@ function BoardDetailPage() {
       <Heading />
       <GridLayout
         items={pins}
+        buttonLabel="remove"
         onItemClick={navigateToPinPage}
         renderItemActions={
           currentUser.id === boardAuthorId &&
@@ -39,7 +40,7 @@ function BoardDetailPage() {
                 closeActionPopOver();
               }}
             >
-              remove
+              Are you sure?
             </button>
           ))
         }
