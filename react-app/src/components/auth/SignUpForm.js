@@ -108,7 +108,7 @@ const SignUpForm = ({ onSuccess }) => {
         <div id="form_detail">
           <label>Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             onChange={updateEmail}
             value={email}
