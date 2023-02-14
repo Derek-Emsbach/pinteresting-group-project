@@ -9,9 +9,17 @@ import "./Heading.css";
 
 function BoardDetailHeading() {
   const { boardId } = useParams();
-  const board = useSelector((state) => state.board[boardId]);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { board, isMyBoard } = useSelector((state) => {
+    const currentUser = state.session.user;
+    const board = state.board[boardId] || {};
+
+    return {
+      board,
+      isMyBoard: `${currentUser.id}` === `${board.userId}`,
+    };
+  });
 
   const [editorOpen, setEditorOpen] = useState(false);
   const [popOverOpen, setPopOverOpen] = useState(false);
@@ -22,10 +30,10 @@ function BoardDetailHeading() {
 
   const { title, description } = board;
 
-  const deleteBoard = (e) => {
+  const deleteBoard = async (e) => {
     e.preventDefault();
 
-    dispatch(deleteBoardThunk(boardId));
+    await dispatch(deleteBoardThunk(boardId));
 
     history.push(`/boards`);
   };
@@ -36,37 +44,39 @@ function BoardDetailHeading() {
       <div className="BoardDetail--Heading">
         <div className="BoardDetail--Title">
           <h1>{title}</h1>
-          <PopOver
-            open={popOverOpen}
-            setOpen={setPopOverOpen}
-            button={
-              <button
-                className="create-button"
-                onClick={() => setPopOverOpen(true)}
-              >
-                ...
-              </button>
-            }
-          >
-            <div className="BoardDetail--Actions">
-              <button
-                className="regular-button"
-                onClick={() => {
-                  setEditorOpen(true);
-                  setPopOverOpen(false);
-                }}
-              >
-                edit
-              </button>
-              <button
-                className="create-button"
-                type="button"
-                onClick={deleteBoard}
-              >
-                delete
-              </button>
-            </div>
-          </PopOver>
+          {!!isMyBoard && (
+            <PopOver
+              open={popOverOpen}
+              setOpen={setPopOverOpen}
+              button={
+                <button
+                  className="create-button"
+                  onClick={() => setPopOverOpen(true)}
+                >
+                  ...
+                </button>
+              }
+            >
+              <div className="BoardDetail--Actions">
+                <button
+                  className="regular-button"
+                  onClick={() => {
+                    setEditorOpen(true);
+                    setPopOverOpen(false);
+                  }}
+                >
+                  edit
+                </button>
+                <button
+                  className="create-button"
+                  type="button"
+                  onClick={deleteBoard}
+                >
+                  delete
+                </button>
+              </div>
+            </PopOver>
+          )}
         </div>
         {description && <p>{description}</p>}
       </div>

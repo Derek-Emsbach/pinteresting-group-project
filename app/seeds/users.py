@@ -5,11 +5,11 @@ from .images_lists import user_images
 def seed_users():
     userData = [
         User(firstName='Demo', lastName = 'User',username="Demo", image='https://cdn-icons-png.flaticon.com/512/9591/9591054.png',email="demo@aa.io", password="password"),
-        User(firstName = 'Cherry',lastName ='Huang',username="Cherry",image='https://cdn-icons-png.flaticon.com/512/9590/9590989.png',email="Cherry@aa.io", password="password"),
-        User(firstName = 'Jimmy',lastName ='Pham',username="Jimmy", image='https://cdn-icons-png.flaticon.com/512/9566/9566655.png',email="Jimmy@aa.io", password="password"),
-        User(firstName = 'Aman',lastName ='Aman',username="Aman", image='https://cdn-icons-png.flaticon.com/512/9583/9583021.png',email="Aman@aa.io", password="password"),
-        User(firstName = 'Chris',lastName ='Chan',username="Chris", image='https://cdn-icons-png.flaticon.com/512/9477/9477191.png',email="Chris@aa.io", password="password"),
-        User(firstName = 'Derek',lastName ='Emsbach',username="Derek", image='https://cdn-icons-png.flaticon.com/512/9477/9477279.png',email="Derek@aa.io", password="password")
+        User(firstName = 'Cherry',lastName ='Huang',username="Cherry",image='https://cdn-icons-png.flaticon.com/512/9590/9590989.png',email="cherry@aa.io", password="password"),
+        User(firstName = 'Jimmy',lastName ='Pham',username="Jimmy", image='https://cdn-icons-png.flaticon.com/512/9566/9566655.png',email="jimmy@aa.io", password="password"),
+        User(firstName = 'Aman',lastName ='Aman',username="Aman", image='https://cdn-icons-png.flaticon.com/512/9583/9583021.png',email="aman@aa.io", password="password"),
+        User(firstName = 'Chris',lastName ='Chan',username="Chris", image='https://cdn-icons-png.flaticon.com/512/9477/9477191.png',email="chris@aa.io", password="password"),
+        User(firstName = 'Derek',lastName ='Emsbach',username="Derek", image='https://cdn-icons-png.flaticon.com/512/9477/9477279.png',email="derek@aa.io", password="password")
     ]
 
     db.session.add_all(userData)

@@ -119,6 +119,7 @@ const SignUpForm = ({ onSuccess }) => {
             name="password"
             onChange={updatePassword}
             value={password}
+            required={true}
             placeholder="Create a password"
           ></input>
         </div>
