@@ -116,7 +116,7 @@ function Profile() {
             }}
             className={`button ${openMyBoards ? "active" : null}`}
           >
-            <span>My boards</span>{" "}
+            <span>My Boards</span>{" "}
           </button>
         </div>
       </div>
@@ -152,7 +152,7 @@ function Profile() {
             </button>
           </div>
           <div className="create_board_container">
-            <h2> Create a Board </h2>
+            <h2> Create A Board </h2>
             <button
               onClick={() => history.push("/boardform")}
               className="create_pin_btn"

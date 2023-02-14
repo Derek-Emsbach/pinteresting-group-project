@@ -1,5 +1,3 @@
-import "./EditorInput.css";
-
 export default function EditorInput({
   name,
   label = name,
@@ -14,8 +12,8 @@ export default function EditorInput({
   };
 
   return (
-    <div className="EditorInput">
-      <label htmlFor={id}>{label}</label>
+    <label htmlFor={id} className="board-form-labels">
+      {label}
       {type === "textarea" ? (
         <textarea
           id={id}
@@ -34,6 +32,6 @@ export default function EditorInput({
           {...rest}
         />
       )}
-    </div>
+    </label>
   );
 }

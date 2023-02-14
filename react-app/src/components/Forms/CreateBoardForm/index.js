@@ -33,13 +33,16 @@ function CreateBoardForm() {
     <div className="form-body">
       <form className="create-board-form" onSubmit={handleSubmit}>
         <h1 className="update">Create a Board!</h1>
-        <ul>
-          {errors.map((error, idx) => (
-            <li className="edit-errors" key={idx}>
-              {error}
-            </li>
-          ))}
-        </ul>
+        {!!errors.length && (
+          <ul>
+            {errors.map((error, idx) => (
+              <li className="edit-errors" key={idx}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        )}
+
         {/* <EditorInput label='Title' value={title} setValue={setTitle}/> */}
         {/* EXAMPLE helper function component */}
         <label className="board-form-labels">

@@ -25,7 +25,10 @@ function HomePage() {
   return (
     <div className="Splash">
       <div className="nav_bar">
-        <div className="icon">Pinspired</div>
+        <div className="icon">
+          <img src="/favicon.svg" />
+          Pinspired
+        </div>
 
         <div className="right_menu">
           <button className="signup-button" onClick={demo}>
