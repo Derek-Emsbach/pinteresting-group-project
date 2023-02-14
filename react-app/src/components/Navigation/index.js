@@ -44,6 +44,11 @@ const Navigation = () => {
       <div className="Nav-container">
         <nav id="navigation-bar">
           <div className="left_side">
+            <div className="icon">
+              <img src="/favicon.svg" />
+              Pinspired
+            </div>
+
             <button className="regular-button" onClick={navigateToHomePage}>
               Home
             </button>

@@ -37,6 +37,7 @@ function BoardsPage() {
       </div>
       <GridLayout
         items={myBoards}
+        buttonLabel="delete"
         onItemClick={navigateToBoard}
         renderItemActions={(board, closeActionPopOver) => (
           <button
@@ -46,7 +47,7 @@ function BoardsPage() {
               closeActionPopOver();
             }}
           >
-            delete
+            Are you sure?
           </button>
         )}
       />

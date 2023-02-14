@@ -109,7 +109,7 @@ const SignUpForm = ({ onSuccess }) => {
             name="email"
             onChange={updateEmail}
             value={email}
-            placeholder="Emai"
+            placeholder="Email"
           ></input>
         </div>
         <div id="form_detail">
