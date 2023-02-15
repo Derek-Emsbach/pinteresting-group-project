@@ -34,7 +34,7 @@ and backend and allows for speedy re-rendering handled by React.
 
 *Auth Page*
 
-![Auth Preview](![image](https://user-images.githubusercontent.com/37425403/218917659-de8042c0-a0fc-4d7f-86d2-ea32027b1f5f.png))
+![Auth Preview]![image](https://user-images.githubusercontent.com/37425403/218917956-8280a8e9-c1bf-49ac-bd35-75d5d3d6c22a.png)
 
 *Normal Authentication*
 
