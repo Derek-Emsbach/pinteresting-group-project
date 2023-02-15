@@ -28,7 +28,7 @@ rendering upon site entry. Other requests are made on a “need to know” basis
 various React components. This minimizes info passed between the frontend
 and backend and allows for speedy re-rendering handled by React.
 
-###Authentication
+### Authentication
 
 *Auth Page*
 
