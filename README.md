@@ -1,4 +1,4 @@
-# Pinterest Clone
+# Pinspired
 
 Check out a live version of Pinterest here:
 [Pinterest Clone Live][Render]
