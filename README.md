@@ -1,14 +1,16 @@
 # Pinspired
 
-Check out a live version of Pinterest here:
-[Pinterest Clone Live][Render]
+Check out a live version of Pinspired here:
+[Pinspired Live][Render]
 
 [Render]: https://pinteresting-project.onrender.com/
 
-Pinterest is a clone of the website PinterestApp, application where uis a visual discovery engine for finding ideas like recipes, home and style inspiration,
+Pinspired is a clone of the website Pinterest where you use a visual discovery engine for finding ideas like recipes, home and style inspiration,
  and more.
-The backend of Pinterest is built on python with a PostgreSQL database. Frontend
-rendering is handled with React.
+ 
+## Stack:
+The backend of Pinspired is built on Python and Flask with a PostgreSQL database. Frontend
+rendering is handled with React and Redux.
 
 ## Features & Implementation
 
@@ -16,13 +18,13 @@ rendering is handled with React.
 
 *React router and components*
 
-Pinterest is a multipage app. All “pages” are first rendered at a root url “/” then routed to the associated from user interaction.
+Pinspired is a multipage app. All “pages” are first rendered at a root url “/” then routed to the associated from user interaction.
 The React router handles the logic associated with component navigation, and directs to the corresponding route.
 Re-rendering of child components is done through the React API.
 
 *Frontend and Backend Interaction*
 
-Pinterest server interactions are limited to retrieval of data from and
+Pinspired server interactions are limited to retrieval of data from and
 modification of the database. The front end stores the necessary information for
 rendering upon site entry. Other requests are made on a “need to know” basis by
 various React components. This minimizes info passed between the frontend
@@ -32,7 +34,7 @@ and backend and allows for speedy re-rendering handled by React.
 
 *Auth Page*
 
-![Auth Preview](https://github.com/Derek-Emsbach/pinteresting-group-project/blob/main/z.Documentation/homepage%20sample.JPG)
+![Auth Preview](![image](https://user-images.githubusercontent.com/37425403/218917659-de8042c0-a0fc-4d7f-86d2-ea32027b1f5f.png))
 
 *Normal Authentication*
 
@@ -56,7 +58,7 @@ Followers and following consist of foreign keys pointing to `users.id`.
 
 *CRUD architecture*
 
-Pinterest lets users create, read, update, and delete boards / pins. Then follow and unfollow users of interest.
+Pinspired lets users create, read, update, and delete boards / pins. Then follow and unfollow users of interest.
 React components exist for each corresponding action in the app. Information
 needed for all components or user actions performed.
 
