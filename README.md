@@ -1,28 +1,28 @@
-# Pinterest Clone
+# Pinspired
 
-Check out a live version of Pinterest here:
+Check out a live version of Pinspired here:
 [Pinterest Clone Live][Render]
 
 [Render]: https://pinteresting-project.onrender.com/
 
-Pinterest is a clone of the website PinterestApp, application where uis a visual discovery engine for finding ideas like recipes, home and style inspiration,
+Pinspired is a clone of the website PinterestApp, a visual discovery engine for finding ideas like recipes, home and style inspiration,
  and more.
-The backend of Pinterest is built on python with a PostgreSQL database. Frontend
+The backend of Pinspired is built on python with a PostgreSQL database. Frontend
 rendering is handled with React.
 
 ## Features & Implementation
 
 ### Single-Page App
 
-*React router and components*
+*React Router and components*
 
-Pinterest is a multipage app. All “pages” are first rendered at a root url “/” then routed to the associated from user interaction.
+Pinspired is a multipage app. All “pages” are first rendered at a root url “/” then routed to the associated from user interaction.
 The React router handles the logic associated with component navigation, and directs to the corresponding route.
 Re-rendering of child components is done through the React API.
 
 *Frontend and Backend Interaction*
 
-Pinterest server interactions are limited to retrieval of data from and
+Pinspired server interactions are limited to retrieval of data from and
 modification of the database. The front end stores the necessary information for
 rendering upon site entry. Other requests are made on a “need to know” basis by
 various React components. This minimizes info passed between the frontend
@@ -56,7 +56,7 @@ Followers and following consist of foreign keys pointing to `users.id`.
 
 *CRUD architecture*
 
-Pinterest lets users create, read, update, and delete boards / pins. Then follow and unfollow users of interest.
+Pinspired lets users create, read, update, and delete boards / pins. Then follow and unfollow users of interest.
 React components exist for each corresponding action in the app. Information
 needed for all components or user actions performed.
 
@@ -96,5 +96,5 @@ From here, user can view
 2) Boards
 3) Pins
 
-**Following / Follwers**
+**Following / Followers**
 User can click and display list of users that they follow or people that follow them.
