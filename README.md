@@ -1,148 +1,100 @@
-# Flask React Project
+# Pinterest Clone
 
-This is the starter for the Flask React project.
+Check out a live version of Pinterest here:
+[Pinterest Clone Live][Render]
 
-## Getting started
-1. Clone this repository (only this branch)
+[Render]: https://pinteresting-project.onrender.com/
 
-2. Install dependencies
+Pinterest is a clone of the website PinterestApp, application where uis a visual discovery engine for finding ideas like recipes, home and style inspiration,
+ and more.
+The backend of Pinterest is built on python with a PostgreSQL database. Frontend
+rendering is handled with React.
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+## Features & Implementation
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+### Single-Page App
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+*React router and components*
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+Pinterest is a multipage app. All “pages” are first rendered at a root url “/” then routed to the associated from user interaction.
+The React router handles the logic associated with component navigation, and directs to the corresponding route.
+Re-rendering of child components is done through the React API.
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+*Frontend and Backend Interaction*
 
-   ```bash
-   pipenv shell
-   ```
+Pinterest server interactions are limited to retrieval of data from and
+modification of the database. The front end stores the necessary information for
+rendering upon site entry. Other requests are made on a “need to know” basis by
+various React components. This minimizes info passed between the frontend
+and backend and allows for speedy re-rendering handled by React.
 
-   ```bash
-   flask db upgrade
-   ```
+###Authentication
 
-   ```bash
-   flask seed all
-   ```
+*Auth Page*
 
-   ```bash
-   flask run
-   ```
+![Auth Preview](https://github.com/Derek-Emsbach/pinteresting-group-project/blob/main/z.Documentation/homepage%20sample.JPG)
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+*Normal Authentication*
+
+Users of the site are required to authenticate or sign up. User will not be able to view content without signing up or loggin in.
+The user model requires a unique username and password for
+sign up. Upon account creation, user passwords are using the flask libraries.
+Authentication uses flask libraries to match user and passwords stored on the database
+
+*Attributes*
+
+Pins and Boards are the most important Models of this application.
+
+The Board table has columns for `Title`, `pinId`, `owner_id`, and
+`imageUrl`. `userId` is the identifier for users in the
+application interface.
+
+Pins consist of a `userId`, `title`, `save`, `url`, and `imageUrl`.
+`userId` is a foreign key pointing to the pin belongs to.
+
+Followers and following consist of foreign keys pointing to `users.id`.
+
+*CRUD architecture*
+
+Pinterest lets users create, read, update, and delete boards / pins. Then follow and unfollow users of interest.
+React components exist for each corresponding action in the app. Information
+needed for all components or user actions performed.
+
+[Backend Routes]
+[Backend Routes]: https://github.com/Derek-Emsbach/pinteresting-group-project/blob/main/z.Documentation/backend_routes.md
+
+**Discover Page: Shows recent pins from users**
+
+Pictures of recent pins are displayed once logged in. User can select pins that they are intested in. It will be directed to Pin Detail where
+user can click url link which directs user to the source of the pin.
+
+*Example Discover Page*
+![Discover Page Preview](https://github.com/Derek-Emsbach/pinteresting-group-project/blob/main/z.Documentation/DiscoverPage%20Sample.JPG)
+
+The user can...
+1. Select and view pins that they are interested in.
+2. Pin can be saved and added to user's board of their choice.
+3. Pin can be edited if it belongs to the user
+4. follow creator of the pin
 
 
-## Deployment through Render.com
+**Pins**
+Pins are items that user are interested such as food items, pets, photos, etc. User can create, and add information associated.
+Once created, it will be displayed on their my pins page, and added to the dicovery page.
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+**Boards**
+Board is a collection of pins that user adds. They can create their a board of a certain description, and add pins to it.
+Boards can be created, edited, and deleted as needed.
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+**User Profile**
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+User profile displays general information of the current user such as their username, first name, last name, email.
+Profile can be updated.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+From here, user can view
+1) Followers and people that they follow.
+2) Boards
+3) Pins
 
-### Part A: Configure the Start and Build Commands
-
-Start by giving your application a name.
-
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
-
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
-
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
-
-For your Flask project, enter the following command into the Build field, all in
-one line:
-
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
-
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
-
-Now, add your start command in the Start field:
-
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+**Following / Follwers**
+User can click and display list of users that they follow or people that follow them.
