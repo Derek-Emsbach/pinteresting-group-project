@@ -3,7 +3,7 @@
 Check out a live version of Pinspired here:
 [Pinspired Live][Render]
 
-[Render]: https://pinteresting-project.onrender.com/
+[Render]: https://pinspired.onrender.com/
 
 Pinspired is a clone of the website Pinterest where you use a visual discovery engine for finding ideas like recipes, home and style inspiration,
  and more.
