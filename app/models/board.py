@@ -12,6 +12,8 @@ pinnings = db.Table (
     schema=SCHEMA
     )
 
+if environment == "production":
+    pinnings.schema = SCHEMA
 
 class Board(db.Model):
     __tablename__ = 'boards'
