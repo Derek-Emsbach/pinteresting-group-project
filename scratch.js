@@ -1,3 +1,4 @@
+// pip install -r requirements.txt
 // - [x] deploy render
 // - [x] add white space to Aman's grid
 // - [x] boards add real pins cards instead of fake grid

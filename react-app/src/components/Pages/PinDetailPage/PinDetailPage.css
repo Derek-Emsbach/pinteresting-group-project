@@ -1,9 +1,53 @@
 .PinDetail--Page .PinDetail--Image--Container {
-	width: 230px;
+	/* width: 230px; */
+	padding: 20px;
+}
+
+.board-container {
+	display: flex;
+	justify-content: center;
+	border: blue solid;
+	width: 50%;
 }
 
 .PinDetail--Page .PinDetail--Image {
 	object-fit: contain;
-	width: 100%;
-	min-height: 120px;
+	/* width: 100%; */
+	/* min-height: 120px; */
+	max-height: 800px;
+	border-radius: 5%;
+}
+
+.PinDetail--Page {
+	display: flex;
+	/* border: orange solid; */
+	justify-content: center;
+}
+
+.Pin-Detail {
+	/* border: blue solid; */
+	margin-top: 20px;
+	box-shadow: 0 0 20px #ccc;
+	border-radius: 5%;
+	padding: 20px;
+}
+.pin-title {
+	display: flex;
+	justify-content: center;
+}
+
+.pin-detail-list {
+	list-style: none;
+}
+
+.details {
+	/* border: green solid; */
+	margin-left: 20px;
+}
+
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
 }
